@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GymManager.Models
 {
-    public class GymEquipment
+    public class Equipment
     {
         public int Id { get; set; }
 
@@ -23,5 +23,7 @@ namespace GymManager.Models
         public string Model { get; set; }
 
         public DateTime PurchaseDate { get; set; }
+
+        public Area Area { get; set; }
     }
 }
