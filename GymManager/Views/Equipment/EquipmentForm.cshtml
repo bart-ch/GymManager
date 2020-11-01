@@ -1,4 +1,4 @@
-﻿
+﻿@model GymManager.Models.Area
 @{
     ViewBag.Title = "Equipment Form";
 }
@@ -6,6 +6,8 @@
 <h2>Equipment Form</h2>
 
 <form>
+
+
     <div class="form-group">
         <label for="type">Type of Equipment</label>
         <input class="form-control" id="type" name="type">
@@ -21,11 +23,21 @@
         <input class="form-control" id="model" name="model">
     </div>
 
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Gym Area
+        </button>
+        <div id="areaDropdown" name="areaDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        </div>
+    </div>
+
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
         </div>
-        <input id="purchaseDate" type="date" class="form-control" name="incomeDate" required>
+        <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
     </div>
 
 
@@ -36,6 +48,19 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/api/areas",
+                data: "{}",
+                success: function (data) {
+                    var s = '';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
+                    }
+                    $("#areaDropdown").html(s);
+                }
+            });
+        });
     </script>
 }

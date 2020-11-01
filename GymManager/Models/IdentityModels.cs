@@ -21,6 +21,7 @@ namespace GymManager.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<Area> Areas { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

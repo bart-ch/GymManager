@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,13 @@ namespace GymManager.Controllers
 {
     public class EquipmentController : Controller
     {
-        // GET: GymEquipment
+        private ApplicationDbContext context = new ApplicationDbContext();
+
+
         public ActionResult Index()
         {
-            return View();
+            var areas = context.Areas.ToList();
+            return View(areas);
         }
 
         public ActionResult New()
