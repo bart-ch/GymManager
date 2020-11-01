@@ -23,15 +23,13 @@
         <input class="form-control" id="model" name="model">
     </div>
 
-
-
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Gym Area
-        </button>
-        <div id="areaDropdown" name="areaDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-map-marker"></i></label>
         </div>
+        <select class="form-control" id="areaDropdown" name="areaDropdown"></select>
     </div>
+
 
     <div class="input-group mt-3">
         <div class="input-group-prepend">
@@ -54,11 +52,11 @@
                 url: "/api/areas",
                 data: "{}",
                 success: function (data) {
-                    var s = '';
+                    var dropdownItems = '<option disabled selected value="">-- Select Gym Area --</option>';
                     for (var i = 0; i < data.length; i++) {
-                        s += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
+                        dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
                     }
-                    $("#areaDropdown").html(s);
+                    $("#areaDropdown").html(dropdownItems);
                 }
             });
         });

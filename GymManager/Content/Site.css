@@ -26,3 +26,8 @@ textarea {
 .input-validation-error {
     border: 1px solid red;
 }
+
+select option:first-child {
+    display: none;
+}
+
