@@ -12,10 +12,6 @@ namespace GymManager.Models
 
         [Required]
         [StringLength(255)]
-        public string TypeOfEquipment { get; set; }
-
-        [Required]
-        [StringLength(255)]
         public string Brand { get; set; }        
         
         [Required]
@@ -24,6 +20,10 @@ namespace GymManager.Models
 
         public DateTime PurchaseDate { get; set; }
 
+        [Required]
         public Area Area { get; set; }
+
+        [Required]
+        public Type Type { get; set; }
     }
 }
