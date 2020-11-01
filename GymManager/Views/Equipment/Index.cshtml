@@ -7,20 +7,54 @@
 
 <a href="/Equipment/New" class="btn btn-primary my-3" role="button">New Equipment</a>
 
-<table class="table table-bordered table-hover">
+<table id="equipment" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Type</th>
             <th>Brand</th>
             <th>Model</th>
+            <th>Purchase Date</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>ghg</td>
-            <td>ghg</td>
-            <td>ghg</td>
-        </tr>
     </tbody>
 </table>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $("#equipment").DataTable({
+                ajax: {
+                    url: "/api/equipment",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "brand"
+                    },
+                    {
+                        data: "model"
+                    },                  
+                    {
+                        data: "purchaseDate",
+                        render: function (data) {
+                            var date = new Date(data);
+                            var day = date.getDate();
+                            var month = date.getMonth() + 1;
+                            var year = date.getFullYear();
+
+                            return day + "/" + month + "/" + year;
+                        }
+                    }
+
+                ]
+
+            });
+        })
+    </script>
+    
+    
+    
+    
+}
