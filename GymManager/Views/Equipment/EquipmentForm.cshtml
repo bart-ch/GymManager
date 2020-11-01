@@ -27,14 +27,14 @@
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-list"></i></label>
         </div>
-        <select class="form-control" id="type" name="type"></select>
+        <select class="form-control" id="types" name="types"></select>
     </div>
 
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-location-arrow"></i></label>
         </div>
-        <select class="form-control" id="area" name="area"></select>
+        <select class="form-control" id="areas" name="areas"></select>
     </div>
 
 
@@ -67,7 +67,20 @@
                     for (var i = 0; i < data.length; i++) {
                         dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
                     }
-                    $("#area").html(dropdownItems);
+                    $("#areas").html(dropdownItems);
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/api/types",
+                data: "{}",
+                success: function (data) {
+                    var dropdownItems = '<option disabled selected value="">-- Equipment Type --</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
+                    }
+                    $("#types").html(dropdownItems);
                 }
             });
         });

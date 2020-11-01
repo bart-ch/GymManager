@@ -22,6 +22,7 @@ namespace GymManager.Models
     {
         public DbSet<Equipment> Equipment { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Type> Types { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
