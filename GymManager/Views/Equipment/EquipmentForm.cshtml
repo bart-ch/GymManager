@@ -14,12 +14,16 @@
         <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
     </div>
 
+    <p id="errorbrand"></p>
+
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
         </div>
         <input class="form-control" placeholder="Model" id="model" name="model" required>
     </div>
+
+    <p id="errormodel"></p>
 
     <div class="input-group mt-3">
         <div class="input-group-prepend">
@@ -28,12 +32,16 @@
         <select class="form-control" id="typeId" name="typeId" required></select>
     </div>
 
+    <p id="errortypeId"></p>
+
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-location-arrow"></i></label>
         </div>
         <select class="form-control" id="areaId" name="areaId" required></select>
     </div>
+
+    <p id="errorareaId"></p>
 
     <div class="form-group mt-3">
         <label for="purchaseDate">Purchase Date</label>
@@ -44,6 +52,8 @@
             <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
         </div>
     </div>
+
+    <p id="errorpurchaseDate"></p>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -81,34 +91,43 @@
                 }
             });
 
-            $("#newEquipment").validate();
+            function resetForm($form) {
+                $form.find('input:text, input:password, input:file, select, textarea').val('');
+                $("input[type=date]").val("");
+            };
 
-            var vm = {
-                brand: $("#brand").val()
-            }
 
-            $("#newEquipment").submit(function (event) {
-                event.preventDefault();
+            $("#newEquipment").validate({
+                errorPlacement: function ($error, $element) {
+                    var name = $element.attr("name");
 
-                var formData = $('#newEquipment').serializeArray().reduce(function (obj, item) {
-                    obj[item.name] = item.value;
-                    return obj;
-                }, {});
+                    $("#error" + name).append($error);
+                },
 
-                $.ajax({
-                    url: "/api/equipment",
-                    method: "post",
-                    data: formData  
-                })
+                submitHandler: function () {
+                    var formData = $('#newEquipment').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+
+
+                    $.ajax({
+                        url: "/api/equipment",
+                        method: "post",
+                        data: formData
+                    })
                     .done(function () {
-                        alert('done');
-                    })
-                    .fail(function (data) {
-                        alert(data);
-                    })
+                        toastr.success("Equipment successfully added.");
+                        resetForm($('#newEquipment'));
 
+                    })
+                    .fail(function () {
+                        toastr.error("Unexpected error.");
+                    });
 
-            })
+                    return false;
+                }
+            });
 
         });
     </script>

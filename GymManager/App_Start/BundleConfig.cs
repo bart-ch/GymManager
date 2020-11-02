@@ -13,7 +13,8 @@ namespace GymManager
                         "~/Scripts/umd/popper.js",
                         "~/Scripts/bootstrap.js",
                         "~/scripts/datatables/jquery.datatables.js",
-                        "~/scripts/datatables/datatables.bootstrap4.js"
+                        "~/scripts/datatables/datatables.bootstrap4.js",
+                        "~/scripts/toastr.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -28,6 +29,7 @@ namespace GymManager
                       "~/Content/bootstrap-pulse.css",
                       "~/Content/font-awesome.css",
                       "~/Content/datatables/css/dataTables.bootstrap4.min.css",
+                      "~/content/toastr.css",
                       "~/Content/site.css"));
         }
     }
