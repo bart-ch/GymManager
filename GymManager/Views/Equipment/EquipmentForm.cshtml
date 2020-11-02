@@ -4,7 +4,7 @@
 }
 
 <h2>Equipment Form</h2>
-<hr/>
+<hr />
 
 <form id="newEquipment">
     <div class="input-group mt-3">
@@ -25,17 +25,15 @@
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-list"></i></label>
         </div>
-        <select class="form-control" id="types" name="types" required></select>
+        <select class="form-control" id="typeId" name="typeId" required></select>
     </div>
 
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-location-arrow"></i></label>
         </div>
-        <select class="form-control" id="areas" name="areas" required></select>
+        <select class="form-control" id="areaId" name="areaId" required></select>
     </div>
-
-
 
     <div class="form-group mt-3">
         <label for="purchaseDate">Purchase Date</label>
@@ -66,7 +64,7 @@
                     for (var i = 0; i < data.length; i++) {
                         dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
                     }
-                    $("#areas").html(dropdownItems);
+                    $("#areaId").html(dropdownItems);
                 }
             });
 
@@ -79,7 +77,7 @@
                     for (var i = 0; i < data.length; i++) {
                         dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
                     }
-                    $("#types").html(dropdownItems);
+                    $("#typeId").html(dropdownItems);
                 }
             });
 
@@ -92,24 +90,26 @@
             $("#newEquipment").submit(function (event) {
                 event.preventDefault();
 
-                var datastring = $("#newEquipment").serialize();
-                console.log(datastring);
+                var formData = $('#newEquipment').serializeArray().reduce(function (obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {});
 
                 $.ajax({
                     url: "/api/equipment",
                     method: "post",
-                    data: datastring,
-                    dataType: "json",
-                    success: function (data) {
-                        
-                    },
-                    error: function () {
-                        alert('error handling here');
-                    }
-
-
+                    data: formData  
                 })
+                    .done(function () {
+                        alert('done');
+                    })
+                    .fail(function (data) {
+                        alert(data);
+                    })
+
+
             })
+
         });
     </script>
 }
