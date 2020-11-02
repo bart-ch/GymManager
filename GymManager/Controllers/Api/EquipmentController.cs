@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GymManager.Dtos;
 using GymManager.Models;
+using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees;
@@ -17,14 +18,21 @@ namespace GymManager.Controllers.Api
 
         public IHttpActionResult GetEquipment()
         {
-            var equipmentDtos = context.Equipment.ToList().Select(Mapper.Map<Equipment, EquipmentDto>);
+            var equipmentDtos = context.Equipment
+                .Include(e => e.Type)
+                .Include(e => e.Area)
+                .ToList()
+                .Select(Mapper.Map<Equipment, EquipmentDto>);
 
             return Ok(equipmentDtos);
         }        
         
         public IHttpActionResult GetSingleEquipment(int id)
         {
-            var equipment = context.Equipment.SingleOrDefault(e => e.Id == id);
+            var equipment = context.Equipment
+                .Include(e => e.Type)
+                .Include(e => e.Area)
+                .SingleOrDefault(e => e.Id == id);
 
             if (equipment == null)
             {
@@ -32,6 +40,24 @@ namespace GymManager.Controllers.Api
             }
 
             return Ok(Mapper.Map<Equipment,EquipmentDto>(equipment));
+        }
+
+        [HttpPost]
+        public IHttpActionResult CreateEquipment(EquipmentDto equipmentDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                BadRequest();
+            }
+
+            var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
+
+            context.Equipment.Add(equipment);
+            context.SaveChanges();
+
+            equipmentDto.Id = equipment.Id;
+
+            return Created(new Uri(Request.RequestUri + "/" + equipment.Id), equipmentDto);
         }
     }
 }

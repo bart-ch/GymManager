@@ -6,9 +6,7 @@
 <h2>Equipment Form</h2>
 <hr/>
 
-<form>
-
-
+<form id="newEquipment">
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
@@ -27,14 +25,14 @@
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-list"></i></label>
         </div>
-        <select class="form-control" id="types" name="types"></select>
+        <select class="form-control" id="types" name="types" required></select>
     </div>
 
     <div class="input-group mt-3">
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fa fa-location-arrow"></i></label>
         </div>
-        <select class="form-control" id="areas" name="areas"></select>
+        <select class="form-control" id="areas" name="areas" required></select>
     </div>
 
 
@@ -49,7 +47,6 @@
         </div>
     </div>
 
-
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
@@ -57,7 +54,9 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
+
         $(document).ready(function () {
+
             $.ajax({
                 type: "GET",
                 url: "/api/areas",
@@ -83,6 +82,34 @@
                     $("#types").html(dropdownItems);
                 }
             });
+
+            $("#newEquipment").validate();
+
+            var vm = {
+                brand: $("#brand").val()
+            }
+
+            $("#newEquipment").submit(function (event) {
+                event.preventDefault();
+
+                var datastring = $("#newEquipment").serialize();
+                console.log(datastring);
+
+                $.ajax({
+                    url: "/api/equipment",
+                    method: "post",
+                    data: datastring,
+                    dataType: "json",
+                    success: function (data) {
+                        
+                    },
+                    error: function () {
+                        alert('error handling here');
+                    }
+
+
+                })
+            })
         });
     </script>
 }
