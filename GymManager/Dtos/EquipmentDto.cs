@@ -22,8 +22,10 @@ namespace GymManager.Dtos
 
         [Required]
         public AreaDto Area { get; set; }
+        public byte AreaId { get; set; }
 
         [Required]
         public TypeDto Type { get; set; }
+        public byte TypeId { get; set; }
     }
 }

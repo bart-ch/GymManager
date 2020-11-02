@@ -227,6 +227,14 @@
     <Compile Include="Migrations\202011011715489_ChangeEquipmentTableName.Designer.cs">
       <DependentUpon>202011011715489_ChangeEquipmentTableName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011021956482_CheckIfTheAreAnyChanges.cs" />
+    <Compile Include="Migrations\202011021956482_CheckIfTheAreAnyChanges.Designer.cs">
+      <DependentUpon>202011021956482_CheckIfTheAreAnyChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011022001347_AddIdsToEquipment.cs" />
+    <Compile Include="Migrations\202011022001347_AddIdsToEquipment.Designer.cs">
+      <DependentUpon>202011022001347_AddIdsToEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -687,6 +695,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011011715489_ChangeEquipmentTableName.resx">
       <DependentUpon>202011011715489_ChangeEquipmentTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011021956482_CheckIfTheAreAnyChanges.resx">
+      <DependentUpon>202011021956482_CheckIfTheAreAnyChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011022001347_AddIdsToEquipment.resx">
+      <DependentUpon>202011022001347_AddIdsToEquipment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
