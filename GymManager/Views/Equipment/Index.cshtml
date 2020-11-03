@@ -8,18 +8,24 @@
 <a href="/Equipment/New" class="btn btn-primary mt-3" role="button">New Equipment</a>
 <hr>
 
-<table id="equipment" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Purchase Date</th>
-            <th width="3%"></th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<div class="table-responsive">
+        <table id="equipment" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Purchase Date</th>
+                    <th width="3%"></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+</div>
+
+
 
 
 @section scripts
@@ -39,25 +45,30 @@
                         data: "model"
                     },
                     {
+                        data: "type.name"
+                    },
+                    {
+                        data: "area.name"
+                    },
+                    {
                         data: "purchaseDate",
                         render: function (data) {
                             var date = new Date(data);
-                            var day = date.getDate();
-                            var month = date.getMonth() + 1;
-                            var year = date.getFullYear();
+                            var dateString = date.getFullYear() + '/'
+                                + ('0' + (date.getMonth() + 1)).slice(-2) + '/'
+                                + ('0' + date.getDate()).slice(-2);
 
-                            return year + "/" + month + "/" + day;
+                            return dateString;
                         }
                     },
                     {
                         data: "id",
+                        "orderable": false,
                         render: function (data) {
                             return "<a class='pointer js-delete' data-equipment-id=" + data + "><i class='fa fa-trash'></i></a>";
                         }
                     }
-
                 ]
-
             });
 
             $("#equipment").on("click", ".js-delete", function () {
@@ -76,7 +87,6 @@
                             .done(function () {
                                 table.row(button.parents("tr")).remove().draw();
                                 toastr.success("Equipment successfully deleted.");
-
                             })
                             .fail(function () {
                                 toastr.error("Unexpected error.");
