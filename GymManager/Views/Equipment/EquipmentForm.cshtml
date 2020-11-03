@@ -55,8 +55,8 @@
 
     <p id="errorpurchaseDate"></p>
 
-    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
     @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
     <a href="/Equipment/Index" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
 </form>
 
@@ -98,13 +98,9 @@
                 $("input[type=date]").val("");
             };
 
-            var csrfToken = $("input[name='__RequestVerificationToken']").val(); 
-
-
             $("#newEquipment").validate({
                 errorPlacement: function ($error, $element) {
                     var name = $element.attr("name");
-
                     $("#error" + name).append($error);
                 },
 
@@ -113,10 +109,10 @@
                         obj[item.name] = item.value;
                         return obj;
                     }, {});
-
+                    var antiforgeryToken = $("input[name='__RequestVerificationToken']").val();
 
                     $.ajax({
-                        headers: { __RequestVerificationToken: csrfToken },
+                        headers: { __RequestVerificationToken: antiforgeryToken },
                         url: "/api/equipment",
                         method: "post",
                         data: formData

@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.ComponentModel.Design;
+using GymManager.Attributes;
 
 namespace GymManager.Controllers.Api
 {
@@ -60,6 +61,22 @@ namespace GymManager.Controllers.Api
             equipmentDto.Id = equipment.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + equipment.Id), equipmentDto);
+        }
+
+        [HttpDelete]
+        public  IHttpActionResult DeleteEquipment(int id)
+        {
+            var equipmentInDb = context.Equipment.SingleOrDefault(e => e.Id == id);
+
+            if (equipmentInDb == null)
+            {
+                return NotFound();
+            }
+
+            context.Equipment.Remove(equipmentInDb);
+            context.SaveChanges();
+
+            return Ok();
         }
 
   

@@ -8,30 +8,25 @@
 <a href="/Equipment/New" class="btn btn-primary mt-3" role="button">New Equipment</a>
 <hr>
 
-<div class="row">
-    <div class="col-sm-6 col-md-12">
-        <table id="equipment" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Purchase Date</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-</div>
+<table id="equipment" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Purchase Date</th>
+            <th width="3%"></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
 
 @section scripts
 {
     <script>
         $(document).ready(function () {
-
-            $("#equipment").DataTable({
+            var table = $("#equipment").DataTable({
                 ajax: {
                     url: "/api/equipment",
                     dataSrc: ""
@@ -53,12 +48,39 @@
 
                             return day + "/" + month + "/" + year;
                         }
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<a class='pointer js-delete' data-equipment-id=" + data + "><i class='fa fa-trash'></i></a>";
+                        }
                     }
 
                 ]
 
             });
+
+            $("#equipment").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this equipment?", function (result) {
+                    if (result) {
+                
+                        $.ajax({
+                            url: "/api/equipment/" + button.attr("data-equipment-id"),
+                            method: "DELETE"
+                        })
+                        .done(function () {
+                            table.row(button.parents("tr")).remove().draw();
+                            toastr.success("Equipment successfully deleted.");
+
+                        })
+                        .fail(function () {
+                            toastr.error("Unexpected error.");
+                        });
+                    }
+                });
+            });
         })
     </script>
-
 }

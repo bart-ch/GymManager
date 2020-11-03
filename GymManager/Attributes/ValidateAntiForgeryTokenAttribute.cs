@@ -10,7 +10,7 @@ using System.Web.Helpers;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace GymManager.Controllers.Api
+namespace GymManager.Attributes
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public sealed class ValidateAntiForgeryTokenAttribute : FilterAttribute, IAuthorizationFilter

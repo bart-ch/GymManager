@@ -36,3 +36,8 @@ label.error {
 select option:first-child {
     display: none;
 }
+
+.pointer {
+    cursor: pointer;
+}
+

@@ -14,7 +14,9 @@ namespace GymManager
                         "~/Scripts/bootstrap.js",
                         "~/scripts/datatables/jquery.datatables.js",
                         "~/scripts/datatables/datatables.bootstrap4.js",
-                        "~/scripts/toastr.js"
+                        "~/scripts/bootbox.js",
+                        "~/scripts/toastr.js",
+                        "~/scripts/toastrOptions.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
