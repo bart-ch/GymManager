@@ -41,3 +41,11 @@ select option:first-child {
     cursor: pointer;
 }
 
+.bootbox .modal-header {
+    display: block;
+}
+
+.logo {
+    font-family: 'Permanent Marker', cursive;
+}
+

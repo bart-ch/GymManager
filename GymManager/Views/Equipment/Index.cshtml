@@ -46,7 +46,7 @@
                             var month = date.getMonth() + 1;
                             var year = date.getFullYear();
 
-                            return day + "/" + month + "/" + year;
+                            return year + "/" + month + "/" + day;
                         }
                     },
                     {
@@ -63,21 +63,25 @@
             $("#equipment").on("click", ".js-delete", function () {
                 var button = $(this);
 
-                bootbox.confirm("Are you sure you want to delete this equipment?", function (result) {
-                    if (result) {
-                
-                        $.ajax({
-                            url: "/api/equipment/" + button.attr("data-equipment-id"),
-                            method: "DELETE"
-                        })
-                        .done(function () {
-                            table.row(button.parents("tr")).remove().draw();
-                            toastr.success("Equipment successfully deleted.");
+                bootbox.confirm({
+                    title: 'Delete',
+                    message: "Are you sure you want to delete this equipment?",
+                    callback: function (result) {
+                        if (result) {
 
-                        })
-                        .fail(function () {
-                            toastr.error("Unexpected error.");
-                        });
+                            $.ajax({
+                                url: "/api/equipment/" + button.attr("data-equipment-id"),
+                                method: "DELETE"
+                            })
+                            .done(function () {
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Equipment successfully deleted.");
+
+                            })
+                            .fail(function () {
+                                toastr.error("Unexpected error.");
+                            });
+                        }
                     }
                 });
             });
