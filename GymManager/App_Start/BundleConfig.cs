@@ -29,7 +29,7 @@ namespace GymManager
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-pulse.css",
-                      "~/Content/font-awesome.css",
+                      "~/Content/fontawesome-all.css",
                       "~/Content/datatables/css/dataTables.bootstrap4.min.css",
                       "~/content/toastr.css",
                       "~/Content/site.css"));

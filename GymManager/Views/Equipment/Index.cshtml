@@ -18,6 +18,7 @@
                     <th>Location</th>
                     <th>Purchase Date</th>
                     <th width="3%"></th>
+                    <th width="3%"></th>
                 </tr>
             </thead>
             <tbody>
@@ -59,6 +60,13 @@
                                 + ('0' + date.getDate()).slice(-2);
 
                             return dateString;
+                        }
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a class='pointer js-edit' data-equipment-id=" + data + "><i class='fa fa-edit'></i></a>";
                         }
                     },
                     {
