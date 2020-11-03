@@ -11,12 +11,12 @@
         <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
         </div>
-        <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
+        <input class="form-control" placeholder="Brand" id="brand" name="brand" required >
     </div>
 
     <p id="errorbrand"></p>
 
-    <div class="input-group mt-3">
+    <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
         </div>
@@ -25,7 +25,7 @@
 
     <p id="errormodel"></p>
 
-    <div class="input-group mt-3">
+    <div class="input-group">
         <div class="input-group-prepend">
             <label class="input-group-text"><i class="fas fa-dumbbell"></i></label>
         </div>
@@ -34,20 +34,20 @@
 
     <p id="errortypeId"></p>
 
-    <div class="input-group mt-3">
+    <div class="input-group">
         <div class="input-group-prepend">
-            <label class="input-group-text"><i class="fa fa-location-arrow"></i></label>
+            <label class="input-group-text"><i class="fa fa-search-location"></i></label>
         </div>
         <select class="form-control" id="areaId" name="areaId" required></select>
     </div>
 
     <p id="errorareaId"></p>
 
-    <div class="form-group mt-3">
+    <div class="input-group">
         <label for="purchaseDate">Purchase Date</label>
-        <div class="input-group mb-3">
+        <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
             </div>
             <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
         </div>
@@ -102,6 +102,16 @@
                 errorPlacement: function ($error, $element) {
                     var name = $element.attr("name");
                     $("#error" + name).append($error);
+                },
+
+                rules: {
+                    brand: {
+                        maxlength: 30,
+                    },
+                    model: {
+                        maxlength: 30,
+                    },
+
                 },
 
                 submitHandler: function () {
