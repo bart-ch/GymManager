@@ -44,6 +44,7 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult CreateEquipment(EquipmentDto equipmentDto)
         {
             if (!ModelState.IsValid)
@@ -60,5 +61,7 @@ namespace GymManager.Controllers.Api
 
             return Created(new Uri(Request.RequestUri + "/" + equipment.Id), equipmentDto);
         }
+
+  
     }
 }

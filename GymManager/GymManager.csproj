@@ -190,6 +190,7 @@
     <Compile Include="Controllers\Api\AreasController.cs" />
     <Compile Include="Controllers\Api\EquipmentController.cs" />
     <Compile Include="Controllers\Api\TypesController.cs" />
+    <Compile Include="Controllers\Api\ValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

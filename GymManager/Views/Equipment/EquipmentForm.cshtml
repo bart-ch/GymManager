@@ -4,7 +4,7 @@
 }
 
 <h2>Equipment Form</h2>
-<hr />
+<hr>
 
 <form id="newEquipment">
     <div class="input-group mt-3">
@@ -55,7 +55,9 @@
 
     <p id="errorpurchaseDate"></p>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    @Html.AntiForgeryToken()
+    <a href="/Equipment/Index" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
 </form>
 
 @section scripts {
@@ -96,6 +98,8 @@
                 $("input[type=date]").val("");
             };
 
+            var csrfToken = $("input[name='__RequestVerificationToken']").val(); 
+
 
             $("#newEquipment").validate({
                 errorPlacement: function ($error, $element) {
@@ -112,6 +116,7 @@
 
 
                     $.ajax({
+                        headers: { __RequestVerificationToken: csrfToken },
                         url: "/api/equipment",
                         method: "post",
                         data: formData

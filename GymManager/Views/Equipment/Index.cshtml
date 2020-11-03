@@ -5,19 +5,26 @@
 
 <h2>Equipment</h2>
 
-<a href="/Equipment/New" class="btn btn-primary my-3" role="button">New Equipment</a>
+<a href="/Equipment/New" class="btn btn-primary mt-3" role="button">New Equipment</a>
+<hr>
 
-<table id="equipment" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Purchase Date</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-sm-6 col-md-12">
+        <table id="equipment" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Purchase Date</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 @section scripts
 {
@@ -35,7 +42,7 @@
                     },
                     {
                         data: "model"
-                    },                  
+                    },
                     {
                         data: "purchaseDate",
                         render: function (data) {
@@ -53,8 +60,5 @@
             });
         })
     </script>
-    
-    
-    
-    
+
 }
