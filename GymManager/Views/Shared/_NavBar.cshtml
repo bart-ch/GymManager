@@ -9,7 +9,13 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
 
             <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Equipment", "Index", "Equipment", null, new { @class = "nav-link" })</li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Equipment</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/Equipment">All equipment</a>
+                        <a class="dropdown-item" href="/Equipment/New">Add new</a>
+                    </div>
+                </li>
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
             </ul>

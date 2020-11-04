@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Edit Equipment";
+}
+
+<h2>Edit Equipment</h2>
+
+@Html.Partial("_EquipmentForm")
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "/api/areas",
+            data: "{}",
+            success: function (data) {
+                var dropdownItems = '<option disabled selected value="">-- Gym Area --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
+                }
+                $("#areaId").html(dropdownItems);
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "/api/types",
+            data: "{}",
+            success: function (data) {
+                var dropdownItems = '<option disabled selected value="">-- Equipment Type --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    dropdownItems += '<option style="cursor: pointer;" class="dropdown-item" value="' + data[i].id + '">' + data[i].name + '</option>';
+                }
+                $("#typeId").html(dropdownItems);
+            }
+        });
+
+        var url = $(location).attr('href');
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        if (id > 0) {
+            $.ajax({
+                type: "GET",
+                url: "/api/equipment/" + id,
+            })
+            .done(function (equipment) {
+                $("#brand").val(equipment.brand);
+                $("#model").val(equipment.model);
+                $("#typeId").val(equipment.type.id);
+                $("#areaId").val(equipment.area.id);
+                var date = new Date(equipment.purchaseDate);
+                var dateString = date.getFullYear() + '-'
+                    + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+                    + ('0' + date.getDate()).slice(-2);
+                $("#purchaseDate").val(dateString);
+
+            })
+            .fail(function () {
+                toastr.error("Sorry, the equipment doesnt exist");
+            });
+        }
+
+        $("#equipmentForm").validate({
+            errorPlacement: function ($error, $element) {
+                var name = $element.attr("name");
+                $("#error" + name).append($error);
+            },
+
+            rules: {
+                brand: {
+                    maxlength: 30,
+                },
+                model: {
+                    maxlength: 30,
+                },
+            },
+            submitHandler: function () {
+                var formData = $('#equipmentForm').serializeArray().reduce(function (obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {});
+                console.log(formData);
+                var antiforgeryToken = $("input[name='__RequestVerificationToken']").val();
+                $.ajax({
+                    url: "/api/equipment/" + id,
+                    method: "PUT",
+                    data: formData
+                })
+                .done(function () {
+                    toastr.success("Equipment successfully updated.");
+                })
+                .fail(function () {
+                    toastr.error("Unexpected error.");
+                });
+
+                return false;
+            }
+        });
+
+    });
+</script>
+}

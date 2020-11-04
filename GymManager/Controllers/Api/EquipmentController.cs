@@ -63,6 +63,27 @@ namespace GymManager.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + equipment.Id), equipmentDto);
         }
 
+        [HttpPut]
+        public IHttpActionResult UpdateEquipment(int id, EquipmentDto equipmentDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                BadRequest();
+            }
+            var equipmentInDb = context.Equipment.SingleOrDefault(e => e.Id == id);
+
+            if (equipmentInDb == null)
+            {
+                return BadRequest();
+            }
+
+            Mapper.Map(equipmentDto, equipmentInDb);
+
+            context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpDelete]
         public  IHttpActionResult DeleteEquipment(int id)
         {

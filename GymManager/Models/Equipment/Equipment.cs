@@ -22,7 +22,6 @@ namespace GymManager.Models
 
         public DateTime PurchaseDate { get; set; }
 
-
         public Area Area { get; set; }
         [Required]
         public byte AreaId { get; set; }

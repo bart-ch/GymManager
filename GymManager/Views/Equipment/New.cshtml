@@ -1,64 +1,12 @@
 ﻿@model GymManager.Models.Area
 @{
-    ViewBag.Title = "Equipment Form";
+    ViewBag.Title = "New Equipment";
 }
 
-<h2>Equipment Form</h2>
+<h2>New Equipment</h2>
 <hr>
 
-<form id="newEquipment">
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
-        </div>
-        <input class="form-control" placeholder="Brand" id="brand" name="brand" required >
-    </div>
-
-    <p id="errorbrand"></p>
-
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
-        </div>
-        <input class="form-control" placeholder="Model" id="model" name="model" required>
-    </div>
-
-    <p id="errormodel"></p>
-
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <label class="input-group-text"><i class="fas fa-dumbbell"></i></label>
-        </div>
-        <select class="form-control" id="typeId" name="typeId" required></select>
-    </div>
-
-    <p id="errortypeId"></p>
-
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <label class="input-group-text"><i class="fa fa-search-location"></i></label>
-        </div>
-        <select class="form-control" id="areaId" name="areaId" required></select>
-    </div>
-
-    <p id="errorareaId"></p>
-
-    <div class="input-group">
-        <label for="purchaseDate">Purchase Date</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
-            </div>
-            <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
-        </div>
-    </div>
-
-    <p id="errorpurchaseDate"></p>
-
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
-    <a href="/Equipment/Index" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
-</form>
+@Html.Partial("_EquipmentForm")
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -93,17 +41,40 @@
                 }
             });
 
+            var url = $(location).attr('href');
+            var id = url.substring(url.lastIndexOf('/') + 1);
+            if (id > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/equipment/" + id,
+                })
+                    .done(function (equipment) {
+                        $("#brand").val(equipment.brand);
+                        $("#model").val(equipment.model);
+                        $("#typeId").val(equipment.type.id);
+                        $("#areaId").val(equipment.area.id);
+
+                        var date = new Date(equipment.purchaseDate);
+                        var dateString = date.getFullYear() + '-'
+                            + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+                            + ('0' + date.getDate()).slice(-2);
+                        $("#purchaseDate").val(dateString);
+                    })
+                    .fail(function () {
+                        toastr.error("Unexpected error.");
+                    });
+            }
+
             function resetForm($form) {
                 $form.find('input:text, input:password, input:file, select, textarea').val('');
                 $("input[type=date]").val("");
             };
 
-            $("#newEquipment").validate({
+            $("#equipmentForm").validate({
                 errorPlacement: function ($error, $element) {
                     var name = $element.attr("name");
                     $("#error" + name).append($error);
                 },
-
                 rules: {
                     brand: {
                         maxlength: 30,
@@ -113,9 +84,8 @@
                     },
 
                 },
-
                 submitHandler: function () {
-                    var formData = $('#newEquipment').serializeArray().reduce(function (obj, item) {
+                    var formData = $('#equipmentForm').serializeArray().reduce(function (obj, item) {
                         obj[item.name] = item.value;
                         return obj;
                     }, {});
@@ -124,17 +94,17 @@
                     $.ajax({
                         headers: { __RequestVerificationToken: antiforgeryToken },
                         url: "/api/equipment",
-                        method: "post",
+                        method: "POST",
                         data: formData
                     })
-                    .done(function () {
-                        toastr.success("Equipment successfully added.");
-                        resetForm($('#newEquipment'));
+                        .done(function () {
+                            toastr.success("Equipment successfully added.");
+                            resetForm($('#equipmentForm'));
 
-                    })
-                    .fail(function () {
-                        toastr.error("Unexpected error.");
-                    });
+                        })
+                        .fail(function () {
+                            toastr.error("Unexpected error.");
+                        });
 
                     return false;
                 }

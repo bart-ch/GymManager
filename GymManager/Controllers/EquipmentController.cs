@@ -15,7 +15,12 @@ namespace GymManager.Controllers
 
         public ActionResult New()
         {
-            return View("EquipmentForm");
+            return View();
+        }        
+        
+        public ActionResult Edit(int id)
+        {
+            return View();
         }
     }
 }
