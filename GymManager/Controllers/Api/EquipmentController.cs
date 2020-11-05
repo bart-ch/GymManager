@@ -64,6 +64,7 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPut]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult UpdateEquipment(int id, EquipmentDto equipmentDto)
         {
             if (!ModelState.IsValid)

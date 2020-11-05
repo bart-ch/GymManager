@@ -83,8 +83,6 @@
                     obj[item.name] = item.value;
                     return obj;
                 }, {});
-                console.log(formData);
-                var antiforgeryToken = $("input[name='__RequestVerificationToken']").val();
                 $.ajax({
                     url: "/api/equipment/" + id,
                     method: "PUT",

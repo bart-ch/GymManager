@@ -89,22 +89,20 @@
                         obj[item.name] = item.value;
                         return obj;
                     }, {});
-                    var antiforgeryToken = $("input[name='__RequestVerificationToken']").val();
-
                     $.ajax({
-                        headers: { __RequestVerificationToken: antiforgeryToken },
+      
                         url: "/api/equipment",
                         method: "POST",
                         data: formData
                     })
-                        .done(function () {
-                            toastr.success("Equipment successfully added.");
-                            resetForm($('#equipmentForm'));
+                    .done(function () {
+                        toastr.success("Equipment successfully added.");
+                        resetForm($('#equipmentForm'));
 
-                        })
-                        .fail(function () {
-                            toastr.error("Unexpected error.");
-                        });
+                    })
+                    .fail(function () {
+                        toastr.error("Unexpected error.");
+                    });
 
                     return false;
                 }
