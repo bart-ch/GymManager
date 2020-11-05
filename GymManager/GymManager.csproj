@@ -236,6 +236,18 @@
     <Compile Include="Migrations\202011022001347_AddIdsToEquipment.Designer.cs">
       <DependentUpon>202011022001347_AddIdsToEquipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011051758231_AddProductCodeToEquipment.cs" />
+    <Compile Include="Migrations\202011051758231_AddProductCodeToEquipment.Designer.cs">
+      <DependentUpon>202011051758231_AddProductCodeToEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011051805146_ChangeProductCodeToSerialNumber.cs" />
+    <Compile Include="Migrations\202011051805146_ChangeProductCodeToSerialNumber.Designer.cs">
+      <DependentUpon>202011051805146_ChangeProductCodeToSerialNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011051808396_AddStringLimitToSerialNumber.cs" />
+    <Compile Include="Migrations\202011051808396_AddStringLimitToSerialNumber.Designer.cs">
+      <DependentUpon>202011051808396_AddStringLimitToSerialNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -532,6 +544,9 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
+    <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
+    <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -563,7 +578,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\myScripts\ajaxHTTPmethods.js" />
+    <Content Include="Scripts\GymManager\gm-pupulate-select-with-ajax-get.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -633,7 +648,7 @@
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Scripts\myScripts\toastrOptions.js" />
+    <Content Include="Scripts\GymManager\toastrOptions.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -744,6 +759,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011022001347_AddIdsToEquipment.resx">
       <DependentUpon>202011022001347_AddIdsToEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011051758231_AddProductCodeToEquipment.resx">
+      <DependentUpon>202011051758231_AddProductCodeToEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011051805146_ChangeProductCodeToSerialNumber.resx">
+      <DependentUpon>202011051805146_ChangeProductCodeToSerialNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011051808396_AddStringLimitToSerialNumber.resx">
+      <DependentUpon>202011051808396_AddStringLimitToSerialNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

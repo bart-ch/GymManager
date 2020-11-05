@@ -18,14 +18,19 @@ namespace GymManager.Dtos
         [StringLength(255)]
         public string Model { get; set; }
 
+        [StringLength(255)]
+        public string SerialNumber { get; set; }
+
         public DateTime PurchaseDate { get; set; }
 
         [Required]
         public AreaDto Area { get; set; }
+
         public byte AreaId { get; set; }
 
         [Required]
         public TypeDto Type { get; set; }
+
         public byte TypeId { get; set; }
     }
 }

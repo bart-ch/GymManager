@@ -1,11 +1,18 @@
 ﻿<form id="equipmentForm">
     <div class="input-group mt-3">
         <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-barcode"></i></span>
+        </div>
+        <input class="form-control" placeholder="Serial Number (optional)" id="serialNumber" name="serialNumber">
+    </div>
+    <p id="errorserialNumber"></p>
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
         </div>
         <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
     </div>
-
     <p id="errorbrand"></p>
 
     <div class="input-group">
@@ -14,7 +21,6 @@
         </div>
         <input class="form-control" placeholder="Model" id="model" name="model" required>
     </div>
-
     <p id="errormodel"></p>
 
     <div class="input-group">
@@ -23,7 +29,6 @@
         </div>
         <select class="form-control" id="typeId" name="typeId" required></select>
     </div>
-
     <p id="errortypeId"></p>
 
     <div class="input-group">
@@ -32,7 +37,6 @@
         </div>
         <select class="form-control" id="areaId" name="areaId" required></select>
     </div>
-
     <p id="errorareaId"></p>
 
     <div class="input-group">
@@ -44,7 +48,6 @@
             <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
         </div>
     </div>
-
     <p id="errorpurchaseDate"></p>
 
     @Html.AntiForgeryToken()
