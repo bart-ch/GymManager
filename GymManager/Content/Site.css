@@ -22,3 +22,29 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.input-validation-error, 
+input.error,
+select.error {
+    border: 1px solid red;
+}
+
+label.error {
+    color: red;
+}
+
+select option:first-child {
+    display: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.bootbox .modal-header {
+    display: block;
+}
+
+.logo {
+    font-family: 'Permanent Marker', cursive;
+}

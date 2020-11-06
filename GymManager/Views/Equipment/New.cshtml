@@ -1,0 +1,15 @@
+﻿@model GymManager.Models.Area
+@{
+    ViewBag.Title = "New Equipment";
+}
+
+<h2>New Equipment</h2>
+<hr>
+
+@Html.Partial("_EquipmentForm")
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/GymManager/gm-pupulate-select-with-ajax-get.js")
+    @Scripts.Render("~/scripts/GymManager/gm-handle-new-equipment-form.js")
+}

@@ -1,0 +1,56 @@
+﻿<form id="equipmentForm">
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-barcode"></i></span>
+        </div>
+        <input class="form-control" placeholder="Serial Number (optional)" id="serialNumber" name="serialNumber">
+    </div>
+    <p id="errorserialNumber"></p>
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
+        </div>
+        <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
+    </div>
+    <p id="errorbrand"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
+        </div>
+        <input class="form-control" placeholder="Model" id="model" name="model" required>
+    </div>
+    <p id="errormodel"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fas fa-dumbbell"></i></label>
+        </div>
+        <select class="form-control" id="typeId" name="typeId" required></select>
+    </div>
+    <p id="errortypeId"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-search-location"></i></label>
+        </div>
+        <select class="form-control" id="areaId" name="areaId" required></select>
+    </div>
+    <p id="errorareaId"></p>
+
+    <div class="input-group">
+        <label for="purchaseDate">Purchase Date</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+            </div>
+            <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
+        </div>
+    </div>
+    <p id="errorpurchaseDate"></p>
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    <a href="/Equipment/Index" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+</form>

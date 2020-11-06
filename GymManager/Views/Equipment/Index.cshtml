@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Equipment";
+}
+
+<h2>Equipment</h2>
+
+<a href="/Equipment/New" class="btn btn-primary mt-3" role="button">New Equipment</a>
+<hr>
+
+<div class="table-responsive">
+    <table id="equipment" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Purchase Date</th>
+                <th>Serial Number</th>
+                <th width="3%"></th>
+                <th width="3%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/scripts/GymManager/gm-handle-equipment-datatable.js")
+}
