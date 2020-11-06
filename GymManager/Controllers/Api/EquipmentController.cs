@@ -16,7 +16,12 @@ namespace GymManager.Controllers.Api
 {
     public class EquipmentController : ApiController
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private readonly ApplicationDbContext context;
+
+        public EquipmentController()
+        {
+            context = new ApplicationDbContext();
+        }
 
         public IHttpActionResult GetEquipment()
         {

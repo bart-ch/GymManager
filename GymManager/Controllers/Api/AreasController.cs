@@ -12,7 +12,12 @@ namespace GymManager.Controllers.Api
 {
     public class AreasController : ApiController
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private readonly ApplicationDbContext context;
+
+        public AreasController()
+        {
+            context = new ApplicationDbContext();
+        }
 
         public IHttpActionResult GetAreas()
         {

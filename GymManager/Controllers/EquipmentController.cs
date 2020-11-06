@@ -5,9 +5,6 @@ namespace GymManager.Controllers
 {
     public class EquipmentController : Controller
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
-
-
         public ActionResult Index()
         {
             return View();
@@ -18,7 +15,7 @@ namespace GymManager.Controllers
             return View();
         }        
         
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
             return View();
         }

@@ -12,7 +12,12 @@ namespace GymManager.Controllers.Api
 {
     public class TypesController : ApiController
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private readonly ApplicationDbContext context;
+
+        public TypesController()
+        {
+            context = new ApplicationDbContext();
+        }
 
         public IHttpActionResult GetTypes()
         {
