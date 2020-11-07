@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymManager.Core.Domain.Equipment;
 using GymManager.Dtos;
 using GymManager.Models;
 using System;
@@ -14,12 +15,12 @@ namespace GymManager.App_Start
         {
             Mapper.CreateMap<Equipment, EquipmentDto>();
             Mapper.CreateMap<Area, AreaDto>();
-            Mapper.CreateMap<Models.Type, TypeDto>();
+            Mapper.CreateMap<Core.Domain.Equipment.Type, TypeDto>();
 
             Mapper.CreateMap<EquipmentDto, Equipment>()
                 .ForMember(e => e.Id, opt => opt.Ignore());
             Mapper.CreateMap<AreaDto, Area>();
-            Mapper.CreateMap<TypeDto, Models.Type>();
+            Mapper.CreateMap<TypeDto, Core.Domain.Equipment.Type>();
 
         }
     }

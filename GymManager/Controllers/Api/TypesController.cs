@@ -21,7 +21,7 @@ namespace GymManager.Controllers.Api
 
         public IHttpActionResult GetTypes()
         {
-            var typeDtos = context.Types.ToList().Select(Mapper.Map<Models.Type,TypeDto>);
+            var typeDtos = context.Types.ToList().Select(Mapper.Map<Core.Domain.Equipment.Type,TypeDto>);
 
             return Ok(typeDtos);
         }

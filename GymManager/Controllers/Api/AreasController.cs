@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymManager.Core.Domain.Equipment;
 using GymManager.Dtos;
 using GymManager.Models;
 using System;

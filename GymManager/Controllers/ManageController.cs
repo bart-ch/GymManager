@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GymManager.Models;
+using GymManager.ViewModels;
 
 namespace GymManager.Controllers
 {
