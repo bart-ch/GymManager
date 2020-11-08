@@ -11,6 +11,7 @@ namespace GymManager.Core
     {
      
         IEquipmentRepository Equipment { get; }
+        IAreaRepository Areas { get; }
         int Complete();
     }
 }

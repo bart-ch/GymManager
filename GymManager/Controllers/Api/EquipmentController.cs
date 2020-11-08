@@ -12,24 +12,23 @@ using System.Web.Http;
 using System.ComponentModel.Design;
 using GymManager.Attributes;
 using GymManager.Core.Domain;
+using GymManager.Core;
 
 namespace GymManager.Controllers.Api
 {
     public class EquipmentController : ApiController
     {
-        private readonly ApplicationDbContext context;
+        private readonly IUnitOfWork unitOfWork;
 
-        public EquipmentController()
+        public EquipmentController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         public IHttpActionResult GetEquipment()
         {
-            var equipmentDtos = context.Equipment
-                .Include(e => e.Type)
-                .Include(e => e.Area)
-                .ToList()
+            var equipmentDtos = unitOfWork.Equipment
+                .GetEquipmentWithAreasAndTypes()
                 .Select(Mapper.Map<Equipment, EquipmentDto>);
 
             return Ok(equipmentDtos);
@@ -37,10 +36,8 @@ namespace GymManager.Controllers.Api
         
         public IHttpActionResult GetSingleEquipment(int id)
         {
-            var equipment = context.Equipment
-                .Include(e => e.Type)
-                .Include(e => e.Area)
-                .SingleOrDefault(e => e.Id == id);
+            var equipment = unitOfWork.Equipment
+                .GetSingleOrDefaultEquipmentWithAreaAndType(id);
 
             if (equipment == null)
             {
@@ -61,8 +58,8 @@ namespace GymManager.Controllers.Api
 
             var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
 
-            context.Equipment.Add(equipment);
-            context.SaveChanges();
+            unitOfWork.Equipment.Add(equipment);
+            unitOfWork.Complete();
 
             equipmentDto.Id = equipment.Id;
 
@@ -77,7 +74,8 @@ namespace GymManager.Controllers.Api
             {
                 BadRequest();
             }
-            var equipmentInDb = context.Equipment.SingleOrDefault(e => e.Id == id);
+            var equipmentInDb = unitOfWork.Equipment
+                .GetSingleOrDefaultEquipmentWithAreaAndType(id);
 
             if (equipmentInDb == null)
             {
@@ -86,7 +84,7 @@ namespace GymManager.Controllers.Api
 
             Mapper.Map(equipmentDto, equipmentInDb);
 
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok();
         }
@@ -94,15 +92,16 @@ namespace GymManager.Controllers.Api
         [HttpDelete]
         public  IHttpActionResult DeleteEquipment(int id)
         {
-            var equipmentInDb = context.Equipment.SingleOrDefault(e => e.Id == id);
+            var equipmentInDb = unitOfWork.Equipment
+                .GetSingleOrDefaultEquipmentWithAreaAndType(id);
 
             if (equipmentInDb == null)
             {
                 return NotFound();
             }
 
-            context.Equipment.Remove(equipmentInDb);
-            context.SaveChanges();
+            unitOfWork.Equipment.Remove(equipmentInDb);
+            unitOfWork.Complete();
 
             return Ok();
         }

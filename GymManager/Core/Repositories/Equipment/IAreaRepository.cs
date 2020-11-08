@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace GymManager.Core.Repositories
 {
-    public interface IEquipmentRepository : IRepository<Equipment>
+    public interface IAreaRepository : IRepository<Area>
     {
-        IEnumerable<Equipment> GetEquipmentWithAreasAndTypes();
-        Equipment GetSingleOrDefaultEquipmentWithAreaAndType(int id);
     }
 }

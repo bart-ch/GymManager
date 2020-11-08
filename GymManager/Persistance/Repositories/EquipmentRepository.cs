@@ -24,6 +24,14 @@ namespace GymManager.Persistance.Repositories
                 .ToList();
         }
 
+        public Equipment GetSingleOrDefaultEquipmentWithAreaAndType(int id)
+        {
+            return ApplicationDbContext.Equipment
+                    .Include(e => e.Type)
+                    .Include(e => e.Area)
+                    .SingleOrDefault(e => e.Id == id);
+        }
+
         public ApplicationDbContext ApplicationDbContext 
         {
             get { return Context as ApplicationDbContext; }

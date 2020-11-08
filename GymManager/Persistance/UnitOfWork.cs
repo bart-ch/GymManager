@@ -12,14 +12,15 @@ namespace GymManager.Persistance
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext context;
+        public IEquipmentRepository Equipment { get; }
+        public IAreaRepository Areas { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
             Equipment = new EquipmentRepository(context);
+            Areas = new AreaRepository(context);
         }
-
-        public IEquipmentRepository Equipment { get; }
 
         public int Complete()
         {
