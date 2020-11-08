@@ -1,18 +1,11 @@
 ﻿using AutoMapper;
-using GymManager.Dtos;
-using GymManager.Models;
-using System.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.ComponentModel.Design;
 using GymManager.Attributes;
-using GymManager.Core.Domain;
 using GymManager.Core;
+using GymManager.Core.Domain;
+using GymManager.Dtos;
+using System;
+using System.Linq;
+using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
@@ -37,7 +30,7 @@ namespace GymManager.Controllers.Api
         public IHttpActionResult GetSingleEquipment(int id)
         {
             var equipment = unitOfWork.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(id);
+                .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == id);
 
             if (equipment == null)
             {
@@ -74,8 +67,7 @@ namespace GymManager.Controllers.Api
             {
                 BadRequest();
             }
-            var equipmentInDb = unitOfWork.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(id);
+            var equipmentInDb = unitOfWork.Equipment.SingleOrDefault(e => e.Id == id);
 
             if (equipmentInDb == null)
             {
@@ -92,8 +84,7 @@ namespace GymManager.Controllers.Api
         [HttpDelete]
         public  IHttpActionResult DeleteEquipment(int id)
         {
-            var equipmentInDb = unitOfWork.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(id);
+            var equipmentInDb = unitOfWork.Equipment.SingleOrDefault(e => e.Id == id);
 
             if (equipmentInDb == null)
             {
@@ -105,7 +96,5 @@ namespace GymManager.Controllers.Api
 
             return Ok();
         }
-
-  
     }
 }

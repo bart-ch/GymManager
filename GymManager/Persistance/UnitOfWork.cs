@@ -1,4 +1,5 @@
 ﻿using GymManager.Core;
+using GymManager.Core.Domain;
 using GymManager.Core.Repositories;
 using GymManager.Models;
 using GymManager.Persistance.Repositories;
@@ -13,13 +14,15 @@ namespace GymManager.Persistance
     {
         private readonly ApplicationDbContext context;
         public IEquipmentRepository Equipment { get; }
-        public IAreaRepository Areas { get; }
+        public IRepository<Area> Areas { get; }
+        public IRepository<Core.Domain.Type> Types { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
             Equipment = new EquipmentRepository(context);
-            Areas = new AreaRepository(context);
+            Areas = new Repository<Area>(context);
+            Types = new Repository<Core.Domain.Type>(context);
         }
 
         public int Complete()

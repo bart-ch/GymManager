@@ -233,8 +233,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
-    <Compile Include="Core\Repositories\Equipment\IAreaRepository.cs" />
-    <Compile Include="Core\Repositories\Equipment\IEquipmentRepository.cs" />
+    <Compile Include="Core\Repositories\IEquipmentRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Dtos\AreaDto.cs" />
     <Compile Include="Dtos\EquipmentDto.cs" />
@@ -291,9 +290,9 @@
       <DependentUpon>202011051808396_AddStringLimitToSerialNumber.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Persistance\Repositories\AreaRepository.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
+    <Compile Include="Persistance\Repositories\TypeRepository.cs" />
     <Compile Include="Persistance\UnitOfWork.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />

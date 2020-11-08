@@ -5,7 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Linq.Expressions;
+
 
 namespace GymManager.Persistance.Repositories
 {
@@ -24,12 +25,12 @@ namespace GymManager.Persistance.Repositories
                 .ToList();
         }
 
-        public Equipment GetSingleOrDefaultEquipmentWithAreaAndType(int id)
+        public Equipment GetSingleOrDefaultEquipmentWithAreaAndType(Expression<Func<Equipment, bool>> predicate)
         {
             return ApplicationDbContext.Equipment
-                    .Include(e => e.Type)
-                    .Include(e => e.Area)
-                    .SingleOrDefault(e => e.Id == id);
+                .Include(e => e.Area)
+                .Include(e => e.Type)
+                .SingleOrDefault(predicate);
         }
 
         public ApplicationDbContext ApplicationDbContext 

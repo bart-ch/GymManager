@@ -31,7 +31,6 @@ namespace GymManager.App_Start
               .As<IUnitOfWork>()
               .InstancePerRequest();
 
-
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using GymManager.Core;
+using GymManager.Core.Domain;
 using GymManager.Dtos;
 using GymManager.Models;
 using System;
@@ -12,20 +14,20 @@ namespace GymManager.Controllers.Api
 {
     public class TypesController : ApiController
     {
-        private readonly ApplicationDbContext context;
+        private readonly IUnitOfWork unitOfWork;
 
-        public TypesController()
+        public TypesController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         public IHttpActionResult GetTypes()
         {
-            var typeDtos = context.Types.ToList().Select(Mapper.Map<Core.Domain.Type,TypeDto>);
+            var typeDtos = unitOfWork.Types
+                .GetAll()
+                .Select(Mapper.Map<Core.Domain.Type,TypeDto>);
 
             return Ok(typeDtos);
         }
-
-
     }
 }
