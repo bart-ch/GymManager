@@ -3,6 +3,7 @@ using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
 using GymManager.Models;
+using GymManager.Persistance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
