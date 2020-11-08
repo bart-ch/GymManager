@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.ComponentModel.Design;
 using GymManager.Attributes;
-using GymManager.Core.Domain.Equipment;
+using GymManager.Core.Domain;
 
 namespace GymManager.Controllers.Api
 {

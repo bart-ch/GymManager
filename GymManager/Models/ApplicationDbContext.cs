@@ -1,4 +1,4 @@
-﻿using GymManager.Core.Domain.Equipment;
+﻿using GymManager.Core.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
