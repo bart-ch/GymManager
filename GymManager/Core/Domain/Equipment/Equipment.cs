@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace GymManager.Models
+namespace GymManager.Core.Domain
 {
     [Table("Equipment")]
     public class Equipment

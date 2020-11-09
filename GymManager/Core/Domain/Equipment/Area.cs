@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GymManager.Models
+namespace GymManager.Core.Domain
 {
     public class Area
     {

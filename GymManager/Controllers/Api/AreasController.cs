@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using GymManager.Core;
+using GymManager.Core.Domain;
 using GymManager.Dtos;
 using GymManager.Models;
+using GymManager.Persistance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +15,18 @@ namespace GymManager.Controllers.Api
 {
     public class AreasController : ApiController
     {
-        private readonly ApplicationDbContext context;
+        private readonly IUnitOfWork unitOfWork;
 
-        public AreasController()
+        public AreasController(IUnitOfWork unitOfWork)
         {
-            context = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         public IHttpActionResult GetAreas()
         {
-            var areaDtos = context.Areas.ToList().Select(Mapper.Map<Area, AreaDto>);
+            var areaDtos = unitOfWork.Areas
+                .GetAll()
+                .Select(Mapper.Map<Area, AreaDto>);
 
             return Ok(areaDtos);
         }

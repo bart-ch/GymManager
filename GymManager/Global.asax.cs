@@ -1,3 +1,4 @@
+using Autofac;
 using AutoMapper;
 using GymManager.App_Start;
 using System;
@@ -17,6 +18,7 @@ namespace GymManager
         {
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutofacConfig.ConfigureContainer();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
