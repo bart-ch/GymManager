@@ -5,17 +5,17 @@ namespace GymManager.Controllers
 {
     public class EquipmentController : Controller
     {
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
 
-        public ActionResult New()
+        public ViewResult New()
         {
             return View();
         }        
         
-        public ActionResult Edit()
+        public ViewResult Edit()
         {
             return View();
         }
