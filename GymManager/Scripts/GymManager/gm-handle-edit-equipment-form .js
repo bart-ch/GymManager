@@ -23,7 +23,7 @@
 
             })
             .fail(function () {
-                toastr.error("Sorry, the equipment doesnt exist");
+                window.location.pathname = '/Equipment'
             });
     }
 
