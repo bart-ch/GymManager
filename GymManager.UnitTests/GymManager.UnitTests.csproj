@@ -102,7 +102,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Api\AreasControllerTests.cs" />
     <Compile Include="Controllers\Api\EquipmentControllerTests.cs" />
+    <Compile Include="Controllers\Api\TypesControllerTests.cs" />
     <Compile Include="Controllers\EquipmentControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
