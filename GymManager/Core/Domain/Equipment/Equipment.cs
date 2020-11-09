@@ -32,5 +32,34 @@ namespace GymManager.Core.Domain
         public Type Type { get; set; }
         [Required]
         public byte TypeId { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Equipment equipment &&
+                   Id == equipment.Id &&
+                   Brand == equipment.Brand &&
+                   Model == equipment.Model &&
+                   SerialNumber == equipment.SerialNumber &&
+                   PurchaseDate == equipment.PurchaseDate &&
+                   EqualityComparer<Area>.Default.Equals(Area, equipment.Area) &&
+                   AreaId == equipment.AreaId &&
+                   EqualityComparer<Type>.Default.Equals(Type, equipment.Type) &&
+                   TypeId == equipment.TypeId;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1579632172;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Brand);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Model);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SerialNumber);
+            hashCode = hashCode * -1521134295 + PurchaseDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Area>.Default.GetHashCode(Area);
+            hashCode = hashCode * -1521134295 + AreaId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Type>.Default.GetHashCode(Type);
+            hashCode = hashCode * -1521134295 + TypeId.GetHashCode();
+            return hashCode;
+        }
     }
 }
