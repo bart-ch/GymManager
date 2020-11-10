@@ -6,6 +6,7 @@ using GymManager.Core.Domain;
 using GymManager.Dtos;
 using Moq;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -88,15 +89,17 @@ namespace GymManager.UnitTests.Controllers.Api
         //{
         //    var equipmentDto = new EquipmentDto();
         //    var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
-
         //    unitOfWork.Setup(uow => uow.Equipment.Add(equipment));
         //    unitOfWork.Setup(uow => uow.Complete());
 
-        //    var result = controller.CreateEquipment(equipmentDto);
+        //    var context = new Mock<HttpContextBase>();
+        //    context.Setup(x => x.Request.Url).Returns(new Uri("/Equipment/New", UriKind.Relative));
 
-        //    unitOfWork.Verify(uof => uof.Complete());
+
+        //    var result = controller.CreateEquipment(equipmentDto) as CreatedAtRouteNegotiatedContentResult<EquipmentDto>;
+
+        //    Assert.IsNotNull(result);
         //}
-
 
         [Test]
         public void UpdateEquipment_ModelIsNotValid_ReturnBadRequest()
@@ -121,7 +124,46 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
         }
 
-        // TODO: test na happy path updateEquipment
+        [Test]
+        public void UpdateEquipment_EquipmentFound_ReturnOk()
+        {
+            var id = 1;
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == id))
+                .Returns(new Equipment());
+
+
+            var result = controller.UpdateEquipment(id, new EquipmentDto());
+
+            unitOfWork.Verify(uow => uow.Complete());
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
+
+        [Test]
+        public void DeleteEquipment_EquipmentNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == 1))
+                .Returns<Equipment>(null);
+
+            var result = controller.DeleteEquipment(1);
+
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        [Test]
+        public void DeleteEquipment_EquipmentFound_ReturnOk()
+        {
+            var id = 1;
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == id))
+                .Returns(new Equipment());
+
+            var result = controller.DeleteEquipment(id);
+
+            unitOfWork.Verify(uow => uow.Complete());
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
 
         private IEnumerable<Equipment> GetEquipmentList()
         {
