@@ -296,6 +296,18 @@
     <Compile Include="Migrations\202011101858009_AddSupplementAndFlavorAndTypeModels.Designer.cs">
       <DependentUpon>202011101858009_AddSupplementAndFlavorAndTypeModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011101916263_PopulateSuplementTypes.cs" />
+    <Compile Include="Migrations\202011101916263_PopulateSuplementTypes.Designer.cs">
+      <DependentUpon>202011101916263_PopulateSuplementTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011101933031_PopulateSupplementFlavors.cs" />
+    <Compile Include="Migrations\202011101933031_PopulateSupplementFlavors.Designer.cs">
+      <DependentUpon>202011101933031_PopulateSupplementFlavors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011101943523_FixFlavorsTable.cs" />
+    <Compile Include="Migrations\202011101943523_FixFlavorsTable.Designer.cs">
+      <DependentUpon>202011101943523_FixFlavorsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -829,6 +841,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011101858009_AddSupplementAndFlavorAndTypeModels.resx">
       <DependentUpon>202011101858009_AddSupplementAndFlavorAndTypeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101916263_PopulateSuplementTypes.resx">
+      <DependentUpon>202011101916263_PopulateSuplementTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101933031_PopulateSupplementFlavors.resx">
+      <DependentUpon>202011101933031_PopulateSupplementFlavors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101943523_FixFlavorsTable.resx">
+      <DependentUpon>202011101943523_FixFlavorsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
