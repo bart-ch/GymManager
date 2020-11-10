@@ -2,7 +2,7 @@
 
 namespace GymManager.Core.Domain
 {
-    public class Type
+    public class Flavor
     {
         public byte Id { get; set; }
 

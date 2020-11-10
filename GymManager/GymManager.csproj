@@ -232,6 +232,9 @@
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Domain\Supplements\Flavor.cs" />
+    <Compile Include="Core\Domain\Supplements\Supplement.cs" />
+    <Compile Include="Core\Domain\Supplements\SupplementType.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\IEquipmentRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
@@ -288,6 +291,10 @@
     <Compile Include="Migrations\202011051808396_AddStringLimitToSerialNumber.cs" />
     <Compile Include="Migrations\202011051808396_AddStringLimitToSerialNumber.Designer.cs">
       <DependentUpon>202011051808396_AddStringLimitToSerialNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011101858009_AddSupplementAndFlavorAndTypeModels.cs" />
+    <Compile Include="Migrations\202011101858009_AddSupplementAndFlavorAndTypeModels.Designer.cs">
+      <DependentUpon>202011101858009_AddSupplementAndFlavorAndTypeModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
@@ -819,6 +826,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011051808396_AddStringLimitToSerialNumber.resx">
       <DependentUpon>202011051808396_AddStringLimitToSerialNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101858009_AddSupplementAndFlavorAndTypeModels.resx">
+      <DependentUpon>202011101858009_AddSupplementAndFlavorAndTypeModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

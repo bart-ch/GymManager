@@ -9,6 +9,10 @@ namespace GymManager.Persistance
         public DbSet<Equipment> Equipment { get; set; }
         public DbSet<Area> Areas { get; set; }
         public DbSet<Type> Types { get; set; }
+        public DbSet<Supplement> Supplements { get; set; }
+        public DbSet<Flavor> Flavors { get; set; }
+        public DbSet<SupplementType> SupplementTypes { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
