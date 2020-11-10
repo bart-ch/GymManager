@@ -23,13 +23,14 @@ namespace GymManager.Dtos
 
         public DateTime PurchaseDate { get; set; }
 
-        [Required]
         public AreaDto Area { get; set; }
 
+        [Required]
         public byte AreaId { get; set; }
 
-        [Required]
         public TypeDto Type { get; set; }
+
+        [Required]
 
         public byte TypeId { get; set; }
 

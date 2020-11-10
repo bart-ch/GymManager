@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
-namespace GymManager.Models
+namespace GymManager.Persistance
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

@@ -294,11 +294,11 @@
     <Compile Include="Persistance\Repositories\Repository.cs" />
     <Compile Include="Persistance\UnitOfWork.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Persistance\ApplicationDbContext.cs" />
     <Compile Include="Core\Domain\Equipment\Area.cs" />
     <Compile Include="Core\Domain\Equipment\Equipment.cs" />
     <Compile Include="Core\Domain\Equipment\Type.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Core\Domain\ApplicationUser.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\FactorViewModel.cs" />
