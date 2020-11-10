@@ -2,15 +2,11 @@
 using GymManager.App_Start;
 using GymManager.Controllers.Api;
 using GymManager.Core;
-using GymManager.Core.Domain;
 using GymManager.Dtos;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Results;
 
 namespace GymManager.UnitTests.Controllers.Api

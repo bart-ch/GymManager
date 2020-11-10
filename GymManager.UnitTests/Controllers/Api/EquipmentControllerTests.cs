@@ -8,6 +8,7 @@ using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http.Results;
 
 namespace GymManager.UnitTests.Controllers.Api
@@ -43,7 +44,7 @@ namespace GymManager.UnitTests.Controllers.Api
         }
 
         [Test]
-        public void GetSingleEquipment_EquipmentNotFound_ReturnNotFoundResult()
+        public void GetSingleEquipment_EquipmentNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.Equipment
                 .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == 1))
@@ -70,6 +71,57 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.IsNotNull(response);
             Assert.AreEqual(result, Mapper.Map<Equipment, EquipmentDto>(equipment));
         }
+
+
+        [Test]
+        public void CreateEquipment_ModelIsNotValid_ReturnBadRequest()
+        {
+            controller.ModelState.AddModelError("key", "error message");
+
+            var result = controller.CreateEquipment(new EquipmentDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        //[Test]
+        //public void CreateEquipment_ModelIsValid_ReturnCreated()
+        //{
+        //    var equipmentDto = new EquipmentDto();
+        //    var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
+
+        //    unitOfWork.Setup(uow => uow.Equipment.Add(equipment));
+        //    unitOfWork.Setup(uow => uow.Complete());
+
+        //    var result = controller.CreateEquipment(equipmentDto);
+
+        //    unitOfWork.Verify(uof => uof.Complete());
+        //}
+
+
+        [Test]
+        public void UpdateEquipment_ModelIsNotValid_ReturnBadRequest()
+        {
+            controller.ModelState.AddModelError("key", "error message");
+
+            var result = controller.UpdateEquipment(1, new EquipmentDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        [Test]
+        public void UpdateEquipment_EquipmentNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == 1))
+                .Returns<Equipment>(null);
+
+
+            var result = controller.UpdateEquipment(1, new EquipmentDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        // TODO: test na happy path updateEquipment
 
         private IEnumerable<Equipment> GetEquipmentList()
         {

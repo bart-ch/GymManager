@@ -46,7 +46,7 @@ namespace GymManager.Controllers.Api
         {
             if (!ModelState.IsValid)
             {
-                BadRequest();
+                return BadRequest();
             }
 
             var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
@@ -65,13 +65,13 @@ namespace GymManager.Controllers.Api
         {
             if (!ModelState.IsValid)
             {
-                BadRequest();
+                return BadRequest();
             }
             var equipmentInDb = unitOfWork.Equipment.SingleOrDefault(e => e.Id == id);
 
             if (equipmentInDb == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             Mapper.Map(equipmentDto, equipmentInDb);
