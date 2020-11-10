@@ -9,7 +9,9 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
+using System.Web.Http.Controllers;
 using System.Web.Http.Results;
 
 namespace GymManager.UnitTests.Controllers.Api
@@ -24,8 +26,21 @@ namespace GymManager.UnitTests.Controllers.Api
         public void SetUp()
         {
             unitOfWork = new Mock<IUnitOfWork>();
-            controller = new EquipmentController(unitOfWork.Object);
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+
+            var request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri("http://localhost:5000/Equipment/New", UriKind.Absolute)
+            };
+            var controllerContext = new HttpControllerContext
+            {
+                Request = request
+            };
+            controller = new EquipmentController(unitOfWork.Object)
+            {
+                ControllerContext = controllerContext
+            };
+
         }
 
 
@@ -84,22 +99,19 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
         }
 
-        //[Test]
-        //public void CreateEquipment_ModelIsValid_ReturnCreated()
-        //{
-        //    var equipmentDto = new EquipmentDto();
-        //    var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
-        //    unitOfWork.Setup(uow => uow.Equipment.Add(equipment));
-        //    unitOfWork.Setup(uow => uow.Complete());
+        [Test]
+        public void CreateEquipment_ModelIsValid_ReturnCreated()
+        {
+            var equipmentDto = new EquipmentDto();
+            var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
+            unitOfWork.Setup(uow => uow.Equipment.Add(equipment));
+            unitOfWork.Setup(uow => uow.Complete());
 
-        //    var context = new Mock<HttpContextBase>();
-        //    context.Setup(x => x.Request.Url).Returns(new Uri("/Equipment/New", UriKind.Relative));
+            var result = controller.CreateEquipment(equipmentDto);
 
-
-        //    var result = controller.CreateEquipment(equipmentDto) as CreatedAtRouteNegotiatedContentResult<EquipmentDto>;
-
-        //    Assert.IsNotNull(result);
-        //}
+            Assert.IsNotNull(result);
+            Assert.That(result, Is.InstanceOf(typeof(CreatedNegotiatedContentResult<EquipmentDto>)));
+        }
 
         [Test]
         public void UpdateEquipment_ModelIsNotValid_ReturnBadRequest()
