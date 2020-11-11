@@ -1,9 +1,8 @@
-﻿using GymManager.Core;
-using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
+using GymManager.Core;
+using GymManager.Core.Domain;
+using GymManager.Dtos;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GymManager.Controllers.Api
@@ -20,9 +19,23 @@ namespace GymManager.Controllers.Api
         public IHttpActionResult GetSupplements()
         {
             var supplementsDto = unitOfWork.Supplements
-                .GetSupplementsWithFlavorsAndTypes();
+                .GetSupplementsWithFlavorsAndTypes()
+                .Select(Mapper.Map<Supplement, SupplementDto>);
 
             return Ok(supplementsDto);
+        }
+
+        public IHttpActionResult GetSupplement(int id)
+        {
+            var supplement = unitOfWork.Supplements
+                .GetSingleOrDefaultSupplementWithFlavorAndType(e => e.Id == id);
+
+            if (supplement == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<Supplement, SupplementDto>(supplement));
         }
     }
 }

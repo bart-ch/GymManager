@@ -7,17 +7,20 @@ namespace GymManager.Core.Domain
         public int Id { get; set; }
 
         [Required]
+        [StringLength(255)]
+        public string Brand { get; set; }
+
+        [Required]
         public int InitialAmount { get; set; }
 
         [Required]
         public int ConsumedAmount { get; set; }
 
-        [Required]
         public int CurrentAmount
         {
             get
             {
-                return InitialAmount - CurrentAmount;
+                return InitialAmount - ConsumedAmount;
             }
         }
 

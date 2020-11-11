@@ -314,6 +314,10 @@
     <Compile Include="Migrations\202011101943523_FixFlavorsTable.Designer.cs">
       <DependentUpon>202011101943523_FixFlavorsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011111731396_AddBrandToSupplement.cs" />
+    <Compile Include="Migrations\202011111731396_AddBrandToSupplement.Designer.cs">
+      <DependentUpon>202011111731396_AddBrandToSupplement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -858,6 +862,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011101943523_FixFlavorsTable.resx">
       <DependentUpon>202011101943523_FixFlavorsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011111731396_AddBrandToSupplement.resx">
+      <DependentUpon>202011111731396_AddBrandToSupplement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
