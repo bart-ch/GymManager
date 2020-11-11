@@ -37,5 +37,21 @@ namespace GymManager.Controllers.Api
 
             return Ok(Mapper.Map<Supplement, SupplementDto>(supplement));
         }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteSuplement(int id)
+        {
+            var supplementInDb = unitOfWork.Supplements.SingleOrDefault(s => s.Id == id);
+
+            if (supplementInDb == null)
+            {
+                return NotFound();
+            }
+
+            unitOfWork.Supplements.Remove(supplementInDb);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
     }
 }

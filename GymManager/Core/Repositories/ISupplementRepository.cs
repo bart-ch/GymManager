@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace GymManager.Core.Repositories
 {
-    public interface ISupplementRepository
+    public interface ISupplementRepository : IRepository<Supplement>
     {
         IEnumerable<Supplement> GetSupplementsWithFlavorsAndTypes();
         Supplement GetSingleOrDefaultSupplementWithFlavorAndType(Expression<Func<Supplement, bool>> predicate);
