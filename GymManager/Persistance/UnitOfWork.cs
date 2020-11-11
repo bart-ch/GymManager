@@ -11,6 +11,9 @@ namespace GymManager.Persistance
         public IEquipmentRepository Equipment { get; }
         public IRepository<Area> Areas { get; }
         public IRepository<Core.Domain.Type> Types { get; }
+        public ISupplementRepository Supplements { get; }
+        public IRepository<Flavor> Flavors { get; }
+        public IRepository<SupplementType> SupplementTypes { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -18,6 +21,9 @@ namespace GymManager.Persistance
             Equipment = new EquipmentRepository(context);
             Areas = new Repository<Area>(context);
             Types = new Repository<Core.Domain.Type>(context);
+            Supplements = new SupplementRepository(context);
+            Flavors = new Repository<Flavor>(context);
+            SupplementTypes = new Repository<SupplementType>(context);
         }
 
         public int Complete()

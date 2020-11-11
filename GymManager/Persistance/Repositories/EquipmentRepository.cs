@@ -15,8 +15,8 @@ namespace GymManager.Persistance.Repositories
         public EquipmentRepository(ApplicationDbContext context)
             :base(context)
         {
-
         }
+
         public IEnumerable<Equipment> GetEquipmentWithAreasAndTypes()
         {
             return ApplicationDbContext.Equipment
