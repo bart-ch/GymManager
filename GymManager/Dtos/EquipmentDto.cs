@@ -19,7 +19,8 @@ namespace GymManager.Dtos
         [StringLength(255)]
         public string SerialNumber { get; set; }
 
-        public DateTime PurchaseDate { get; set; }
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
+        public DateTime DeliveryDate { get; set; }
 
         public AreaDto Area { get; set; }
 
@@ -39,7 +40,7 @@ namespace GymManager.Dtos
                    Brand == dto.Brand &&
                    Model == dto.Model &&
                    SerialNumber == dto.SerialNumber &&
-                   PurchaseDate == dto.PurchaseDate &&
+                   DeliveryDate == dto.DeliveryDate &&
                    EqualityComparer<AreaDto>.Default.Equals(Area, dto.Area) &&
                    AreaId == dto.AreaId &&
                    EqualityComparer<TypeDto>.Default.Equals(Type, dto.Type) &&
@@ -53,7 +54,7 @@ namespace GymManager.Dtos
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Brand);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Model);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SerialNumber);
-            hashCode = hashCode * -1521134295 + PurchaseDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + DeliveryDate.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<AreaDto>.Default.GetHashCode(Area);
             hashCode = hashCode * -1521134295 + AreaId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<TypeDto>.Default.GetHashCode(Type);

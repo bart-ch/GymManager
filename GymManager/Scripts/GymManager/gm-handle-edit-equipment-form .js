@@ -15,11 +15,11 @@
                 $("#model").val(equipment.model);
                 $("#typeId").val(equipment.type.id);
                 $("#areaId").val(equipment.area.id);
-                var date = new Date(equipment.purchaseDate);
+                var date = new Date(equipment.deliveryDate);
                 var dateString = date.getFullYear() + '-'
                     + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
                     + ('0' + date.getDate()).slice(-2);
-                $("#purchaseDate").val(dateString);
+                $("#deliveryDate").val(dateString);
 
             })
             .fail(function () {

@@ -18,7 +18,7 @@
                 data: "area.name"
             },
             {
-                data: "purchaseDate",
+                data: "deliveryDate",
                 render: function (data) {
                     var date = new Date(data);
                     var dateString = date.getFullYear() + '/'

@@ -8,7 +8,7 @@
         $("input[type=date]").val("");
     };
 
-    $('#purchaseDate').val(getTodaysDate());
+    $('#deliveryDate').val(getTodaysDate());
 
     $("#equipmentForm").validate({
         errorPlacement: function ($error, $element) {
@@ -40,7 +40,7 @@
                 .done(function () {
                     toastr.success("Equipment successfully added.");
                     resetForm($('#equipmentForm'));
-                    $('#purchaseDate').val(getTodaysDate());
+                    $('#deliveryDate').val(getTodaysDate());
 
                 })
                 .fail(function () {

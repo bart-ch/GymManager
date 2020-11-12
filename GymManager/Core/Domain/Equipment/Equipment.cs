@@ -21,7 +21,8 @@ namespace GymManager.Core.Domain
         [StringLength(255)]
         public string SerialNumber { get; set; }
 
-        public DateTime PurchaseDate { get; set; }
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
+        public DateTime DeliveryDate { get; set; }
 
         public Area Area { get; set; }
         [Required]
@@ -38,7 +39,7 @@ namespace GymManager.Core.Domain
                    Brand == equipment.Brand &&
                    Model == equipment.Model &&
                    SerialNumber == equipment.SerialNumber &&
-                   PurchaseDate == equipment.PurchaseDate &&
+                   DeliveryDate == equipment.DeliveryDate &&
                    EqualityComparer<Area>.Default.Equals(Area, equipment.Area) &&
                    AreaId == equipment.AreaId &&
                    EqualityComparer<Type>.Default.Equals(Type, equipment.Type) &&
@@ -52,7 +53,7 @@ namespace GymManager.Core.Domain
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Brand);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Model);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SerialNumber);
-            hashCode = hashCode * -1521134295 + PurchaseDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + DeliveryDate.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Area>.Default.GetHashCode(Area);
             hashCode = hashCode * -1521134295 + AreaId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Type>.Default.GetHashCode(Type);

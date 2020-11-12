@@ -328,6 +328,10 @@
     <Compile Include="Migrations\202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.Designer.cs">
       <DependentUpon>202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.cs" />
+    <Compile Include="Migrations\202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.Designer.cs">
+      <DependentUpon>202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -883,6 +887,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.resx">
       <DependentUpon>202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.resx">
+      <DependentUpon>202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
