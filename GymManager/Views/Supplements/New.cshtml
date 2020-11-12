@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "New Supplement";
+}
+
+<h2>New Supplement</h2>
+<hr>
+
+<form id="supplementForm">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-pills"></i></label>
+        </div>
+        <select class="form-control" id="supplementTypeId" name="supplementTypeId" required></select>
+    </div>
+    <p id="errorsupplementTypeId"></p>
+
+
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
+        </div>
+        <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
+    </div>
+    <p id="errorbrand"></p>
+
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-grin-tongue"></i></label>
+        </div>
+        <select class="form-control" id="flavorId" name="flavorId" required></select>
+    </div>
+    <p id="errorflavorId"></p>
+
+
+
+    <div class="input-group">
+        <label for="purchaseDate">Purchase Date</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+            </div>
+            <input id="purchaseDate" type="date" class="form-control" name="purchaseDate" required>
+        </div>
+    </div>
+    <p id="errorpurchaseDate"></p>
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    <a href="/Supplements" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+</form>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/GymManager/gm-pupulate-select-with-ajax-get.js")
+    <script>
+        $(document).ready(function () {
+            getResourcesFromAPIAndInsertInSelect("#supplementTypeId", "Supplement Type", "supplementTypes");
+            getResourcesFromAPIAndInsertInSelect("#flavorId", "Flavor", "flavors");
+
+
+        })
+
+
+
+    </script>
+
+
+}

@@ -2,27 +2,28 @@
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
+using System.Data;
 using System.Linq;
 using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
-    public class AreasController : ApiController
+    public class FlavorsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public AreasController(IUnitOfWork unitOfWork)
+        public FlavorsController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
-
-        public IHttpActionResult GetAreas()
+        
+        public IHttpActionResult  GetFlavors()
         {
-            var areaDtos = unitOfWork.Areas
+            var flavorsDtos = unitOfWork.Flavors
                 .GetAll()
-                .Select(Mapper.Map<Area, AreaDto>);
+                .Select(Mapper.Map<Flavor, FlavorDto>);
 
-            return Ok(areaDtos);
+            return Ok(flavorsDtos);
         }
     }
 }

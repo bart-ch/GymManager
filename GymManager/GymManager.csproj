@@ -227,7 +227,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AreasController.cs" />
     <Compile Include="Controllers\Api\EquipmentController.cs" />
+    <Compile Include="Controllers\Api\FlavorsController.cs" />
     <Compile Include="Controllers\Api\SupplementsController.cs" />
+    <Compile Include="Controllers\Api\SupplementTypesController.cs" />
     <Compile Include="Controllers\Api\TypesController.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
@@ -799,6 +801,7 @@
     <Content Include="Views\Equipment\_EquipmentForm.cshtml" />
     <Content Include="Views\Equipment\Edit.cshtml" />
     <Content Include="Views\Supplements\Index.cshtml" />
+    <Content Include="Views\Supplements\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
