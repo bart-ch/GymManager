@@ -2,6 +2,7 @@
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
+using System;
 using System.Linq;
 using System.Web.Http;
 
@@ -36,6 +37,29 @@ namespace GymManager.Controllers.Api
             }
 
             return Ok(Mapper.Map<Supplement, SupplementDto>(supplement));
+        }
+        
+        [HttpPost]
+     //   [ValidateAntiForgeryToken]
+        public IHttpActionResult CreateSupplement(SupplementDto supplementDto)
+        {
+            supplementDto.ConsumedAmount = 0;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var supplement = Mapper.Map<SupplementDto, Supplement>(supplementDto);
+
+            unitOfWork.Supplements.Add(supplement);
+            unitOfWork.Complete();
+
+            supplementDto.Id = supplement.Id;
+
+            return Created(new Uri(Request.RequestUri + "/" + supplement.Id), supplementDto);
+
+
         }
 
         [HttpDelete]

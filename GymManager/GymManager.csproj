@@ -320,6 +320,14 @@
     <Compile Include="Migrations\202011111731396_AddBrandToSupplement.Designer.cs">
       <DependentUpon>202011111731396_AddBrandToSupplement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011121412587_AddDeliveryDateToSupplement.cs" />
+    <Compile Include="Migrations\202011121412587_AddDeliveryDateToSupplement.Designer.cs">
+      <DependentUpon>202011121412587_AddDeliveryDateToSupplement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.cs" />
+    <Compile Include="Migrations\202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.Designer.cs">
+      <DependentUpon>202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -630,6 +638,7 @@
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
+    <Content Include="Scripts\GymManager\gm-get-todays-date.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -868,6 +877,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011111731396_AddBrandToSupplement.resx">
       <DependentUpon>202011111731396_AddBrandToSupplement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011121412587_AddDeliveryDateToSupplement.resx">
+      <DependentUpon>202011121412587_AddDeliveryDateToSupplement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.resx">
+      <DependentUpon>202011122126363_PopulateFlavorsAndSupplementTypesAndGymAreasWithOtherOption.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

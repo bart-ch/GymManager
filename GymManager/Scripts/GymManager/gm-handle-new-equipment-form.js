@@ -3,13 +3,6 @@
     getResourcesFromAPIAndInsertInSelect("#areaId", "Gym Area", "areas");
     getResourcesFromAPIAndInsertInSelect("#typeId", "Equipment Type", "types");
 
-    function getTodaysDate() {
-        var now = new Date();
-        var day = ("0" + now.getDate()).slice(-2);
-        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-        return today = now.getFullYear() + "-" + (month) + "-" + (day);
-    }
-
     function resetForm($form) {
         $form.find('input:text, input:password, input:file, select, textarea').val('');
         $("input[type=date]").val("");

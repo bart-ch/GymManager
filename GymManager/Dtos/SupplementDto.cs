@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace GymManager.Dtos
 {
@@ -15,9 +12,9 @@ namespace GymManager.Dtos
         public string Brand { get; set; }
 
         [Required]
+        [Range(typeof(int), "1", "10000")]
         public int InitialAmount { get; set; }
 
-        [Required]
         public int ConsumedAmount { get; set; }
 
         public int CurrentAmount
@@ -27,6 +24,9 @@ namespace GymManager.Dtos
                 return InitialAmount - ConsumedAmount;
             }
         }
+
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
+        public DateTime DeliveryDate { get; set; }
 
         public FlavorDto Flavor { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GymManager.Core.Domain
 {
@@ -11,9 +12,9 @@ namespace GymManager.Core.Domain
         public string Brand { get; set; }
 
         [Required]
+        [Range(typeof(int), "1", "10000")]
         public int InitialAmount { get; set; }
 
-        [Required]
         public int ConsumedAmount { get; set; }
 
         public int CurrentAmount
@@ -23,6 +24,9 @@ namespace GymManager.Core.Domain
                 return InitialAmount - ConsumedAmount;
             }
         }
+
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
+        public DateTime DeliveryDate { get; set; }
 
         public Flavor Flavor { get; set; }
 
