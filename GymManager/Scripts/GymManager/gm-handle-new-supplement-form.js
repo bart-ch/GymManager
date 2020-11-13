@@ -10,6 +10,12 @@
         $("input[type=number]").val("");
     };
 
+    $.validator.addMethod("greaterThan",
+        function (value, element, param) {
+            var $otherElement = $(param);
+            return parseInt(value, 10) > parseInt($otherElement.val(), 10);
+        });
+
     $("#supplementForm").validate({
         errorPlacement: function ($error, $element) {
             var name = $element.attr("name");
@@ -18,6 +24,14 @@
         rules: {
             brand: {
                 maxlength: 30
+            },
+            consumedAmount: {
+                greaterThan: "initialAmount"
+            }
+        },
+        messages: {
+            consumedAmount: {
+                greaterThan: "Consumed Amount must be less than Initial Amount"
             }
         },
         submitHandler: function () {

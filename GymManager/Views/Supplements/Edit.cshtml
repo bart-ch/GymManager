@@ -42,7 +42,7 @@
                     });
             }
 
-            $("#equipmentForm").validate({
+            $("#supplementForm").validate({
                 errorPlacement: function ($error, $element) {
                     var name = $element.attr("name");
                     $("#error" + name).append($error);
@@ -59,17 +59,17 @@
                     }
                 },
                 submitHandler: function () {
-                    var formData = $('#equipmentForm').serializeArray().reduce(function (obj, item) {
+                    var formData = $('#supplementForm').serializeArray().reduce(function (obj, item) {
                         obj[item.name] = item.value;
                         return obj;
                     }, {});
                     $.ajax({
-                        url: "/api/equipment/" + id,
+                        url: "/api/supplements/" + id,
                         method: "PUT",
                         data: formData
                     })
                         .done(function () {
-                            toastr.success("Equipment successfully updated.");
+                            toastr.success("SUpplement successfully updated.");
                         })
                         .fail(function () {
                             toastr.error("Unexpected error.");

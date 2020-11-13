@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymManager.Attributes;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace GymManager.Core.Domain
@@ -14,6 +15,7 @@ namespace GymManager.Core.Domain
         [Range(typeof(int), "1", "10000")]
         public int InitialAmount { get; set; }
 
+        [ConsumedAmountLessOrEqualToInitial]
         [Range(typeof(int), "0", "10000")]
         public int? ConsumedAmount { get; set; }
 

@@ -8,29 +8,14 @@ namespace GymManager.Dtos
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(255)]
         public string Brand { get; set; }
-
-        [Required]
-        [StringLength(255)]
         public string Model { get; set; }
-
-        [StringLength(255)]
         public string SerialNumber { get; set; }
-
-        [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
         public DateTime DeliveryDate { get; set; }
-
         public AreaDto Area { get; set; }
-
-        [Required]
         public byte AreaId { get; set; }
 
         public TypeDto Type { get; set; }
-
-        [Required]
-
         public byte TypeId { get; set; }
 
         public override bool Equals(object obj)
