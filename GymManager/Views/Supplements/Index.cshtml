@@ -18,6 +18,7 @@
                 <th>Initial Amount</th>
                 <th>Current Amount</th>
                 <th>Consumed Amount</th>
+                <th>Delivery Date</th>
                 <th width="3%"></th>
                 <th width="3%"></th>
             </tr>
@@ -54,6 +55,17 @@
                     },
                     {
                         data: "consumedAmount"
+                    },
+                    {
+                        data: "deliveryDate",
+                        render: function (data) {
+                            var date = new Date(data);
+                            var dateString = date.getFullYear() + '/'
+                                + ('0' + (date.getMonth() + 1)).slice(-2) + '/'
+                                + ('0' + date.getDate()).slice(-2);
+
+                            return dateString;
+                        }
                     },
                     {
                         data: "id",

@@ -332,6 +332,10 @@
     <Compile Include="Migrations\202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.Designer.cs">
       <DependentUpon>202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011131109245_MakeCunsumedAndCurrentAmountNullable.cs" />
+    <Compile Include="Migrations\202011131109245_MakeCunsumedAndCurrentAmountNullable.Designer.cs">
+      <DependentUpon>202011131109245_MakeCunsumedAndCurrentAmountNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -890,6 +894,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.resx">
       <DependentUpon>202011122149009_ChangePurchaseDateToDeliveryDateInEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011131109245_MakeCunsumedAndCurrentAmountNullable.resx">
+      <DependentUpon>202011131109245_MakeCunsumedAndCurrentAmountNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

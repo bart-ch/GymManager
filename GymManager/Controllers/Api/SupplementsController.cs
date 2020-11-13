@@ -43,7 +43,10 @@ namespace GymManager.Controllers.Api
      //   [ValidateAntiForgeryToken]
         public IHttpActionResult CreateSupplement(SupplementDto supplementDto)
         {
-            supplementDto.ConsumedAmount = 0;
+            if (supplementDto.ConsumedAmount == null)
+            {
+                supplementDto.ConsumedAmount = 0;
+            }
 
             if (!ModelState.IsValid)
             {

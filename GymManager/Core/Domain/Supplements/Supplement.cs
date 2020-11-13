@@ -11,13 +11,13 @@ namespace GymManager.Core.Domain
         [StringLength(255)]
         public string Brand { get; set; }
 
-        [Required]
         [Range(typeof(int), "1", "10000")]
         public int InitialAmount { get; set; }
 
-        public int ConsumedAmount { get; set; }
+        [Range(typeof(int), "0", "10000")]
+        public int? ConsumedAmount { get; set; }
 
-        public int CurrentAmount
+        public int? CurrentAmount
         {
             get
             {
