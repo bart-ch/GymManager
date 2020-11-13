@@ -647,6 +647,7 @@
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-get-todays-date.js" />
+    <Content Include="Scripts\GymManager\gm-handle-new-supplement-form.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -819,6 +820,8 @@
     <Content Include="Views\Equipment\Edit.cshtml" />
     <Content Include="Views\Supplements\Index.cshtml" />
     <Content Include="Views\Supplements\New.cshtml" />
+    <Content Include="Views\Supplements\_SupplementForm.cshtml" />
+    <Content Include="Views\Supplements\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

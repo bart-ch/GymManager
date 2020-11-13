@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
@@ -40,7 +41,7 @@ namespace GymManager.Controllers.Api
         }
         
         [HttpPost]
-     //   [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult CreateSupplement(SupplementDto supplementDto)
         {
             if (supplementDto.ConsumedAmount == null)
@@ -61,9 +62,29 @@ namespace GymManager.Controllers.Api
             supplementDto.Id = supplement.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + supplement.Id), supplementDto);
-
-
         }
+
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        public IHttpActionResult UpdateSupplement(int id, SupplementDto supplementDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var supplementInDb = unitOfWork.Supplements.SingleOrDefault(s => s.Id == id);
+            if (supplementInDb == null)
+            {
+                return BadRequest();
+            }
+
+            Mapper.Map(supplementDto, supplementInDb);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
 
         [HttpDelete]
         public IHttpActionResult DeleteSuplement(int id)
