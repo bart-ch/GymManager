@@ -649,6 +649,8 @@
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-get-todays-date.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-supplement-form.js" />
+    <Content Include="Scripts\GymManager\gm-custom-validate-rules.js" />
+    <Content Include="Scripts\GymManager\gm-handle-edit-supplement-form.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />

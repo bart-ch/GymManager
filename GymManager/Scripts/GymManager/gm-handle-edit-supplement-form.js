@@ -2,13 +2,30 @@
     getResourcesFromAPIAndInsertInSelect("#supplementTypeId", "Supplement Type", "supplementTypes");
     getResourcesFromAPIAndInsertInSelect("#flavorId", "Flavor", "flavors");
 
-    $('#deliveryDate').val(getTodaysDate());
+    var url = $(location).attr('href');
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    if (id > 0) {
+        $.ajax({
+            type: "GET",
+            url: "/api/supplements/" + id,
+        })
+            .done(function (supplement) {
+                $("#brand").val(supplement.brand);
+                $("#supplementTypeId").val(supplement.supplementType.id);
+                $("#flavorId").val(supplement.flavor.id);
+                $("#initialAmount").val(supplement.initialAmount);
+                $("#consumedAmount").val(supplement.consumedAmount);
+                var date = new Date(supplement.deliveryDate);
+                var dateString = date.getFullYear() + '-'
+                    + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+                    + ('0' + date.getDate()).slice(-2);
+                $("#deliveryDate").val(dateString);
 
-    function resetForm($form) {
-        $form.find('input:text, input:password, input:file, select, textarea').val('');
-        $("input[type=date]").val("");
-        $("input[type=number]").val("");
-    };
+            })
+            .fail(function () {
+                window.location.pathname = '/Supplements'
+            });
+    }
 
     $("#supplementForm").validate({
         errorPlacement: function ($error, $element) {
@@ -34,16 +51,12 @@
                 return obj;
             }, {});
             $.ajax({
-
-                url: "/api/supplements",
-                method: "POST",
+                url: "/api/supplements/" + id,
+                method: "PUT",
                 data: formData
             })
                 .done(function () {
-                    toastr.success("Supplement successfully added.");
-                    resetForm($('#supplementForm'));
-                    $('#deliveryDate').val(getTodaysDate());
-
+                    toastr.success("Supplement successfully updated.");
                 })
                 .fail(function () {
                     toastr.error("Unexpected error.");
