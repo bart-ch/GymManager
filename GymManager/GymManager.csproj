@@ -234,6 +234,7 @@
     <Compile Include="Controllers\Api\TypesController.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\FlavorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
@@ -825,6 +826,7 @@
     <Content Include="Views\Supplements\New.cshtml" />
     <Content Include="Views\Supplements\_SupplementForm.cshtml" />
     <Content Include="Views\Supplements\Edit.cshtml" />
+    <Content Include="Views\Flavors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
