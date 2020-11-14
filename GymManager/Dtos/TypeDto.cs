@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace GymManager.Dtos
+﻿namespace GymManager.Dtos
 {
     public class TypeDto
     {

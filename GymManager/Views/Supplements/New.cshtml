@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "New Supplement";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr>
+
+@Html.Partial("_SupplementForm")
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/GymManager/gm-pupulate-select-with-ajax-get.js")
+    @Scripts.Render("~/scripts/GymManager/gm-get-todays-date.js")
+    @Scripts.Render("~/scripts/GymManager/gm-handle-new-supplement-form.js")
+}

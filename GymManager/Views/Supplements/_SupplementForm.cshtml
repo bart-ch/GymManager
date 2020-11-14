@@ -1,0 +1,56 @@
+﻿<form id="supplementForm">
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
+        </div>
+        <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
+    </div>
+    <p id="errorbrand"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-pills"></i></label>
+        </div>
+        <select class="form-control" id="supplementTypeId" name="supplementTypeId" required></select>
+    </div>
+    <p id="errorsupplementTypeId"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-grin-tongue"></i></label>
+        </div>
+        <select class="form-control" id="flavorId" name="flavorId" required></select>
+    </div>
+    <p id="errorflavorId"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-battery-full"></i> </span>
+        </div>
+        <input type="number" class="form-control" placeholder="Initial Amount [g]" step="1" id="initialAmount" name="initialAmount" min="1" max="10000" required>
+    </div>
+    <p id="errorinitialAmount"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-battery-half"></i> </span>
+        </div>
+        <input type="number" class="form-control" placeholder="Consumed Amount [g] (optional)" step="1" id="consumedAmount" name="consumedAmount" min="0" max="10000">
+    </div>
+    <p id="errorconsumedAmount"></p>
+
+    <div class="input-group">
+        <label for="deliveryDate">Delivery Date</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+            </div>
+            <input id="deliveryDate" type="date" class="form-control" name="deliveryDate" min="2000-01-01" max="2100-01-01" required>
+        </div>
+    </div>
+    <p id="errordeliveryDate"></p>
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    <a href="/Supplements" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+</form>

@@ -67,8 +67,8 @@ namespace GymManager.Controllers.Api
             {
                 return BadRequest();
             }
-            var equipmentInDb = unitOfWork.Equipment.SingleOrDefault(e => e.Id == id);
 
+            var equipmentInDb = unitOfWork.Equipment.SingleOrDefault(e => e.Id == id);
             if (equipmentInDb == null)
             {
                 return NotFound();

@@ -1,6 +1,5 @@
 ﻿using GymManager.Core.Domain;
 using GymManager.Core.Repositories;
-using GymManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,8 +14,8 @@ namespace GymManager.Persistance.Repositories
         public EquipmentRepository(ApplicationDbContext context)
             :base(context)
         {
-
         }
+
         public IEnumerable<Equipment> GetEquipmentWithAreasAndTypes()
         {
             return ApplicationDbContext.Equipment

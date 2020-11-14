@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Supplements";
+}
+
+<h2>Supplements</h2>
+
+<a href="/Supplements/New" class="btn btn-primary mt-3" role="button">New Supplement</a>
+<hr>
+
+<div class="table-responsive">
+    <table id="supplements" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Flavor</th>
+                <th>Initial Amount</th>
+                <th>Current Amount</th>
+                <th>Consumed Amount</th>
+                <th>Delivery Date</th>
+                <th width="3%"></th>
+                <th width="3%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#supplements").DataTable({
+                ajax: {
+                    url: "/api/supplements",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "brand"
+                    },
+                    {
+                        data: "supplementType.name"
+                    },
+                    {
+                        data: "flavor.name"
+                    },
+                    {
+                        data: "initialAmount"
+                    },
+                    {
+                        data: "currentAmount"
+                    },
+                    {
+                        data: "consumedAmount"
+                    },
+                    {
+                        data: "deliveryDate",
+                        render: function (data) {
+                            var date = new Date(data);
+                            var dateString = date.getFullYear() + '/'
+                                + ('0' + (date.getMonth() + 1)).slice(-2) + '/'
+                                + ('0' + date.getDate()).slice(-2);
+
+                            return dateString;
+                        }
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a href='/Supplements/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a class='pointer js-delete' data-supplement-id=" + data + "><i class='fa fa-trash'></i></a>";
+                        }
+                    }
+                ]
+            });
+
+            $("#supplements").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm({
+                    title: 'Delete',
+                    message: "Are you sure you want to delete this supplement?",
+                    callback: function (result) {
+                        if (result) {
+
+                            $.ajax({
+                                url: "/api/supplements/" + button.attr("data-supplement-id"),
+                                method: "DELETE"
+                            })
+                                .done(function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                    toastr.success("Supplement successfully deleted.");
+                                })
+                                .fail(function () {
+                                    toastr.error("Unexpected error.");
+                                });
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+ 
+}
