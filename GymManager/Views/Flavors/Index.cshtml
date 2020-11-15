@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewBag.Title = "Manage Flavors";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr>
+
+<form id="flavorForm">
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-grin-tongue"></i></label>
+        </div>
+        <input class="form-control" id="name" name="name" placeholder="Flavor" required>
+        <button type="submit" class="btn btn-primary ml-3"><i class="fa fa-plus-circle"></i> Add new</button>
+    </div>
+    <p id="errorname"></p>
+
+    @Html.AntiForgeryToken()
+
+</form>
+
+<hr>
+
+<div class="table-responsive">
+    <table id="flavors" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th width="3%"></th>
+                <th width="3%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="editFlavorModal" tabindex="-1" role="dialog" aria-labelledby="editFlavorModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="editFlavor" class="modal-title">Edit Flavor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editFlavorForm">
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-grin-tongue"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Flavor" id="flavor" name="editName" required>
+                        <input type="hidden" id="flavorId" name="id">
+                    </div>
+                    <p id="erroreditName"></p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+                </div>
+                @Html.AntiForgeryToken()
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            var table = $("#flavors").DataTable({
+                ajax: {
+                    url: "/api/flavors",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a class='js-edit' data-flavor-id=" + data + " data-toggle='modal' data-target='#editFlavorModal' href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a class='pointer js-delete' data-flavor-id=" + data + "><i class='fa fa-trash'></i></a>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#flavors").on("click", ".js-delete", function () {
+                var button = $(this);
+
+
+                bootbox.confirm({
+                    title: 'Delete',
+                    message: "Are you sure you want to delete this? Every supplement of the flavor will change its flavor to 'Other'",
+                    callback: function (result) {
+                        if (result) {
+
+                            $.ajax({
+                                url: "/api/flavors/" + button.attr("data-flavor-id"),
+                                method: "DELETE"
+                            })
+                                .done(function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                    toastr.success("Flavor successfully deleted.");
+                                })
+                                .fail(function () {
+                                    toastr.error("You cannot delete 'Other'");
+                                });
+                        }
+                    }
+                });
+            });
+
+            $("#flavors").on("click", ".js-edit", function () {
+                var button = $(this);
+
+
+                $.ajax({
+                    url: "/api/flavors/" + button.attr("data-flavor-id"),
+                    method: "GET"
+                })
+                    .done(function (data) {
+                        $("#flavor").val(data.name);
+                        $("#flavorId").val(data.id);
+                    })
+                    .fail(function () {
+                        toastr.error("Unexpected error.");
+                    });
+            });
+
+            $("#editFlavorForm").validate({
+                errorPlacement: function ($error, $element) {
+                    var name = $element.attr("name");
+                    $("#error" + name).append($error);
+                },
+                rules: {
+                    editName: {
+                        maxlength: 30,
+                    }
+                },
+                submitHandler: function () {
+                    $("#flavor").attr('name', 'name');
+                    var formData = $('#editFlavorForm').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+                    $.ajax({
+                        url: "/api/flavors/" + $("#flavorId").val(),
+                        method: "PUT",
+                        data: formData
+                    })
+                        .done(function () {
+                            toastr.options.onHidden = function () { window.location.replace("/Flavors") }
+                            toastr.options.timeOut = 1300;
+                            toastr.success("Flavor successfully updated.");
+                        })
+                        .fail(function () {
+                            toastr.error("You cannot add flavor which already exists or edit 'Other'");
+                            $("#flavor").attr('name', 'editName');
+                        });
+                    return false;
+                }
+            });
+
+            $("#flavorForm").validate({
+                errorPlacement: function ($error, $element) {
+                    var name = $element.attr("name");
+                    $("#error" + name).append($error);
+                },
+                rules: {
+                    name: {
+                        maxlength: 30,
+                    }
+                },
+                submitHandler: function () {
+                    var formData = $('#flavorForm').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+                    $.ajax({
+
+                        url: "/api/flavors",
+                        method: "POST",
+                        data: formData
+                    })
+                        .done(function () {
+                            toastr.options.onHidden = function () { window.location.replace("/Flavors") }
+                            toastr.options.timeOut = 1300;
+                            toastr.success("Flavor successfully added.");
+                        })
+                        .fail(function () {
+                            toastr.error("The flavor already exists.");
+                        });
+
+                    return false;
+                }
+            });
+        })
+    </script>
+
+}

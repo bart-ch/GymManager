@@ -234,6 +234,7 @@
     <Compile Include="Controllers\Api\TypesController.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\FlavorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
@@ -336,6 +337,26 @@
     <Compile Include="Migrations\202011131109245_MakeCunsumedAndCurrentAmountNullable.cs" />
     <Compile Include="Migrations\202011131109245_MakeCunsumedAndCurrentAmountNullable.Designer.cs">
       <DependentUpon>202011131109245_MakeCunsumedAndCurrentAmountNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011151538288_TruncateFlavorsTable.cs" />
+    <Compile Include="Migrations\202011151538288_TruncateFlavorsTable.Designer.cs">
+      <DependentUpon>202011151538288_TruncateFlavorsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011151551118_SetIdAsIdentityInFlavor.cs" />
+    <Compile Include="Migrations\202011151551118_SetIdAsIdentityInFlavor.Designer.cs">
+      <DependentUpon>202011151551118_SetIdAsIdentityInFlavor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011151611263_DeleteSupplementsAndFlavorTables.cs" />
+    <Compile Include="Migrations\202011151611263_DeleteSupplementsAndFlavorTables.Designer.cs">
+      <DependentUpon>202011151611263_DeleteSupplementsAndFlavorTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011151612245_AddSupplementsAndFlavorTables.cs" />
+    <Compile Include="Migrations\202011151612245_AddSupplementsAndFlavorTables.Designer.cs">
+      <DependentUpon>202011151612245_AddSupplementsAndFlavorTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.cs" />
+    <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.Designer.cs">
+      <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
@@ -825,6 +846,7 @@
     <Content Include="Views\Supplements\New.cshtml" />
     <Content Include="Views\Supplements\_SupplementForm.cshtml" />
     <Content Include="Views\Supplements\Edit.cshtml" />
+    <Content Include="Views\Flavors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -903,6 +925,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011131109245_MakeCunsumedAndCurrentAmountNullable.resx">
       <DependentUpon>202011131109245_MakeCunsumedAndCurrentAmountNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011151538288_TruncateFlavorsTable.resx">
+      <DependentUpon>202011151538288_TruncateFlavorsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011151551118_SetIdAsIdentityInFlavor.resx">
+      <DependentUpon>202011151551118_SetIdAsIdentityInFlavor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011151611263_DeleteSupplementsAndFlavorTables.resx">
+      <DependentUpon>202011151611263_DeleteSupplementsAndFlavorTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011151612245_AddSupplementsAndFlavorTables.resx">
+      <DependentUpon>202011151612245_AddSupplementsAndFlavorTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.resx">
+      <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -21,7 +21,8 @@ namespace GymManager.App_Start
             Mapper.CreateMap<TypeDto, Core.Domain.Type>();
             Mapper.CreateMap<SupplementDto, Supplement>()
                 .ForMember(s => s.Id, opt => opt.Ignore());
-            Mapper.CreateMap<FlavorDto, Flavor>();
+            Mapper.CreateMap<FlavorDto, Flavor>()
+                .ForMember(f => f.Id, opt => opt.Ignore()); ;
             Mapper.CreateMap<SupplementTypeDto, SupplementType>();
 
         }
