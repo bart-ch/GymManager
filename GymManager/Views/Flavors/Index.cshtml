@@ -16,7 +16,7 @@
         <input class="form-control" id="name" name="name" placeholder="Flavor" required>
         <button type="submit" class="btn btn-primary ml-3"><i class="fa fa-plus-circle"></i> Add new</button>
     </div>
-    <p id="errorflavor"></p>
+    <p id="errorname"></p>
 
     @Html.AntiForgeryToken()
 
@@ -48,22 +48,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="editFlavorForm">
+            <form id="editFlavorForm">
                 <div class="modal-body">
 
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-grin-tongue"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Flavor" name="flavor" required>
+                        <input type="text" class="form-control" placeholder="Flavor" id="flavor" name="editName" required>
+                        <input type="hidden" id="flavorId" name="id">
                     </div>
+                    <p id="erroreditName"></p>
 
                 </div>
-
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -88,7 +88,7 @@
                         data: "id",
                         "orderable": false,
                         render: function (data) {
-                            return "<a data-toggle='modal' data-target='#editFlavorModal' href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
+                            return "<a class='js-edit' data-flavor-id=" + data + " data-toggle='modal' data-target='#editFlavorModal' href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
                         }
                     },
                     {
@@ -127,6 +127,60 @@
                     }
                 });
             });
+
+            $("#flavors").on("click", ".js-edit", function () {
+                var button = $(this);
+
+
+                $.ajax({
+                    url: "/api/flavors/" + button.attr("data-flavor-id"),
+                    method: "GET"
+                })
+                    .done(function (data) {
+                        $("#flavor").val(data.name);
+                        $("#flavorId").val(data.id);
+                    })
+                    .fail(function () {
+                        toastr.error("Unexpected error.");
+                    });
+            });
+
+
+            $("#editFlavorForm").validate({
+                errorPlacement: function ($error, $element) {
+                    var name = $element.attr("name");
+                    $("#error" + name).append($error);
+                },
+                rules: {
+                    editName: {
+                        maxlength: 30,
+                    }
+                },
+                submitHandler: function () {
+                    $("#flavor").attr('name', 'name');
+                    var formData = $('#editFlavorForm').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+                    $.ajax({
+                        url: "/api/flavors/" + $("#flavorId").val(),
+                        method: "PUT",
+                        data: formData
+                    })
+                        .done(function () {
+                            toastr.options.onHidden = function () { window.location.replace("/Flavors") }
+                            toastr.success("Flavor successfully updated.");
+                        })
+                        .fail(function () {
+                            toastr.error("Flavor with the same name already exists.");
+                            $("#flavor").attr('name', 'editName');
+                        });
+                    return false;
+                }
+            });
+
+
+
 
             $("#flavorForm").validate({
                 errorPlacement: function ($error, $element) {

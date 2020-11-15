@@ -28,6 +28,18 @@ namespace GymManager.Controllers.Api
             return Ok(flavorsDtos);
         }
 
+        public IHttpActionResult GetFlavor(int id)
+        {
+            var flavor = unitOfWork.Flavors.SingleOrDefault(f => f.Id == id);
+
+            if (flavor == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<Flavor, FlavorDto>(flavor));
+        }
+
         [HttpPost]
         public IHttpActionResult CreateFlavor(FlavorDto flavorDto)
         {
@@ -52,6 +64,33 @@ namespace GymManager.Controllers.Api
 
             return Created(new Uri(Request.RequestUri + "/" + flavor.Id), flavorDto);
 
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateFlavor(int id, FlavorDto flavorDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var flavorWithTheSameName = unitOfWork.Flavors.SingleOrDefault(e => e.Name == flavorDto.Name);
+            if (flavorWithTheSameName != null)
+            {
+                return BadRequest();
+            }
+
+            var flavorInDb = unitOfWork.Flavors.SingleOrDefault(e => e.Id == id);
+            if (flavorInDb == null)
+            {
+                return NotFound();
+            }
+
+            Mapper.Map(flavorDto, flavorInDb);
+
+            unitOfWork.Complete();
+
+            return Ok();
         }
 
         [HttpDelete]
