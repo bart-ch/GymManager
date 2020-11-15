@@ -5,6 +5,25 @@
 
 <h2>@ViewBag.Title</h2>
 
+<hr>
+
+<form id="flavorForm">
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fa fa-grin-tongue"></i></label>
+        </div>
+        <input class="form-control" id="name" name="name" placeholder="Flavor" required>
+        <button type="submit" class="btn btn-primary ml-3"><i class="fa fa-plus-circle"></i> Add new</button>
+    </div>
+    <p id="errorflavor"></p>
+
+    @Html.AntiForgeryToken()
+
+</form>
+
+<hr>
+
 <div class="table-responsive">
     <table id="flavors" class="table table-bordered table-hover">
         <thead>
@@ -19,8 +38,40 @@
     </table>
 </div>
 
+
+<div class="modal fade" id="editFlavorModal" tabindex="-1" role="dialog" aria-labelledby="editFlavorModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="editFlavor" class="modal-title">Edit Flavor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="editFlavorForm">
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-grin-tongue"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Flavor" name="flavor" required>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 @section Scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
 
@@ -37,7 +88,7 @@
                         data: "id",
                         "orderable": false,
                         render: function (data) {
-                            return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
+                            return "<a data-toggle='modal' data-target='#editFlavorModal' href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
                         }
                     },
                     {
@@ -50,6 +101,7 @@
                 ]
             });
 
+
             $("#flavors").on("click", ".js-delete", function () {
                 var button = $(this);
 
@@ -57,11 +109,11 @@
                 bootbox.confirm({
                     title: 'Delete',
                     message: "Are you sure you want to delete this? Every supplement of the flavor will change its flavor to 'Other'",
-                    callback: function(result) {
+                    callback: function (result) {
                         if (result) {
 
                             $.ajax({
-                                url: "/api/flavor/" + button.attr("data-flavor-id"),
+                                url: "/api/flavors/" + button.attr("data-flavor-id"),
                                 method: "DELETE"
                             })
                                 .done(function () {
@@ -74,6 +126,39 @@
                         }
                     }
                 });
+            });
+
+            $("#flavorForm").validate({
+                errorPlacement: function ($error, $element) {
+                    var name = $element.attr("name");
+                    $("#error" + name).append($error);
+                },
+                rules: {
+                    name: {
+                        maxlength: 30,
+                    }
+                },
+                submitHandler: function () {
+                    var formData = $('#flavorForm').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+                    $.ajax({
+
+                        url: "/api/flavors",
+                        method: "POST",
+                        data: formData
+                    })
+                        .done(function () {
+                            toastr.options.onHidden = function () { window.location.replace("/Flavors") }
+                            toastr.success("Flavor successfully added.");
+                        })
+                        .fail(function () {
+                            toastr.error("The flavor already exists.");
+                        });
+
+                    return false;
+                }
             });
         })
 
