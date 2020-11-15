@@ -17,8 +17,8 @@ namespace GymManager.Controllers.Api
         {
             this.unitOfWork = unitOfWork;
         }
-        
-        public IHttpActionResult  GetFlavors()
+
+        public IHttpActionResult GetFlavors()
         {
             var flavorsDtos = unitOfWork.Flavors
                 .GetAll()
@@ -103,11 +103,21 @@ namespace GymManager.Controllers.Api
                 return NotFound();
             }
 
+            var supplementsOfTheFlavor = unitOfWork.Supplements.Find(s => s.FlavorId == id);
+
+            if (supplementsOfTheFlavor.Count() > 0)
+            {
+                var otherFlavor = unitOfWork.Flavors.SingleOrDefault(f => f.Name == "Other");
+                foreach (var supplement in supplementsOfTheFlavor)
+                {
+                    supplement.FlavorId = otherFlavor.Id;
+                }
+            }
+
             unitOfWork.Flavors.Remove(flavorInDb);
             unitOfWork.Complete();
 
             return Ok();
-
         }
     }
 }

@@ -354,6 +354,10 @@
     <Compile Include="Migrations\202011151612245_AddSupplementsAndFlavorTables.Designer.cs">
       <DependentUpon>202011151612245_AddSupplementsAndFlavorTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.cs" />
+    <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.Designer.cs">
+      <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -933,6 +937,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011151612245_AddSupplementsAndFlavorTables.resx">
       <DependentUpon>202011151612245_AddSupplementsAndFlavorTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.resx">
+      <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
