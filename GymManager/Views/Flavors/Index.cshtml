@@ -38,7 +38,6 @@
     </table>
 </div>
 
-
 <div class="modal fade" id="editFlavorModal" tabindex="-1" role="dialog" aria-labelledby="editFlavorModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -64,6 +63,7 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
                 </div>
+                @Html.AntiForgeryToken()
             </form>
         </div>
     </div>
@@ -121,7 +121,7 @@
                                     toastr.success("Flavor successfully deleted.");
                                 })
                                 .fail(function () {
-                                    toastr.error("Unexpected error.");
+                                    toastr.error("You cannot delete 'Other'");
                                 });
                         }
                     }
@@ -144,7 +144,6 @@
                         toastr.error("Unexpected error.");
                     });
             });
-
 
             $("#editFlavorForm").validate({
                 errorPlacement: function ($error, $element) {
@@ -169,18 +168,16 @@
                     })
                         .done(function () {
                             toastr.options.onHidden = function () { window.location.replace("/Flavors") }
+                            toastr.options.timeOut = 1300;
                             toastr.success("Flavor successfully updated.");
                         })
                         .fail(function () {
-                            toastr.error("Flavor with the same name already exists.");
+                            toastr.error("You cannot add flavor which already exists or edit 'Other'");
                             $("#flavor").attr('name', 'editName');
                         });
                     return false;
                 }
             });
-
-
-
 
             $("#flavorForm").validate({
                 errorPlacement: function ($error, $element) {
@@ -205,6 +202,7 @@
                     })
                         .done(function () {
                             toastr.options.onHidden = function () { window.location.replace("/Flavors") }
+                            toastr.options.timeOut = 1300;
                             toastr.success("Flavor successfully added.");
                         })
                         .fail(function () {
@@ -215,8 +213,6 @@
                 }
             });
         })
-
     </script>
-
 
 }

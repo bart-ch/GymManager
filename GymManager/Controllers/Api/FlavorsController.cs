@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
@@ -22,7 +23,6 @@ namespace GymManager.Controllers.Api
         {
             var flavorsDtos = unitOfWork.Flavors
                 .GetAll()
-                .Where(uof => uof.Name != "Other")
                 .Select(Mapper.Map<Flavor, FlavorDto>);
 
             return Ok(flavorsDtos);
@@ -41,6 +41,7 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult CreateFlavor(FlavorDto flavorDto)
         {
             if (!ModelState.IsValid)
@@ -67,6 +68,7 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPut]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult UpdateFlavor(int id, FlavorDto flavorDto)
         {
             if (!ModelState.IsValid)
@@ -74,17 +76,19 @@ namespace GymManager.Controllers.Api
                 return BadRequest();
             }
 
-            var flavorWithTheSameName = unitOfWork.Flavors.SingleOrDefault(e => e.Name == flavorDto.Name);
-            if (flavorWithTheSameName != null)
+            var otherFlavor = unitOfWork.Flavors.SingleOrDefault(f => f.Name == "Other");
+            if (otherFlavor.Id == flavorDto.Id)
+            {
+                return BadRequest();
+            }
+
+            var flavorInDbWithGivenName = unitOfWork.Flavors.SingleOrDefault(e => e.Name == flavorDto.Name);
+            if (flavorInDbWithGivenName != null)
             {
                 return BadRequest();
             }
 
             var flavorInDb = unitOfWork.Flavors.SingleOrDefault(e => e.Id == id);
-            if (flavorInDb == null)
-            {
-                return NotFound();
-            }
 
             Mapper.Map(flavorDto, flavorInDb);
 
@@ -101,6 +105,10 @@ namespace GymManager.Controllers.Api
             if (flavorInDb == null)
             {
                 return NotFound();
+            }
+            else if (flavorInDb.Name == "Other")
+            {
+                return BadRequest();
             }
 
             var supplementsOfTheFlavor = unitOfWork.Supplements.Find(s => s.FlavorId == id);

@@ -44,14 +44,14 @@ namespace GymManager.Controllers.Api
         [ValidateAntiForgeryToken]
         public IHttpActionResult CreateSupplement(SupplementDto supplementDto)
         {
-            if (supplementDto.ConsumedAmount == null)
-            {
-                supplementDto.ConsumedAmount = 0;
-            }
-
             if (!ModelState.IsValid)
             {
                 return BadRequest();
+            }
+
+            if (supplementDto.ConsumedAmount == null)
+            {
+                supplementDto.ConsumedAmount = 0;
             }
 
             var supplement = Mapper.Map<SupplementDto, Supplement>(supplementDto);
@@ -71,6 +71,11 @@ namespace GymManager.Controllers.Api
             if (!ModelState.IsValid)
             {
                 return BadRequest();
+            }
+
+            if (supplementDto.ConsumedAmount == null)
+            {
+                supplementDto.ConsumedAmount = 0;
             }
 
             var supplementInDb = unitOfWork.Supplements.SingleOrDefault(s => s.Id == id);
