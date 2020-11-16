@@ -4,7 +4,7 @@ namespace GymManager.Controllers
 {
     public class FlavorsController : Controller
     {
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }

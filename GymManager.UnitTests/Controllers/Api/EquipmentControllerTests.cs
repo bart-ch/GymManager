@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Results;
 
@@ -40,7 +39,6 @@ namespace GymManager.UnitTests.Controllers.Api
             {
                 ControllerContext = controllerContext
             };
-
         }
 
 
@@ -179,13 +177,11 @@ namespace GymManager.UnitTests.Controllers.Api
 
         private IEnumerable<Equipment> GetEquipmentList()
         {
-
             return new List<Equipment>()
             {
                 new Equipment() {  Id = 1, Brand="Test", Model = "Test"},
                 new Equipment() {  Id = 2, Brand="Example", Model = "Example"}
             };
-
         }
     }
 }

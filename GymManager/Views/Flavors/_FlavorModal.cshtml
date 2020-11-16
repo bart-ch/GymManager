@@ -1,0 +1,30 @@
+﻿<div class="modal fade" id="editFlavorModal" tabindex="-1" role="dialog" aria-labelledby="editFlavorModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="editFlavor" class="modal-title">Edit Flavor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editFlavorForm">
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-grin-tongue"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Flavor" id="flavor" name="editName" required>
+                        <input type="hidden" id="flavorId" name="id">
+                    </div>
+                    <p id="erroreditName"></p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+                </div>
+                @Html.AntiForgeryToken()
+            </form>
+        </div>
+    </div>
+</div>

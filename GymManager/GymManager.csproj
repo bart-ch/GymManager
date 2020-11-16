@@ -666,6 +666,7 @@
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
+    <Content Include="Scripts\GymManager\gm-handle-flavors-datatable-and-forms.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-get-todays-date.js" />
@@ -847,6 +848,7 @@
     <Content Include="Views\Supplements\_SupplementForm.cshtml" />
     <Content Include="Views\Supplements\Edit.cshtml" />
     <Content Include="Views\Flavors\Index.cshtml" />
+    <Content Include="Views\Flavors\_FlavorModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
