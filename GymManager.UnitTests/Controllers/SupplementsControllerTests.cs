@@ -5,14 +5,14 @@ using System.Web.Mvc;
 namespace GymManager.UnitTests.Controllers
 {
     [TestFixture]
-    public class EquipmentControllerTests
+    public class SupplementsControllerTests
     {
-        private EquipmentController controller;
+        private SupplementsController controller;
 
         [SetUp]
         public void SetUp()
         {
-            controller = new EquipmentController();
+            controller = new SupplementsController();
         }
 
         [Test]
@@ -22,8 +22,8 @@ namespace GymManager.UnitTests.Controllers
 
             Assert.That(result.ViewName, Is.EqualTo(string.Empty));
             Assert.That(result, Is.TypeOf(typeof(ViewResult)));
-        }        
-        
+        }
+
         [Test]
         public void New_WhenCalled_ReturnView()
         {
@@ -31,8 +31,8 @@ namespace GymManager.UnitTests.Controllers
 
             Assert.That(result.ViewName, Is.EqualTo(string.Empty));
             Assert.That(result, Is.TypeOf(typeof(ViewResult)));
-        }        
-        
+        }
+
         [Test]
         public void Edit_WhenCalled_ReturnView()
         {

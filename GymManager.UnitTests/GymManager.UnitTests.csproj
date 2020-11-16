@@ -105,8 +105,12 @@
   <ItemGroup>
     <Compile Include="Controllers\Api\AreasControllerTests.cs" />
     <Compile Include="Controllers\Api\EquipmentControllerTests.cs" />
+    <Compile Include="Controllers\Api\SupplementsControllerTests.cs" />
+    <Compile Include="Controllers\Api\TextFixtureAttribute.cs" />
     <Compile Include="Controllers\Api\TypesControllerTests.cs" />
     <Compile Include="Controllers\EquipmentControllerTests.cs" />
+    <Compile Include="Controllers\FlavorsControllerTests.cs" />
+    <Compile Include="Controllers\SupplementsControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

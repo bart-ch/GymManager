@@ -81,7 +81,7 @@ namespace GymManager.Controllers.Api
             var supplementInDb = unitOfWork.Supplements.SingleOrDefault(s => s.Id == id);
             if (supplementInDb == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             Mapper.Map(supplementDto, supplementInDb);
