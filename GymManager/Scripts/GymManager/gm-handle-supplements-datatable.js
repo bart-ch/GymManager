@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    var table = $("#equipment").DataTable({
+    var table = $("#supplements").DataTable({
         ajax: {
-            url: "/api/equipment",
+            url: "/api/supplements",
             dataSrc: ""
         },
         columns: [
@@ -9,13 +9,19 @@
                 data: "brand"
             },
             {
-                data: "model"
+                data: "supplementType.name"
             },
             {
-                data: "type.name"
+                data: "flavor.name"
             },
             {
-                data: "area.name"
+                data: "initialAmount"
+            },
+            {
+                data: "currentAmount"
+            },
+            {
+                data: "consumedAmount"
             },
             {
                 data: "deliveryDate",
@@ -29,41 +35,38 @@
                 }
             },
             {
-                data: "serialNumber"
-            },
-            {
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
+                    return "<a href='/Supplements/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
                 }
             },
             {
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a class='pointer js-delete' data-equipment-id=" + data + "><i class='fa fa-trash' title='Delete'></i></a>";
+                    return "<a class='pointer js-delete' data-supplement-id=" + data + "><i class='fa fa-trash' title='Delete'></i></a>";
                 }
             }
         ]
     });
 
-    $("#equipment").on("click", ".js-delete", function () {
+    $("#supplements").on("click", ".js-delete", function () {
         var button = $(this);
 
         bootbox.confirm({
             title: 'Delete',
-            message: "Are you sure you want to delete this equipment?",
+            message: "Are you sure you want to delete this supplement?",
             callback: function (result) {
                 if (result) {
 
                     $.ajax({
-                        url: "/api/equipment/" + button.attr("data-equipment-id"),
+                        url: "/api/supplements/" + button.attr("data-supplement-id"),
                         method: "DELETE"
                     })
                         .done(function () {
                             table.row(button.parents("tr")).remove().draw();
-                            toastr.success("Equipment successfully deleted.");
+                            toastr.success("Supplement successfully deleted.");
                         })
                         .fail(function () {
                             toastr.error("Unexpected error.");
