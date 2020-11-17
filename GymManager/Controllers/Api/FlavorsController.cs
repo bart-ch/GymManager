@@ -77,7 +77,7 @@ namespace GymManager.Controllers.Api
             }
 
             var otherFlavor = unitOfWork.Flavors.SingleOrDefault(f => f.Name == "Other");
-            if (otherFlavor.Id == flavorDto.Id)
+            if (otherFlavor.Id == id)
             {
                 return BadRequest();
             }

@@ -61,10 +61,10 @@ namespace GymManager.UnitTests.Controllers.Api
         public void GetSingleEquipment_EquipmentNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == 1))
+                .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == It.IsAny<int>()))
                 .Returns<Equipment>(null);
 
-            var response = controller.GetSingleEquipment(1);
+            var response = controller.GetSingleEquipment(It.IsAny<int>());
 
             Assert.That(response, Is.InstanceOf(typeof(NotFoundResult)));
         }
@@ -86,7 +86,6 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.AreEqual(result, Mapper.Map<Equipment, EquipmentDto>(equipment));
         }
 
-
         [Test]
         public void CreateEquipment_ModelIsNotValid_ReturnBadRequest()
         {
@@ -107,7 +106,6 @@ namespace GymManager.UnitTests.Controllers.Api
 
             var result = controller.CreateEquipment(equipmentDto);
 
-            Assert.IsNotNull(result);
             Assert.That(result, Is.InstanceOf(typeof(CreatedNegotiatedContentResult<EquipmentDto>)));
         }
 
@@ -116,7 +114,7 @@ namespace GymManager.UnitTests.Controllers.Api
         {
             controller.ModelState.AddModelError("key", "error message");
 
-            var result = controller.UpdateEquipment(1, new EquipmentDto());
+            var result = controller.UpdateEquipment(It.IsAny<int>(), new EquipmentDto());
 
             Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
         }
@@ -124,12 +122,11 @@ namespace GymManager.UnitTests.Controllers.Api
         [Test]
         public void UpdateEquipment_EquipmentNotFound_ReturnNotFound()
         {
-            unitOfWork.Setup(uow => uow.Equipment
-                .SingleOrDefault(e => e.Id == 1))
+            unitOfWork.Setup(uow => uow.Equipment.SingleOrDefault(e => e.Id == It.IsAny<int>()))
                 .Returns<Equipment>(null);
 
 
-            var result = controller.UpdateEquipment(1, new EquipmentDto());
+            var result = controller.UpdateEquipment(It.IsAny<int>(), new EquipmentDto());
 
             Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
         }
@@ -138,22 +135,19 @@ namespace GymManager.UnitTests.Controllers.Api
         public void UpdateEquipment_EquipmentFound_ReturnOk()
         {
             var id = 1;
-            unitOfWork.Setup(uow => uow.Equipment
-                .SingleOrDefault(e => e.Id == id))
+            unitOfWork.Setup(uow => uow.Equipment.SingleOrDefault(e => e.Id == id))
                 .Returns(new Equipment());
 
 
             var result = controller.UpdateEquipment(id, new EquipmentDto());
 
-            unitOfWork.Verify(uow => uow.Complete());
             Assert.That(result, Is.InstanceOf(typeof(OkResult)));
         }
 
         [Test]
         public void DeleteEquipment_EquipmentNotFound_ReturnNotFound()
         {
-            unitOfWork.Setup(uow => uow.Equipment
-                .SingleOrDefault(e => e.Id == 1))
+            unitOfWork.Setup(uow => uow.Equipment.SingleOrDefault(e => e.Id == It.IsAny<int>()))
                 .Returns<Equipment>(null);
 
             var result = controller.DeleteEquipment(1);
@@ -165,19 +159,17 @@ namespace GymManager.UnitTests.Controllers.Api
         public void DeleteEquipment_EquipmentFound_ReturnOk()
         {
             var id = 1;
-            unitOfWork.Setup(uow => uow.Equipment
-                .SingleOrDefault(e => e.Id == id))
+            unitOfWork.Setup(uow => uow.Equipment.SingleOrDefault(e => e.Id == id))
                 .Returns(new Equipment());
 
             var result = controller.DeleteEquipment(id);
 
-            unitOfWork.Verify(uow => uow.Complete());
             Assert.That(result, Is.InstanceOf(typeof(OkResult)));
         }
 
         private IEnumerable<Equipment> GetEquipmentList()
         {
-            return new List<Equipment>()
+            return new List<Equipment>
             {
                 new Equipment() {  Id = 1, Brand="Test", Model = "Test"},
                 new Equipment() {  Id = 2, Brand="Example", Model = "Example"}
