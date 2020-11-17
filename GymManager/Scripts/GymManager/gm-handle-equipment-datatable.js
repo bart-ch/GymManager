@@ -35,6 +35,13 @@
                 data: "id",
                 "orderable": false,
                 render: function (data) {
+                    return "<a href ='/Malfunctions/New/" + data + "' class='pointer'><i class='fa fa-exclamation-triangle' title='Report a malfunction'></i></a>";
+                }
+            },
+            {
+                data: "id",
+                "orderable": false,
+                render: function (data) {
                     return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
                 }
             },

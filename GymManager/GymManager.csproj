@@ -236,6 +236,7 @@
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\FlavorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MalfunctionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
     <Compile Include="Core\Domain\Equipment\Malfunction.cs" />
@@ -358,6 +359,10 @@
     <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.cs" />
     <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.Designer.cs">
       <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011171259124_AddMalfunctionTable.cs" />
+    <Compile Include="Migrations\202011171259124_AddMalfunctionTable.Designer.cs">
+      <DependentUpon>202011171259124_AddMalfunctionTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
@@ -851,6 +856,7 @@
     <Content Include="Views\Supplements\Edit.cshtml" />
     <Content Include="Views\Flavors\Index.cshtml" />
     <Content Include="Views\Flavors\_FlavorModal.cshtml" />
+    <Content Include="Views\Malfunctions\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -944,6 +950,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.resx">
       <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011171259124_AddMalfunctionTable.resx">
+      <DependentUpon>202011171259124_AddMalfunctionTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

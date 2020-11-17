@@ -11,6 +11,7 @@
             url: "/api/equipment/" + id,
         })
             .done(function (equipment) {
+                $("#serialNumber").val(equipment.serialNumber);
                 $("#brand").val(equipment.brand);
                 $("#model").val(equipment.model);
                 $("#typeId").val(equipment.type.id);

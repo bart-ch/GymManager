@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GymManager.Core.Domain
 {
@@ -13,6 +14,9 @@ namespace GymManager.Core.Domain
         [Required]
         [StringLength(255)]
         public string Description { get; set; }
+
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
+        public DateTime MalfunctionDate { get; set; }
 
         public bool IsRepaired { get; set; }
 
