@@ -13,7 +13,7 @@ namespace GymManager.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202011171259124_AddMalfunctionTable"; }
+            get { return "202011171715235_AddMalfunctionTable"; }
         }
         
         string IMigrationMetadata.Source

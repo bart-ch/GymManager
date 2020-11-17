@@ -14,7 +14,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-heading"></i></span>
                 </div>
-                <input class="form-control" placeholder="Title" id="title" name="title">
+                <input class="form-control" placeholder="Title" id="title" name="title" required>
             </div>
             <p id="errortitle"></p>
 
@@ -28,7 +28,8 @@
 
             <div class="form-group">
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="isRepaired">
+                    <input type="hidden" name="isRepaired" value="false" />
+                    <input type="checkbox" class="custom-control-input" name="isRepaired" id="isRepaired" value="true" >
                     <label class="custom-control-label" for="isRepaired">Is the malfunction repaired?</label>
                 </div>
             </div>
@@ -44,7 +45,7 @@
             </div>
             <p id="errormalfunctionDate"></p>
 
-            <input type="hidden" id="equipmentId" />
+            <input type="hidden" id="equipmentId" name="equipmentId" />
 
             @Html.AntiForgeryToken()
             <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
@@ -68,81 +69,79 @@
 
 @section Scripts
 {
-
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/scripts/GymManager/gm-get-todays-date.js");
 
     <script>
-        $('#malfunctionDate').val(getTodaysDate());
+        $(document).ready(function () {
+
+            function resetForm($form) {
+                $form.find('input:text, input:password, input:file, select, textarea').val('');
+                $("input[type=date]").val("");
+            };
 
 
-        var url = $(location).attr('href');
-        var id = url.substring(url.lastIndexOf('/') + 1);
-        if (id > 0) {
-            $.ajax({
-                type: "GET",
-                url: "/api/equipment/" + id,
-            })
-                .done(function (equipment) {
-                    $("#serialNumber").append(equipment.serialNumber);
-                    $("#brand").append(equipment.brand);
-                    $("#model").append(equipment.model);
-                    $("#type").append(equipment.type.name);
-                    $("#area").append(equipment.area.name);
-                    var date = new Date(equipment.deliveryDate);
-                    var dateString = date.getFullYear() + '-'
-                        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-                        + ('0' + date.getDate()).slice(-2);
-                    $("#deliveryDate").append(dateString);
-                    $("#equipmentId").val(equipment.id);
+            $('#malfunctionDate').val(getTodaysDate());
 
-                })
-                .fail(function () {
-                    window.location.pathname = '/Equipment'
-                });
-        }
-
-        $("#equipmentForm").validate({
-            errorPlacement: function ($error, $element) {
-                var name = $element.attr("name");
-                $("#error" + name).append($error);
-            },
-            rules: {
-                brand: {
-                    maxlength: 30,
-                },
-                model: {
-                    maxlength: 30,
-                },
-                serialNumber: {
-                    maxlength: 30
-                }
-            },
-            submitHandler: function () {
-                var formData = $('#malfunctionForm').serializeArray().reduce(function (obj, item) {
-                    obj[item.name] = item.value;
-                    return obj;
-                }, {});
+            var url = $(location).attr('href');
+            var id = url.substring(url.lastIndexOf('/') + 1);
+            if (id > 0) {
                 $.ajax({
-
-                    url: "/api/malfunctions",
-                    method: "POST",
-                    data: formData
+                    type: "GET",
+                    url: "/api/equipment/" + id,
                 })
-                    .done(function () {
-                        toastr.success("Malfunction successfully added.");
-                        resetForm($('#malfunctionForm'));
-                        $('#malfunctionDate').val(getTodaysDate());
-
+                    .done(function (equipment) {
+                        $("#serialNumber").append(equipment.serialNumber);
+                        $("#brand").append(equipment.brand);
+                        $("#model").append(equipment.model);
+                        $("#type").append(equipment.type.name);
+                        $("#area").append(equipment.area.name);
+                        var date = new Date(equipment.deliveryDate);
+                        var dateString = date.getFullYear() + '-'
+                            + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+                            + ('0' + date.getDate()).slice(-2);
+                        $("#deliveryDate").append(dateString);
+                        $("#equipmentId").val(equipment.id);
                     })
                     .fail(function () {
-                        toastr.error("Unexpected error.");
+                        window.location.pathname = '/Equipment'
                     });
-
-                return false;
             }
-        });
 
+            $("#malfunctionForm").validate({
+                errorPlacement: function ($error, $element) {
+                    var name = $element.attr("name");
+                    $("#error" + name).append($error);
+                },
+                rules: {
+                },
+                submitHandler: function () {
 
+                    var formData = $('#malfunctionForm').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+
+                    $.ajax({
+                        url: "/api/malfunctions",
+                        method: "POST",
+                        data: formData
+                    })
+                        .done(function () {
+                            toastr.success("Malfunction successfully added.");
+                            resetForm($('#malfunctionForm'));
+                            $('#malfunctionDate').val(getTodaysDate());
+
+                        })
+                        .fail(function () {
+                            toastr.error("Unexpected error.");
+                        });
+
+                    return false;
+                }
+            });
+
+        })
     </script>
 
 

@@ -16,18 +16,18 @@ namespace GymManager.Migrations
                         Description = c.String(nullable: false, maxLength: 255),
                         MalfunctionDate = c.DateTime(nullable: false),
                         IsRepaired = c.Boolean(nullable: false),
-                        Equipment_Id = c.Int(),
+                        EquipmentId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Equipment", t => t.Equipment_Id)
-                .Index(t => t.Equipment_Id);
+                .ForeignKey("dbo.Equipment", t => t.EquipmentId, cascadeDelete: true)
+                .Index(t => t.EquipmentId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Malfunctions", "Equipment_Id", "dbo.Equipment");
-            DropIndex("dbo.Malfunctions", new[] { "Equipment_Id" });
+            DropForeignKey("dbo.Malfunctions", "EquipmentId", "dbo.Equipment");
+            DropIndex("dbo.Malfunctions", new[] { "EquipmentId" });
             DropTable("dbo.Malfunctions");
         }
     }

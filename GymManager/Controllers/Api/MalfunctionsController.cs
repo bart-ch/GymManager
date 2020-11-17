@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
@@ -17,6 +18,7 @@ namespace GymManager.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
+        [Route("api/malfunctions/{equipmentId}")]
         public IHttpActionResult GetMalfunctionsOfGivenEquipment(int equipmentId)
         {
             var malfunctionDtos = unitOfWork.Malfunctions
@@ -27,7 +29,7 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPost]
-     //   [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult CreateMalfunction(MalfunctionDto malfunctionDto)
         {
             if (!ModelState.IsValid)

@@ -13,5 +13,6 @@ namespace GymManager.Dtos
         public DateTime MalfunctionDate { get; set; }
         public bool IsRepaired { get; set; }
         public EquipmentDto Equipment { get; set; }
+        public int EquipmentId { get; set; }
     }
 }
