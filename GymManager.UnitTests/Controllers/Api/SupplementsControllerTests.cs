@@ -60,7 +60,7 @@ namespace GymManager.UnitTests.Controllers.Api
         public void GetSupplement_SupplementNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.Supplements
-                .GetSingleOrDefaultSupplementWithFlavorAndType(s => s.Id == 1))
+                .GetSingleOrDefaultSupplementWithFlavorAndType(s => s.Id == It.IsAny<int>()))
                 .Returns<Supplement>(null);
 
             var response = controller.GetSupplement(1);
@@ -110,14 +110,23 @@ namespace GymManager.UnitTests.Controllers.Api
         }
 
         [Test]
+        public void UpdateSupplement_ModelIsNotValid_ReturnBadRequest()
+        {
+            controller.ModelState.AddModelError("key", "error message");
+
+            var result = controller.UpdateSupplement(It.IsAny<int>(), new SupplementDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        [Test]
         public void UpdateSupplement_SupplementNotFound_ReturnNotFound()
         {
-            unitOfWork.Setup(uow => uow.Supplements
-                .SingleOrDefault(s => s.Id == 1))
+            unitOfWork.Setup(uow => uow.Supplements.SingleOrDefault(s => s.Id == It.IsAny<int>()))
                 .Returns<Equipment>(null);
 
 
-            var result = controller.UpdateSupplement(1, new SupplementDto());
+            var result = controller.UpdateSupplement(It.IsAny<int>(), new SupplementDto());
 
             Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
         }
@@ -126,22 +135,19 @@ namespace GymManager.UnitTests.Controllers.Api
         public void UpdateSupplement_SupplementFound_ReturnOk()
         {
             var id = 1;
-            unitOfWork.Setup(uow => uow.Supplements
-                .SingleOrDefault(s => s.Id == id))
+            unitOfWork.Setup(uow => uow.Supplements.SingleOrDefault(s => s.Id == id))
                 .Returns(new Supplement());
 
 
             var result = controller.UpdateSupplement(id, new SupplementDto());
 
-            unitOfWork.Verify(uow => uow.Complete());
             Assert.That(result, Is.InstanceOf(typeof(OkResult)));
         }
 
         [Test]
-        public void DeleteSupplement_SupplementtNotFound_ReturnNotFound()
+        public void DeleteSupplement_SupplementNotFound_ReturnNotFound()
         {
-            unitOfWork.Setup(uow => uow.Supplements
-                .SingleOrDefault(s => s.Id == 1))
+            unitOfWork.Setup(uow => uow.Supplements.SingleOrDefault(s => s.Id == 1))
                 .Returns<Supplement>(null);
 
             var result = controller.DeleteSuplement(1);
@@ -153,19 +159,17 @@ namespace GymManager.UnitTests.Controllers.Api
         public void DeleteEquipment_SupplementFound_ReturnOk()
         {
             var id = 1;
-            unitOfWork.Setup(uow => uow.Supplements
-                .SingleOrDefault(s => s.Id == id))
+            unitOfWork.Setup(uow => uow.Supplements.SingleOrDefault(s => s.Id == id))
                 .Returns(new Supplement());
 
             var result = controller.DeleteSuplement(id);
 
-            unitOfWork.Verify(uow => uow.Complete());
             Assert.That(result, Is.InstanceOf(typeof(OkResult)));
         }
 
         private IEnumerable<Supplement> GetSupplementsList()
         {
-            return new List<Supplement>()
+            return new List<Supplement>
             {
                 new Supplement() {  Id = 1, Brand="Test"},
                 new Supplement() {  Id = 2, Brand="Example"}
