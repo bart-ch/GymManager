@@ -681,12 +681,14 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Scripts\GymManager\gm-get-single-equipment-data-and-insert-in-ul.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunctions-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-flavors-datatable-and-forms.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-get-todays-date.js" />
+    <Content Include="Scripts\GymManager\gm-handle-new-malfunction-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-supplement-form.js" />
     <Content Include="Scripts\GymManager\gm-custom-validate-rules.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-supplement-form.js" />
@@ -870,6 +872,10 @@
     <Content Include="Views\Malfunctions\New.cshtml" />
     <Content Include="Views\Malfunctions\Index.cshtml" />
     <Content Include="Views\Malfunctions\History.cshtml" />
+    <Content Include="Views\Malfunctions\_EquipmentPropertiesUL.cshtml" />
+    <Content Include="Views\Malfunctions\_MalfunctionForm.cshtml" />
+    <Content Include="Views\Malfunctions\Edit.cshtml" />
+    <Content Include="Views\Malfunctions\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

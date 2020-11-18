@@ -7,61 +7,12 @@
 
 <hr>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 border-right">
         <h4>Malfunction Form</h4>
-        <form id="malfunctionForm">
-            <div class="input-group mt-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-heading"></i></span>
-                </div>
-                <input class="form-control" placeholder="Title" id="title" name="title" required>
-            </div>
-            <p id="errortitle"></p>
-
-            <div class="input-group mt-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-pen"></i></span>
-                </div>
-                <textarea class="form-control" rows="7" placeholder="Description" id="description" name="description" required></textarea>
-            </div>
-            <p id="errordescription"></p>
-
-            <div class="form-group">
-                <div class="custom-control custom-switch">
-                    <input type="hidden" name="isRepaired" value="false" />
-                    <input type="checkbox" class="custom-control-input" name="isRepaired" id="isRepaired" value="true" >
-                    <label class="custom-control-label" for="isRepaired">Is the malfunction repaired?</label>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label for="purchaseDate">Malfunction Date</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
-                    </div>
-                    <input id="malfunctionDate" type="date" class="form-control" name="malfunctionDate" min="2000-01-01" max="2100-01-01" required>
-                </div>
-            </div>
-            <p id="errormalfunctionDate"></p>
-
-            <input type="hidden" id="equipmentId" name="equipmentId" />
-
-            @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
-            <a href="/Malfunctions" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
-        </form>
+        @Html.Partial("_MalfunctionForm")
     </div>
     <div class="col-md-6">
-        <h4>The Equipment</h4>
-        <ul class="list-group mt-3">
-            <li class="list-group-item" id="serialNumber"><b>Serial Number: </b></li>
-            <li class="list-group-item" id="brand"><b>Brand: </b></li>
-            <li class="list-group-item" id="model"><b>Model: </b> </li>
-            <li class="list-group-item" id="type"><b>Equipment Type: </b> </li>
-            <li class="list-group-item" id="area"><b>Gym Area: </b> </li>
-            <li class="list-group-item" id="deliveryDate"><b>Delivery Date:</b> </li>
-        </ul>
+        @Html.Partial("_EquipmentPropertiesUL")
     </div>
 </div>
 
@@ -71,84 +22,6 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/scripts/GymManager/gm-get-todays-date.js")
-
-    <script>
-        $(document).ready(function () {
-
-            function resetForm($form) {
-                $form.find('input:text, input:password, input:file, select, textarea').val('');
-                $("input[type=date]").val("");
-            };
-
-
-            $('#malfunctionDate').val(getTodaysDate());
-
-            var url = $(location).attr('href');
-            var id = url.substring(url.lastIndexOf('/') + 1);
-            if (id > 0) {
-                $.ajax({
-                    type: "GET",
-                    url: "/api/equipment/" + id,
-                })
-                    .done(function (equipment) {
-                        $("#serialNumber").append(equipment.serialNumber);
-                        $("#brand").append(equipment.brand);
-                        $("#model").append(equipment.model);
-                        $("#type").append(equipment.type.name);
-                        $("#area").append(equipment.area.name);
-                        var date = new Date(equipment.deliveryDate);
-                        var dateString = date.getFullYear() + '-'
-                            + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-                            + ('0' + date.getDate()).slice(-2);
-                        $("#deliveryDate").append(dateString);
-                        $("#equipmentId").val(equipment.id);
-                    })
-                    .fail(function () {
-                        window.location.pathname = '/Equipment'
-                    });
-            }
-
-            $("#malfunctionForm").validate({
-                errorPlacement: function ($error, $element) {
-                    var name = $element.attr("name");
-                    $("#error" + name).append($error);
-                },
-                rules: {
-                    title: {
-                        maxlength: 50
-                    },
-                    description: {
-                        maxlength: 255
-                    }
-                },
-                submitHandler: function () {
-
-                    var formData = $('#malfunctionForm').serializeArray().reduce(function (obj, item) {
-                        obj[item.name] = item.value;
-                        return obj;
-                    }, {});
-
-                    $.ajax({
-                        url: "/api/malfunctions",
-                        method: "POST",
-                        data: formData
-                    })
-                        .done(function () {
-                            toastr.success("Malfunction successfully added.");
-                            resetForm($('#malfunctionForm'));
-                            $('#malfunctionDate').val(getTodaysDate());
-
-                        })
-                        .fail(function () {
-                            toastr.error("Unexpected error.");
-                        });
-
-                    return false;
-                }
-            });
-
-        })
-    </script>
-
-
+    @Scripts.Render("~/scripts/GymManager/gm-get-single-equipment-data-and-insert-in-ul.js")
+    @Scripts.Render("~/scripts/GymManager/gm-handle-new-malfunction-form.js")
 }

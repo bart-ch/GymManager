@@ -18,7 +18,18 @@ namespace GymManager.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
-        [Route("api/malfunctions/{equipmentId}")]
+        public IHttpActionResult GetMalfunction(int id)
+        {
+            var malfunction = unitOfWork.Malfunctions.SingleOrDefault(m => m.Id == id);
+            if (malfunction == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<Malfunction, MalfunctionDto>(malfunction));
+        }
+
+        [Route("api/equipment/{equipmentId}/malfunctions")]
         public IHttpActionResult GetMalfunctionsOfGivenEquipment(int equipmentId)
         {
             var malfunctionDtos = unitOfWork.Malfunctions

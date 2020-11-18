@@ -75,6 +75,8 @@ namespace GymManager.Controllers.Api
                 return NotFound();
             }
 
+            equipmentDto.IsOperational = true;
+
             Mapper.Map(equipmentDto, equipmentInDb);
 
             unitOfWork.Complete();
