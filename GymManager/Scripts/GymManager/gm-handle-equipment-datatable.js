@@ -6,6 +6,9 @@
         },
         columns: [
             {
+                data: "serialNumber"
+            },
+            {
                 data: "brand"
             },
             {
@@ -27,9 +30,6 @@
 
                     return dateString;
                 }
-            },
-            {
-                data: "serialNumber"
             },
             {
                 data: "id",

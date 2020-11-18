@@ -52,3 +52,7 @@ select option:first-child {
 textarea {
     resize: none;
 }
+
+.non-operational, .low-amount {
+    color: #fc3939;
+}

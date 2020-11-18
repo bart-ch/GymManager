@@ -4,6 +4,7 @@
             url: "/api/supplements",
             dataSrc: ""
         },
+        "order": [[4, "asc"]],
         columns: [
             {
                 data: "brand"
@@ -18,7 +19,13 @@
                 data: "initialAmount"
             },
             {
-                data: "currentAmount"
+                data: "currentAmount",
+                render: function (data) {
+                    if (data <= 100)
+                        return "<span class='low-amount'>" + data + "</span>";
+                    else
+                        return data;
+                }
             },
             {
                 data: "consumedAmount"

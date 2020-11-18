@@ -869,6 +869,7 @@
     <Content Include="Views\Flavors\_FlavorModal.cshtml" />
     <Content Include="Views\Malfunctions\New.cshtml" />
     <Content Include="Views\Malfunctions\Index.cshtml" />
+    <Content Include="Views\Malfunctions\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,7 +7,12 @@
         "order": [[1, "asc"]],
         columns: [
             {
-                data: "serialNumber"
+                render: function (data, type, full, meta) {
+                    if (!full.isOperational) {
+                        return "<span class='non-operational'>" + full.serialNumber + "</span>";
+                    }
+                    return full.serialNumber;
+                }
             },
             {
                 data: "isOperational",
@@ -15,7 +20,14 @@
                     if (data)
                         return "Yes";
                     else
-                        return "No";
+                        return "<span class='non-operational'> No </span>";
+                }
+            },
+            {
+                data: "id",
+                "orderable": false,
+                render: function (data) {
+                    return "<a href ='/Malfunctions/History/" + data + "' class='pointer'><i class='fa fa-history' title='Equipment malfunction history'></i></a>";
                 }
             },
             {
