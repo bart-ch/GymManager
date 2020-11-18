@@ -21,6 +21,8 @@ namespace GymManager.Core.Domain
         public bool IsRepaired { get; set; }
 
         public Equipment Equipment { get; set; }
+
+        [Required]
         public int EquipmentId { get; set; }
     }
 }

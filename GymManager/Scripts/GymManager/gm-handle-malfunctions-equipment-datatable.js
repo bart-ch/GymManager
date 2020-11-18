@@ -4,45 +4,25 @@
             url: "/api/equipment",
             dataSrc: ""
         },
+        "order": [[1, "asc"]],
         columns: [
-            {
-                data: "brand"
-            },
-            {
-                data: "model"
-            },
-            {
-                data: "type.name"
-            },
-            {
-                data: "area.name"
-            },
-            {
-                data: "deliveryDate",
-                render: function (data) {
-                    var date = new Date(data);
-                    var dateString = date.getFullYear() + '/'
-                        + ('0' + (date.getMonth() + 1)).slice(-2) + '/'
-                        + ('0' + date.getDate()).slice(-2);
-
-                    return dateString;
-                }
-            },
             {
                 data: "serialNumber"
             },
             {
-                data: "id",
-                "orderable": false,
+                data: "isOperational",
                 render: function (data) {
-                    return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
+                    if (data)
+                        return "Yes";
+                    else
+                        return "No";
                 }
             },
             {
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a class='pointer js-delete' data-equipment-id=" + data + "><i class='fa fa-trash' title='Delete'></i></a>";
+                    return "<a href ='/Malfunctions/New/" + data + "' class='pointer'><i class='fa fa-exclamation-triangle' title='Report a malfunction'></i></a>";
                 }
             }
         ]

@@ -14,7 +14,6 @@ namespace GymManager.Core
         IRepository<Flavor> Flavors { get; }
         IRepository<SupplementType> SupplementTypes { get; }
         IRepository<Malfunction> Malfunctions { get; }
-     //   IRepository<Malfunction> Malfunctions { get; }
 
         int Complete();
     }

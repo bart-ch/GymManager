@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Manage Malfunctions";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr>
+
+<div class="table-responsive">
+    <table id="equipment" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Is operational?</th>
+                <th width="3%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/scripts/GymManager/gm-handle-malfunctions-equipment-datatable.js");
+}

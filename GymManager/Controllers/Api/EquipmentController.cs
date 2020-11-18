@@ -49,6 +49,7 @@ namespace GymManager.Controllers.Api
                 return BadRequest();
             }
 
+            equipmentDto.IsOperational = true;
             var equipment = Mapper.Map<EquipmentDto, Equipment>(equipmentDto);
 
             unitOfWork.Equipment.Add(equipment);

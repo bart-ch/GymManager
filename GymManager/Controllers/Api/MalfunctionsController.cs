@@ -37,6 +37,12 @@ namespace GymManager.Controllers.Api
                 return BadRequest();
             }
 
+            if (!malfunctionDto.IsRepaired)
+            {
+                var equipmentInDb = unitOfWork.Equipment.Get(malfunctionDto.EquipmentId);
+                equipmentInDb.IsOperational = false;
+            }
+
             var malfunction = Mapper.Map<MalfunctionDto, Malfunction>(malfunctionDto);
 
             unitOfWork.Malfunctions.Add(malfunction);

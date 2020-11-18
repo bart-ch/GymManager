@@ -246,7 +246,6 @@
     <Compile Include="Core\Domain\Supplements\SupplementType.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\IEquipmentRepository.cs" />
-    <Compile Include="Core\Repositories\IMalfunctionRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Core\Repositories\ISupplementRepository.cs" />
     <Compile Include="Dtos\AreaDto.cs" />
@@ -367,9 +366,16 @@
     <Compile Include="Migrations\202011171715235_AddMalfunctionTable.Designer.cs">
       <DependentUpon>202011171715235_AddMalfunctionTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011172248059_MakeSerialNumberRequiredInEquipment.cs" />
+    <Compile Include="Migrations\202011172248059_MakeSerialNumberRequiredInEquipment.Designer.cs">
+      <DependentUpon>202011172248059_MakeSerialNumberRequiredInEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.cs" />
+    <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.Designer.cs">
+      <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
-    <Compile Include="Persistance\Repositories\MalfunctionRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
     <Compile Include="Persistance\Repositories\SupplementRepository.cs" />
     <Compile Include="Persistance\UnitOfWork.cs" />
@@ -676,6 +682,7 @@
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
+    <Content Include="Scripts\GymManager\gm-handle-malfunctions-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-flavors-datatable-and-forms.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
@@ -861,6 +868,7 @@
     <Content Include="Views\Flavors\Index.cshtml" />
     <Content Include="Views\Flavors\_FlavorModal.cshtml" />
     <Content Include="Views\Malfunctions\New.cshtml" />
+    <Content Include="Views\Malfunctions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -957,6 +965,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011171715235_AddMalfunctionTable.resx">
       <DependentUpon>202011171715235_AddMalfunctionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011172248059_MakeSerialNumberRequiredInEquipment.resx">
+      <DependentUpon>202011172248059_MakeSerialNumberRequiredInEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011172331370_IsOperationalToEquipment.resx">
+      <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
