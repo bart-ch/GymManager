@@ -1,9 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Manage Malfunctions";
+    ViewBag.Title = "Malfunctions";
 }
 
 <h2>@ViewBag.Title</h2>
+<a href="/Malfunctions/Manage" class="btn btn-primary mt-3" role="button">Report a malfunction</a>
 
 <hr>
 
@@ -11,10 +12,11 @@
     <table id="equipment" class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Id</th>
+                <th>Title</th>
                 <th>Equipment Serial Number</th>
-                <th>Is operational?</th>
-                <th width="18%">Malfunction history</th>
-                <th width="3%"></th>
+                <th>Malfunction Date</th>
+                <th>Is Repaired?</th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +24,10 @@
     </table>
 </div>
 
+
 @section Scripts
 {
-    @Scripts.Render("~/scripts/GymManager/gm-handle-malfunctions-equipment-datatable.js");
+    @Scripts.Render("~/scripts/GymManager/gm-handle-malfunctions-datatable.js");
 }
+
+

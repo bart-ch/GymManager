@@ -8,6 +8,10 @@ namespace GymManager.Controllers
         {
             return View();
         }
+        public ViewResult Manage()
+        {
+            return View();
+        }
 
         public ViewResult New()
         {

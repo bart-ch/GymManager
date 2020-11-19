@@ -6,6 +6,7 @@ using GymManager.Dtos;
 using System;
 using System.Linq;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace GymManager.Controllers.Api
 {
@@ -16,6 +17,15 @@ namespace GymManager.Controllers.Api
         public MalfunctionsController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        public IHttpActionResult GetMalfunctions()
+        {
+            var supplementTypeDtos = unitOfWork.Malfunctions
+                .GetMalfunctionsWithEquipment()
+                .Select(Mapper.Map<Malfunction, MalfunctionDto>);
+
+            return Ok(supplementTypeDtos);
         }
 
         public IHttpActionResult GetMalfunction(int id)
@@ -115,7 +125,6 @@ namespace GymManager.Controllers.Api
                 return NotFound();
             }
 
-            //czesc na zmiane IsOperational
             var equipmentWhoseMalfunctionIsBeingDeleted = unitOfWork.Equipment
                 .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId);
 
