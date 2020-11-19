@@ -105,6 +105,38 @@ namespace GymManager.Controllers.Api
             return Ok();
         }
 
-        //todo - delete. dodac delete do szczegolow
+        [HttpDelete]
+        public IHttpActionResult DeleteMalfunction(int id)
+        {
+            var malfunctionInDb = unitOfWork.Malfunctions.SingleOrDefault(m => m.Id == id);
+
+            if (malfunctionInDb == null)
+            {
+                return NotFound();
+            }
+
+            //czesc na zmiane IsOperational
+            var equipmentWhoseMalfunctionIsBeingDeleted = unitOfWork.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId);
+
+            var unrepairedMalfunctionsOfTheEquipment = unitOfWork.Malfunctions
+                .Find(m => m.EquipmentId == malfunctionInDb.EquipmentId
+                && m.Id != malfunctionInDb.Id
+                && !m.IsRepaired);
+
+            if (unrepairedMalfunctionsOfTheEquipment.Count() > 0)
+            {
+                equipmentWhoseMalfunctionIsBeingDeleted.IsOperational = false;
+            }
+            else
+            {
+                equipmentWhoseMalfunctionIsBeingDeleted.IsOperational = true;
+            }
+
+            unitOfWork.Malfunctions.Remove(malfunctionInDb);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
     }
 }

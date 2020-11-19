@@ -56,7 +56,6 @@
             message: "Are you sure you want to delete this equipment?",
             callback: function (result) {
                 if (result) {
-
                     $.ajax({
                         url: "/api/equipment/" + button.attr("data-equipment-id"),
                         method: "DELETE"

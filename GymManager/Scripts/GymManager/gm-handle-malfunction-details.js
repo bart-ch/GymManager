@@ -7,6 +7,7 @@
     })
         .done(function (malfunction) {
             $("#id").append(malfunction.id);
+            $("#deleteButton").attr("data-malfunction-id", malfunction.id);
             $("#title").append(malfunction.title);
             $("#description").append(malfunction.description);
 
@@ -26,4 +27,28 @@
         .fail(function () {
             window.location.pathname = '/Malfunctions'
         });
+
+    $("#deleteButton").on("click", function () {
+        var button = $(this);
+
+        bootbox.confirm({
+            title: 'Delete',
+            message: "Are you sure you want to delete this malfunction?",
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/api/malfunctions/" + button.attr("data-malfunction-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            window.location.replace("/Malfunctions");
+                            toastr.success("Malfunction successfully deleted.");
+                        })
+                        .fail(function () {
+                            toastr.error("Unexpected error.");
+                        });
+                }
+            }
+        });
+    })
 })
