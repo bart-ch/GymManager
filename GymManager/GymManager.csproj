@@ -683,6 +683,7 @@
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\GymManager\gm-get-single-equipment-data-and-insert-in-ul.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
+    <Content Include="Scripts\GymManager\gm-handle-malfunction-details.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunctions-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-flavors-datatable-and-forms.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />

@@ -13,6 +13,7 @@
             <h4 class="card-header">The Malfunction</h4>
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item bg-light text-dark" id="id"><b>Id: </b></li>
                     <li class="list-group-item bg-light text-dark" id="title"><b>Title: </b></li>
                     <li class="list-group-item bg-light text-dark" id="description"><b>Description: </b></li>
                     <li class="list-group-item bg-light text-dark" id="malfunctionDate"><b>Malfunction Date: </b></li>
@@ -27,37 +28,5 @@
 
 @section Scripts
 {
-
-    <script>
-        $(document).ready(function () {
-            var url = $(location).attr('href');
-            var id = url.substring(url.lastIndexOf('/') + 1);
-            $.ajax({
-                type: "GET",
-                url: "/api/malfunctions/" + id,
-            })
-                .done(function (malfunction) {
-                    $("#title").append(malfunction.title);
-                    $("#description").append(malfunction.description);
-
-                    if (malfunction.isRepaired)
-                        $("#isRepaired").append("Yes");
-                    else
-                        $("#isRepaired").append("No");
-
-                    var date = new Date(malfunction.malfunctionDate);
-                    var dateString = date.getFullYear() + '-'
-                        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-                        + ('0' + date.getDate()).slice(-2);
-                    $("#malfunctionDate").append(dateString);
-
-                    $("#editButton").attr("href", "/Malfunctions/Edit/" + malfunction.equipmentId);
-                })
-                .fail(function () {
-                    window.location.pathname = '/Malfunctions'
-                });
-        })
-    </script>
-
-
+    @Scripts.Render("~/scripts/GymManager/gm-handle-malfunction-details.js")
 }

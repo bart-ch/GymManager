@@ -14,6 +14,12 @@ namespace GymManager.Controllers
             return View();
         }
 
+        public ViewResult Edit()
+        {
+            return View();
+        }
+
+
         public ViewResult History()
         {
             return View();

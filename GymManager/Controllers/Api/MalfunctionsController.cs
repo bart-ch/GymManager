@@ -63,5 +63,48 @@ namespace GymManager.Controllers.Api
 
             return Created(new Uri(Request.RequestUri + "/" + malfunction.Id), malfunctionDto);
         }
+
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        public IHttpActionResult UpdateMalfunction(int id, MalfunctionDto malfunctionDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var malfunctionInDb = unitOfWork.Malfunctions.SingleOrDefault(m => m.Id == id);
+            if (malfunctionInDb == null)
+            {
+                return NotFound();
+            }
+
+            Mapper.Map(malfunctionDto, malfunctionInDb);
+
+            var equipmentWhoseMalfunctionIsBeingEdited = unitOfWork.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId);
+
+            var unrepairedMalfunctionsOfTheEquipment = unitOfWork.Malfunctions
+                .Find(m => m.EquipmentId == malfunctionInDb.EquipmentId
+                && m.Id != malfunctionInDb.Id
+                && !m.IsRepaired);
+
+            var liczba = unrepairedMalfunctionsOfTheEquipment.Count();
+
+            if (unrepairedMalfunctionsOfTheEquipment.Count() > 0 || !malfunctionDto.IsRepaired)
+            {
+                equipmentWhoseMalfunctionIsBeingEdited.IsOperational = false;
+            }
+            else
+            {
+                equipmentWhoseMalfunctionIsBeingEdited.IsOperational = true;
+            }
+
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        //todo - delete. dodac delete do szczegolow
     }
 }
