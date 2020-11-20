@@ -6,7 +6,6 @@ using GymManager.Dtos;
 using System;
 using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
 
 namespace GymManager.Controllers.Api
 {
