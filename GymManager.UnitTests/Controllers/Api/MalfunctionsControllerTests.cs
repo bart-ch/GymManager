@@ -87,7 +87,22 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.AreEqual(result, Mapper.Map<Malfunction, MalfunctionDto>(malfunction));
         }
 
+        [Test]
+        public void GetMalfunctionsOfGivenEquipment_DatabaseReturnsMalfunctions_ReturnCorrectMalfunctions()
+        {
+            var equipmentId = 1;
+            unitOfWork.Setup(uow => uow.Malfunctions
+                .Find(m => m.Equipment.Id == equipmentId))
+                .Returns(GetMalfunctionsList());
 
+            var response = controller.GetMalfunctionsOfGivenEquipment(equipmentId) as OkNegotiatedContentResult<IEnumerable<MalfunctionDto>>;
+            var supplements = response.Content;
+
+            Assert.IsNotNull(response);
+            Assert.That(supplements.Count, Is.EqualTo(2));
+            Assert.That(supplements.ElementAt(0).Id, Is.EqualTo(1));
+            Assert.That(supplements.ElementAt(0).Title, Is.EqualTo("Test"));
+        }
 
         private IEnumerable<Malfunction> GetMalfunctionsList()
         {
