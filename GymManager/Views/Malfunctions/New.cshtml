@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "New Malfunction";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr>
+<div class="row">
+    <div class="col-md-6 border-right">
+        <h4>Malfunction Form</h4>
+        @Html.Partial("_MalfunctionForm")
+    </div>
+    <div class="col-md-6">
+        @Html.Partial("_EquipmentPropertiesUL")
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/GymManager/gm-get-todays-date.js")
+    @Scripts.Render("~/scripts/GymManager/gm-get-single-equipment-data-and-insert-in-ul.js")
+    @Scripts.Render("~/scripts/GymManager/gm-handle-new-malfunction-form.js")
+}

@@ -14,6 +14,7 @@ namespace GymManager.Persistance
         public ISupplementRepository Supplements { get; }
         public IRepository<Flavor> Flavors { get; }
         public IRepository<SupplementType> SupplementTypes { get; }
+        public IMalfunctionRepository Malfunctions { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -24,6 +25,7 @@ namespace GymManager.Persistance
             Supplements = new SupplementRepository(context);
             Flavors = new Repository<Flavor>(context);
             SupplementTypes = new Repository<SupplementType>(context);
+            Malfunctions = new MalfunctionRepository(context);
         }
 
         public int Complete()

@@ -229,6 +229,7 @@
     <Compile Include="Controllers\Api\AreasController.cs" />
     <Compile Include="Controllers\Api\EquipmentController.cs" />
     <Compile Include="Controllers\Api\FlavorsController.cs" />
+    <Compile Include="Controllers\Api\MalfunctionsController.cs" />
     <Compile Include="Controllers\Api\SupplementsController.cs" />
     <Compile Include="Controllers\Api\SupplementTypesController.cs" />
     <Compile Include="Controllers\Api\TypesController.cs" />
@@ -236,18 +237,22 @@
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\FlavorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MalfunctionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
+    <Compile Include="Core\Domain\Equipment\Malfunction.cs" />
     <Compile Include="Core\Domain\Supplements\Flavor.cs" />
     <Compile Include="Core\Domain\Supplements\Supplement.cs" />
     <Compile Include="Core\Domain\Supplements\SupplementType.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\IEquipmentRepository.cs" />
+    <Compile Include="Core\Repositories\IMalfunctionRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Core\Repositories\ISupplementRepository.cs" />
     <Compile Include="Dtos\AreaDto.cs" />
     <Compile Include="Dtos\EquipmentDto.cs" />
     <Compile Include="Dtos\FlavorDto.cs" />
+    <Compile Include="Dtos\MalfunctionDto.cs" />
     <Compile Include="Dtos\SupplementDto.cs" />
     <Compile Include="Dtos\SupplementTypeDto.cs" />
     <Compile Include="Dtos\TypeDto.cs" />
@@ -358,8 +363,21 @@
     <Compile Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.Designer.cs">
       <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011171715235_AddMalfunctionTable.cs" />
+    <Compile Include="Migrations\202011171715235_AddMalfunctionTable.Designer.cs">
+      <DependentUpon>202011171715235_AddMalfunctionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011172248059_MakeSerialNumberRequiredInEquipment.cs" />
+    <Compile Include="Migrations\202011172248059_MakeSerialNumberRequiredInEquipment.Designer.cs">
+      <DependentUpon>202011172248059_MakeSerialNumberRequiredInEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.cs" />
+    <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.Designer.cs">
+      <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
+    <Compile Include="Persistance\Repositories\MalfunctionRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
     <Compile Include="Persistance\Repositories\SupplementRepository.cs" />
     <Compile Include="Persistance\UnitOfWork.cs" />
@@ -665,14 +683,21 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Scripts\GymManager\gm-get-single-equipment-data-and-insert-in-ul.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
+    <Content Include="Scripts\GymManager\gm-handle-equipment-malfunction-history.js" />
+    <Content Include="Scripts\GymManager\gm-handle-malfunction-details.js" />
+    <Content Include="Scripts\GymManager\gm-handle-malfunctions-datatable.js" />
+    <Content Include="Scripts\GymManager\gm-handle-malfunctions-manage-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-flavors-datatable-and-forms.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
     <Content Include="Scripts\GymManager\gm-get-todays-date.js" />
+    <Content Include="Scripts\GymManager\gm-handle-new-malfunction-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-supplement-form.js" />
     <Content Include="Scripts\GymManager\gm-custom-validate-rules.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-supplement-form.js" />
+    <Content Include="Scripts\GymManager\gm-handle-supplements-datatable.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -849,6 +874,14 @@
     <Content Include="Views\Supplements\Edit.cshtml" />
     <Content Include="Views\Flavors\Index.cshtml" />
     <Content Include="Views\Flavors\_FlavorModal.cshtml" />
+    <Content Include="Views\Malfunctions\New.cshtml" />
+    <Content Include="Views\Malfunctions\Manage.cshtml" />
+    <Content Include="Views\Malfunctions\History.cshtml" />
+    <Content Include="Views\Malfunctions\_EquipmentPropertiesUL.cshtml" />
+    <Content Include="Views\Malfunctions\_MalfunctionForm.cshtml" />
+    <Content Include="Views\Malfunctions\Edit.cshtml" />
+    <Content Include="Views\Malfunctions\Details.cshtml" />
+    <Content Include="Views\Malfunctions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -942,6 +975,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011151747371_PopulateFlavorsWithOtherFlavor.resx">
       <DependentUpon>202011151747371_PopulateFlavorsWithOtherFlavor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011171715235_AddMalfunctionTable.resx">
+      <DependentUpon>202011171715235_AddMalfunctionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011172248059_MakeSerialNumberRequiredInEquipment.resx">
+      <DependentUpon>202011172248059_MakeSerialNumberRequiredInEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011172331370_IsOperationalToEquipment.resx">
+      <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

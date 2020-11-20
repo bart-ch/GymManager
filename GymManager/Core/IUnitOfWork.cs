@@ -13,6 +13,7 @@ namespace GymManager.Core
         ISupplementRepository Supplements { get; }
         IRepository<Flavor> Flavors { get; }
         IRepository<SupplementType> SupplementTypes { get; }
+        IMalfunctionRepository Malfunctions { get; }
 
         int Complete();
     }

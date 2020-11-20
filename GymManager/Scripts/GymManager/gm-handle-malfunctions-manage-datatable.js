@@ -4,45 +4,37 @@
             url: "/api/equipment",
             dataSrc: ""
         },
+        "order": [[1, "asc"]],
         columns: [
             {
-                data: "serialNumber"
+                render: function (data, type, full, meta) {
+                    if (!full.isOperational) {
+                        return "<span class='non-operational'>" + full.serialNumber + "</span>";
+                    }
+                    return full.serialNumber;
+                }
             },
             {
-                data: "brand"
-            },
-            {
-                data: "model"
-            },
-            {
-                data: "type.name"
-            },
-            {
-                data: "area.name"
-            },
-            {
-                data: "deliveryDate",
+                data: "isOperational",
                 render: function (data) {
-                    var date = new Date(data);
-                    var dateString = date.getFullYear() + '/'
-                        + ('0' + (date.getMonth() + 1)).slice(-2) + '/'
-                        + ('0' + date.getDate()).slice(-2);
-
-                    return dateString;
+                    if (data)
+                        return "Yes";
+                    else
+                        return "<span class='non-operational'> No </span>";
                 }
             },
             {
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
+                    return "<a href ='/Malfunctions/History/" + data + "' class='pointer'><i class='fa fa-history' title='Equipment malfunction history'></i></a>";
                 }
             },
             {
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a class='pointer js-delete' data-equipment-id=" + data + "><i class='fa fa-trash' title='Delete'></i></a>";
+                    return "<a href ='/Malfunctions/New/" + data + "' class='pointer'><i class='fa fa-exclamation-triangle' title='Report a malfunction'></i></a>";
                 }
             }
         ]
@@ -56,6 +48,7 @@
             message: "Are you sure you want to delete this equipment?",
             callback: function (result) {
                 if (result) {
+
                     $.ajax({
                         url: "/api/equipment/" + button.attr("data-equipment-id"),
                         method: "DELETE"

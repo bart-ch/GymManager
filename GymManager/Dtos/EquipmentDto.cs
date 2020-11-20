@@ -12,6 +12,7 @@ namespace GymManager.Dtos
         public string Model { get; set; }
         public string SerialNumber { get; set; }
         public DateTime DeliveryDate { get; set; }
+        public bool IsOperational { get; set; }
         public AreaDto Area { get; set; }
         public byte AreaId { get; set; }
 
@@ -26,6 +27,7 @@ namespace GymManager.Dtos
                    Model == dto.Model &&
                    SerialNumber == dto.SerialNumber &&
                    DeliveryDate == dto.DeliveryDate &&
+                   IsOperational == dto.IsOperational &&
                    EqualityComparer<AreaDto>.Default.Equals(Area, dto.Area) &&
                    AreaId == dto.AreaId &&
                    EqualityComparer<TypeDto>.Default.Equals(Type, dto.Type) &&
@@ -34,12 +36,13 @@ namespace GymManager.Dtos
 
         public override int GetHashCode()
         {
-            int hashCode = -1579632172;
+            int hashCode = -518799878;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Brand);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Model);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SerialNumber);
             hashCode = hashCode * -1521134295 + DeliveryDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + IsOperational.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<AreaDto>.Default.GetHashCode(Area);
             hashCode = hashCode * -1521134295 + AreaId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<TypeDto>.Default.GetHashCode(Type);

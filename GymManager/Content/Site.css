@@ -23,11 +23,11 @@ textarea {
     max-width: 280px;
 }
 
-.input-validation-error, 
-input.error,
-select.error {
-    border: 1px solid red;
-}
+    .input-validation-error,
+    input.error,
+    select.error {
+        border: 1px solid red;
+    }
 
 label.error {
     color: red;
@@ -47,4 +47,12 @@ select option:first-child {
 
 .logo {
     font-family: 'Permanent Marker', cursive;
+}
+
+textarea {
+    resize: none;
+}
+
+.non-operational, .low-amount {
+    color: #fc3939;
 }

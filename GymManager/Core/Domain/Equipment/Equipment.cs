@@ -18,17 +18,22 @@ namespace GymManager.Core.Domain
         [StringLength(255)]
         public string Model { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string SerialNumber { get; set; }
 
         [Range(typeof(DateTime), "01/01/2000", "01/01/2100")]
         public DateTime DeliveryDate { get; set; }
 
+        public bool IsOperational { get; set; }
+
         public Area Area { get; set; }
+
         [Required]
         public byte AreaId { get; set; }
 
         public Type Type { get; set; }
+
         [Required]
         public byte TypeId { get; set; }
 
@@ -40,6 +45,7 @@ namespace GymManager.Core.Domain
                    Model == equipment.Model &&
                    SerialNumber == equipment.SerialNumber &&
                    DeliveryDate == equipment.DeliveryDate &&
+                   IsOperational == equipment.IsOperational &&
                    EqualityComparer<Area>.Default.Equals(Area, equipment.Area) &&
                    AreaId == equipment.AreaId &&
                    EqualityComparer<Type>.Default.Equals(Type, equipment.Type) &&
@@ -48,12 +54,13 @@ namespace GymManager.Core.Domain
 
         public override int GetHashCode()
         {
-            int hashCode = -1579632172;
+            int hashCode = -518799878;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Brand);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Model);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SerialNumber);
             hashCode = hashCode * -1521134295 + DeliveryDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + IsOperational.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Area>.Default.GetHashCode(Area);
             hashCode = hashCode * -1521134295 + AreaId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Type>.Default.GetHashCode(Type);

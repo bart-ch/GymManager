@@ -13,14 +13,14 @@
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a class='js-edit' data-flavor-id=" + data + " data-toggle='modal' data-target='#editFlavorModal' href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit'></i></a>";
+                    return "<a class='js-edit pointer' data-flavor-id=" + data + " data-toggle='modal' data-target='#editFlavorModal'><i class='fa fa-edit' title='Edit'></i></a>";
                 }
             },
             {
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a class='pointer js-delete' data-flavor-id=" + data + "><i class='fa fa-trash'></i></a>";
+                    return "<a class='pointer js-delete' data-flavor-id=" + data + "><i class='fa fa-trash'  title='Delete'></i></a>";
                 }
             }
         ]

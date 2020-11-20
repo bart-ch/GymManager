@@ -1,0 +1,42 @@
+﻿<form id="malfunctionForm">
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-heading"></i></span>
+        </div>
+        <input class="form-control" placeholder="Title" id="title" name="title" required>
+    </div>
+    <p id="errortitle"></p>
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-pen"></i></span>
+        </div>
+        <textarea class="form-control" rows="7" placeholder="Description" id="description" name="description" required></textarea>
+    </div>
+    <p id="errordescription"></p>
+
+    <div class="form-group">
+        <div class="custom-control custom-switch">
+            <input type="hidden" name="isRepaired" value="false" />
+            <input type="checkbox" class="custom-control-input" name="isRepaired" id="isRepaired" value="true">
+            <label class="custom-control-label" for="isRepaired">Is the malfunction repaired?</label>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="purchaseDate">Malfunction Date</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+            </div>
+            <input id="malfunctionDate" type="date" class="form-control" name="malfunctionDate" min="2000-01-01" max="2100-01-01" required>
+        </div>
+    </div>
+    <p id="errormalfunctionDate"></p>
+
+    <input type="hidden" id="equipmentId" name="equipmentId" />
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    <a href="/Malfunctions/Manage" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+</form>
