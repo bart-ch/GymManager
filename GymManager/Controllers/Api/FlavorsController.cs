@@ -64,7 +64,6 @@ namespace GymManager.Controllers.Api
             flavorDto.Id = flavor.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + flavor.Id), flavorDto);
-
         }
 
         [HttpPut]

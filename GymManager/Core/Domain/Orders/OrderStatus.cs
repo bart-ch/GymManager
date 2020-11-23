@@ -11,5 +11,8 @@ namespace GymManager.Core.Domain
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+
+        public static readonly byte InProgressId = 1;
+
     }
 }

@@ -15,6 +15,8 @@ namespace GymManager.App_Start
             Mapper.CreateMap<Flavor, FlavorDto>();
             Mapper.CreateMap<SupplementType, SupplementTypeDto>();
             Mapper.CreateMap<Malfunction, MalfunctionDto>();
+            Mapper.CreateMap<EquipmentOrder, EquipmentOrderDto>();
+            Mapper.CreateMap<OrderStatus, OrderStatusDto>();
 
             Mapper.CreateMap<EquipmentDto, Equipment>()
                 .ForMember(e => e.Id, opt => opt.Ignore());
@@ -26,7 +28,10 @@ namespace GymManager.App_Start
                 .ForMember(f => f.Id, opt => opt.Ignore());
             Mapper.CreateMap<SupplementTypeDto, SupplementType>();
             Mapper.CreateMap<MalfunctionDto, Malfunction>()
+                .ForMember(m => m.Id, opt => opt.Ignore());           
+            Mapper.CreateMap<EquipmentOrderDto, EquipmentOrder>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
+            Mapper.CreateMap<OrderStatusDto, OrderStatus>();
 
         }
     }

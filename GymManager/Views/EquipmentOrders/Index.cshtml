@@ -5,3 +5,82 @@
 
 <h2>@ViewBag.Title</h2>
 
+<div class="table-responsive">
+    <table id="equipment" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Orderer</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Desired Delivery Date</th>
+                <th width="3%"></th>
+                <th width="3%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+
+            var table = $("#equipment").DataTable({
+                ajax: {
+                    url: "/api/equipmentOrders",
+                    dataSrc: ""
+                },
+                "order": [[4, "desc"]],
+                columns: [
+                    {
+                        data: "userId"
+                    },
+                    {
+                        data: "brand"
+                    },
+                    {
+                        data: "model"
+                    },
+                    {
+                        data: "type.name"
+                    },
+                    {
+                        data: "desiredDeliveryDate",
+                        render: function (data) {
+                            var date = new Date(data);
+                            var dateString = date.getFullYear() + '/'
+                                + ('0' + (date.getMonth() + 1)).slice(-2) + '/'
+                                + ('0' + date.getDate()).slice(-2);
+
+                            return dateString;
+                        }
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        "orderable": false,
+                        render: function (data) {
+                            return "<a class='pointer js-delete' data-equipment-id=" + data + "><i class='fa fa-trash' title='Delete'></i></a>";
+                        }
+                    }
+                ]
+            });
+
+
+
+
+        })
+
+    </script>
+}
+
+
