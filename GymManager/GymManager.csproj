@@ -235,6 +235,7 @@
     <Compile Include="Controllers\Api\TypesController.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\EquipmentOrdersController.cs" />
     <Compile Include="Controllers\FlavorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MalfunctionsController.cs" />
@@ -376,6 +377,10 @@
     <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.cs" />
     <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.Designer.cs">
       <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011231737189_AddEquipmentOrderAndOrderStatusEntities.cs" />
+    <Compile Include="Migrations\202011231737189_AddEquipmentOrderAndOrderStatusEntities.Designer.cs">
+      <DependentUpon>202011231737189_AddEquipmentOrderAndOrderStatusEntities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
@@ -884,6 +889,8 @@
     <Content Include="Views\Malfunctions\Edit.cshtml" />
     <Content Include="Views\Malfunctions\Details.cshtml" />
     <Content Include="Views\Malfunctions\Index.cshtml" />
+    <Content Include="Views\EquipmentOrders\Index.cshtml" />
+    <Content Include="Views\EquipmentOrders\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -986,6 +993,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011172331370_IsOperationalToEquipment.resx">
       <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011231737189_AddEquipmentOrderAndOrderStatusEntities.resx">
+      <DependentUpon>202011231737189_AddEquipmentOrderAndOrderStatusEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

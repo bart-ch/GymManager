@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GymManager.Core.Domain
 {
+    [Table("OrderStatuses")]
     public class OrderStatus
     {
         public byte Id { get; set; }

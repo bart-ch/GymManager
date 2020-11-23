@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "New Order";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form id="equipmentForm">
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
+        </div>
+        <input class="form-control" placeholder="Brand" id="brand" name="brand" required>
+    </div>
+    <p id="errorbrand"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-copyright"></i></span>
+        </div>
+        <input class="form-control" placeholder="Model" id="model" name="model" required>
+    </div>
+    <p id="errormodel"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text"><i class="fas fa-dumbbell"></i></label>
+        </div>
+        <select class="form-control" id="typeId" name="typeId" required></select>
+    </div>
+    <p id="errortypeId"></p>
+
+    <div class="input-group">
+        <label for="purchaseDate">Until when?</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+            </div>
+            <input id="deadlineDate" type="date" class="form-control" name="deadlineDate" min="2000-01-01" max="2100-01-01" required>
+        </div>
+    </div>
+    <p id="errordeliveryDate"></p>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-battery-full"></i> </span>
+        </div>
+        <input type="number" class="form-control" placeholder="Amount" step="1" id="initialAmount" name="initialAmount" min="1" max="10000" required>
+    </div>
+    <p id="errorinitialAmount"></p>
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    <a href="/Equipment" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+</form>
