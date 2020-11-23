@@ -96,20 +96,122 @@ namespace GymManager.UnitTests.Controllers.Api
                 .Returns(GetMalfunctionsList());
 
             var response = controller.GetMalfunctionsOfGivenEquipment(equipmentId) as OkNegotiatedContentResult<IEnumerable<MalfunctionDto>>;
-            var supplements = response.Content;
+            var malfunctions = response.Content;
 
-            Assert.IsNotNull(response);
-            Assert.That(supplements.Count, Is.EqualTo(2));
-            Assert.That(supplements.ElementAt(0).Id, Is.EqualTo(1));
-            Assert.That(supplements.ElementAt(0).Title, Is.EqualTo("Test"));
+            Assert.That(malfunctions.Count, Is.EqualTo(2));
+            Assert.That(malfunctions.ElementAt(0).Id, Is.EqualTo(equipmentId));
         }
+
+        [Test]
+        public void CreateMalfunction_ModelIsNotValid_ReturnBadRequest()
+        {
+            controller.ModelState.AddModelError("key", "error message");
+
+            var result = controller.CreateMalfunction(new MalfunctionDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        [Test]
+        public void CreateMalfunction_ModelIsValid_ReturnCreated()
+        {
+            var malfunctionDto = new MalfunctionDto { IsRepaired = true };
+            var malfunction = Mapper.Map<MalfunctionDto, Malfunction>(malfunctionDto);
+            unitOfWork.Setup(uow => uow.Malfunctions.Add(malfunction));
+            unitOfWork.Setup(uow => uow.Complete());
+
+            var result = controller.CreateMalfunction(malfunctionDto);
+
+            Assert.That(result, Is.InstanceOf(typeof(CreatedNegotiatedContentResult<MalfunctionDto>)));
+        }
+
+        [Test]
+        public void UpdateMalfunction_ModelIsNotValid_ReturnBadRequest()
+        {
+            controller.ModelState.AddModelError("key", "error message");
+
+            var result = controller.UpdateMalfunction(It.IsAny<int>(), new MalfunctionDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        [Test]
+        public void UpdateMalfunction_MalfunctionNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == It.IsAny<int>()))
+                .Returns<Malfunction>(null);
+
+
+            var result = controller.UpdateMalfunction(It.IsAny<int>(), new MalfunctionDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+
+        [Test]
+        public void UpdateMalfunction_MalfunctionFound_ReturnOk()
+        {
+            //given
+            var id = 1;
+            var malfunctionInDb = new Malfunction();
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == id))
+                .Returns(malfunctionInDb);         
+            
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId))
+                .Returns(new Equipment());
+            //when
+            var result = controller.UpdateMalfunction(id, new MalfunctionDto { IsRepaired = true });
+            //then
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
+
+        [Test]
+        public void UpdateMalfunction_MalfunctionIsRepaired_SetEquipmentAsOperational()
+        {
+            //given
+            var id = 1;
+            var malfunctionInDb = new Malfunction();
+            var equipmentWhoseMalfunctionIsBeingEdited = new Equipment();
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == id))
+                .Returns(malfunctionInDb);
+
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId))
+                .Returns(equipmentWhoseMalfunctionIsBeingEdited);
+            //when
+            controller.UpdateMalfunction(id, new MalfunctionDto { IsRepaired = true });
+            //then
+            Assert.IsTrue(equipmentWhoseMalfunctionIsBeingEdited.IsOperational);
+        }
+
+        [Test]
+        public void UpdateMalfunction_MalfunctionIsNotRepaired_SetEquipmentAsNonOperational()
+        {
+            //given
+            var id = 1;
+            var malfunctionInDb = new Malfunction();
+            var equipmentWhoseMalfunctionIsBeingEdited = new Equipment();
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == id))
+                .Returns(malfunctionInDb);
+
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId))
+                .Returns(equipmentWhoseMalfunctionIsBeingEdited);
+            //when
+            controller.UpdateMalfunction(id, new MalfunctionDto { IsRepaired = false });
+            //then
+            Assert.IsFalse(equipmentWhoseMalfunctionIsBeingEdited.IsOperational);
+        }
+
+
 
         private IEnumerable<Malfunction> GetMalfunctionsList()
         {
             return new List<Malfunction>
             {
-                new Malfunction() {  Id = 1, Title="Test"},
-                new Malfunction() {  Id = 2, Title="Example"}
+                new Malfunction() {  Id = 1, Title="Test" },
+                new Malfunction() {  Id = 2, Title="Example" }
             };
         }
     }

@@ -98,8 +98,6 @@ namespace GymManager.Controllers.Api
                 && m.Id != malfunctionInDb.Id
                 && !m.IsRepaired);
 
-            var liczba = unrepairedMalfunctionsOfTheEquipment.Count();
-
             if (unrepairedMalfunctionsOfTheEquipment.Count() > 0 || !malfunctionDto.IsRepaired)
             {
                 equipmentWhoseMalfunctionIsBeingEdited.IsOperational = false;
