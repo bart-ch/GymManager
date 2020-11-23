@@ -1,5 +1,4 @@
-﻿using GymManager.Models;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace GymManager.Controllers
 {

@@ -241,6 +241,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
     <Compile Include="Core\Domain\Equipment\Malfunction.cs" />
+    <Compile Include="Core\Domain\Orders\EquipmentOrder.cs" />
+    <Compile Include="Core\Domain\Orders\OrderStatus.cs" />
     <Compile Include="Core\Domain\Supplements\Flavor.cs" />
     <Compile Include="Core\Domain\Supplements\Supplement.cs" />
     <Compile Include="Core\Domain\Supplements\SupplementType.cs" />
