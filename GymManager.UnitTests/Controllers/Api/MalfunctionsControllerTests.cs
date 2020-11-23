@@ -204,7 +204,82 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.IsFalse(equipmentWhoseMalfunctionIsBeingEdited.IsOperational);
         }
 
+        [Test]
+        public void DeleteMalfunction_MalfunctionNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == 1))
+                .Returns<Malfunction>(null);
 
+            var result = controller.DeleteMalfunction(1);
+
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        [Test]
+        public void DeleteMalfunction_MalfunctionFound_ReturnOk()
+        {
+            //given
+            var id = 1;
+            var malfunctionInDb = new Malfunction();
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == id))
+                .Returns(new Malfunction());
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId)).Returns(new Equipment());
+            //when
+            var result = controller.DeleteMalfunction(id);
+            //then
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
+
+        [Test]
+        public void DeleteMalfunction_MalfunctionFoundAndUnrepairedMalfunctionsLessOrEqualToZero_SetEquipmentIsOperationalToTrue()
+        {
+            //given
+            var id = 1;
+            var malfunctionInDb = new Malfunction();
+            var equipmentWhoseMalfunctionIsBeingDeleted = new Equipment();
+
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == id))
+                .Returns(new Malfunction());
+
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId)).Returns(equipmentWhoseMalfunctionIsBeingDeleted);            
+            
+            unitOfWork.Setup(uow => uow.Malfunctions
+                .Find(m => m.EquipmentId == malfunctionInDb.EquipmentId
+                && m.Id != malfunctionInDb.Id
+                && !m.IsRepaired)).Returns(new List<Malfunction>());
+
+            //when
+            controller.DeleteMalfunction(id);
+            //then
+            Assert.IsTrue(equipmentWhoseMalfunctionIsBeingDeleted.IsOperational);
+        }
+
+        [Test]
+        public void DeleteMalfunction_MalfunctionFoundAndUnrepairedMalfunctionsGreaterThanZero_SetEquipmentIsOperationalToFalse()
+        {
+            //given
+            var id = 1;
+            var malfunctionInDb = new Malfunction();
+            var equipmentWhoseMalfunctionIsBeingDeleted = new Equipment();
+
+            unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == id))
+                .Returns(new Malfunction());
+
+            unitOfWork.Setup(uow => uow.Equipment
+                .SingleOrDefault(e => e.Id == malfunctionInDb.EquipmentId)).Returns(equipmentWhoseMalfunctionIsBeingDeleted);
+
+            unitOfWork.Setup(uow => uow.Malfunctions
+                .Find(m => m.EquipmentId == malfunctionInDb.EquipmentId
+                && m.Id != malfunctionInDb.Id
+                && !m.IsRepaired)).Returns(GetMalfunctionsList());
+
+            //when
+            controller.DeleteMalfunction(id);
+            //then
+            Assert.IsFalse(equipmentWhoseMalfunctionIsBeingDeleted.IsOperational);
+        }
 
         private IEnumerable<Malfunction> GetMalfunctionsList()
         {
