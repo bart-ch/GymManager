@@ -166,7 +166,6 @@ namespace GymManager.UnitTests.Controllers.Api
 
             var result = controller.UpdateFlavor(id, new FlavorDto());
 
-            unitOfWork.Verify(uow => uow.Complete());
             Assert.That(result, Is.InstanceOf(typeof(OkResult)));
         }
 

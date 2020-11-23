@@ -6,7 +6,6 @@ using GymManager.Dtos;
 using System;
 using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
 
 namespace GymManager.Controllers.Api
 {
@@ -98,8 +97,6 @@ namespace GymManager.Controllers.Api
                 .Find(m => m.EquipmentId == malfunctionInDb.EquipmentId
                 && m.Id != malfunctionInDb.Id
                 && !m.IsRepaired);
-
-            var liczba = unrepairedMalfunctionsOfTheEquipment.Count();
 
             if (unrepairedMalfunctionsOfTheEquipment.Count() > 0 || !malfunctionDto.IsRepaired)
             {

@@ -105,7 +105,6 @@ namespace GymManager.UnitTests.Controllers.Api
 
             var result = controller.CreateSupplement(supplementDto);
 
-            Assert.IsNotNull(result);
             Assert.That(result, Is.InstanceOf(typeof(CreatedNegotiatedContentResult<SupplementDto>)));
         }
 
