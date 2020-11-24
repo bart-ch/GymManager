@@ -44,7 +44,7 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPost]
-    //    [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IHttpActionResult CreateEquipmentOrder(EquipmentOrderDto equipmentOrderDto)
         {
             if (!ModelState.IsValid)
@@ -63,6 +63,44 @@ namespace GymManager.Controllers.Api
             equipmentOrderDto.Id = equipmentOrder.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + equipmentOrder.Id), equipmentOrderDto);
+        }
+
+        [HttpPut]
+        //[ValidateAntiForgeryToken]
+        [Route("api/equipmentOrders/{id}/{orderStatusId}")]
+        public IHttpActionResult UpdateOrderStatusOfEquipment(int id, byte orderStatusId)
+        {
+            if (orderStatusId == 0)
+            {
+                return BadRequest();
+            }
+
+            var equipmentOrderInDb = unitOfWork.EquipmentOrders.SingleOrDefault(eo => eo.Id == id);
+            if (equipmentOrderInDb == null)
+            {
+                return NotFound();
+            }
+
+            equipmentOrderInDb.OrderStatusId = orderStatusId;
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteEquipmentOrder(int id)
+        {
+            var equipmentOrderInDb = unitOfWork.EquipmentOrders.SingleOrDefault(eo => eo.Id == id);
+
+            if (equipmentOrderInDb == null)
+            {
+                return NotFound();
+            }
+
+            unitOfWork.EquipmentOrders.Remove(equipmentOrderInDb);
+            unitOfWork.Complete();
+
+            return Ok();
         }
     }
 }

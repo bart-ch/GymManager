@@ -69,6 +69,7 @@
             function resetForm($form) {
                 $form.find('input:text, input:password, input:file, select, textarea').val('');
                 $("input[type=date]").val("");
+                $("input[type=number]").val("");
             };
 
             $("#equipmentOrderForm").validate({
