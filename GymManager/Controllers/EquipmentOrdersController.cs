@@ -5,13 +5,19 @@ namespace GymManager.Controllers
     public class EquipmentOrdersController : Controller
     {
         [Route("Orders/Equipment")]
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
 
         [Route("Orders/Equipment/New")]
-        public ActionResult New()
+        public ViewResult New()
+        {
+            return View();
+        }        
+        
+        [Route("Orders/Equipment/Edit/{id}")]
+        public ViewResult Edit()
         {
             return View();
         }

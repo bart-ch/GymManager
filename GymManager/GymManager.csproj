@@ -913,6 +913,7 @@
     <Content Include="Views\EquipmentOrders\Index.cshtml" />
     <Content Include="Views\EquipmentOrders\New.cshtml" />
     <Content Include="Views\EquipmentOrders\_EquipmentOrderForm.cshtml" />
+    <Content Include="Views\EquipmentOrders\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

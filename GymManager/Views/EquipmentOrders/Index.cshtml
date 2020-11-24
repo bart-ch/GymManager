@@ -4,6 +4,8 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<a href="/EquipmentOrders/New" class="btn btn-primary mt-3" role="button">New Order</a>
+<hr>
 
 <div class="table-responsive">
     <table id="equipmentOrders" class="table table-bordered table-hover">
@@ -13,8 +15,9 @@
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Type</th>
+                <th>Quantity</th>
                 <th>Desired Delivery Date</th>
-                <th>Status</th>
+                <th width="14%">Status</th>
                 <th width="3%"></th>
                 <th width="3%"></th>
             </tr>
@@ -45,7 +48,7 @@
                         text: 'Generate PDF',
                         className: "btn btn-primary mb-2",
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     }
                 ],
@@ -53,7 +56,7 @@
                     url: "/api/equipmentOrders",
                     dataSrc: ""
                 },
-                "order": [[4, "desc"]],
+                "order": [[5, "desc"]],
                 columns: [
                     {
                         data: "userId"
@@ -66,6 +69,9 @@
                     },
                     {
                         data: "type.name"
+                    },
+                    {
+                        data: "quantity"
                     },
                     {
                         data: "desiredDeliveryDate",
@@ -97,7 +103,7 @@
                         data: "id",
                         "orderable": false,
                         render: function (data) {
-                            return "<a href ='/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
+                            return "<a href ='/Orders/Equipment/Edit/" + data + "' class='pointer'><i class='fa fa-edit' title='Edit'></i></a>";
                         }
                     },
                     {

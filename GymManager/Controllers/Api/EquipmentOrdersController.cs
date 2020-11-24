@@ -66,7 +66,29 @@ namespace GymManager.Controllers.Api
         }
 
         [HttpPut]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
+        public IHttpActionResult UpdateEquipmentOrder(int id, EquipmentOrderDto equipmentOrderDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var equipmentOrderInDb = unitOfWork.EquipmentOrders.SingleOrDefault(eo => eo.Id == id);
+            if (equipmentOrderInDb == null)
+            {
+                return NotFound();
+            }
+
+            Mapper.Map(equipmentOrderDto, equipmentOrderInDb);
+            //maping czy moze ręcznie zeby nmie aktualizowac użytkownika etc? albo zaktualizowac w DTO przed mappingiem
+
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPut]
         [Route("api/equipmentOrders/{id}/{orderStatusId}")]
         public IHttpActionResult UpdateOrderStatusOfEquipment(int id, byte orderStatusId)
         {
