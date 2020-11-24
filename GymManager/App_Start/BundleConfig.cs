@@ -32,6 +32,7 @@ namespace GymManager
                       "~/Content/bootstrap-pulse.css",
                       "~/Content/fontawesome-all.css",
                       "~/Content/datatables/css/dataTables.bootstrap4.min.css",
+                      "~/Content/DataTables/css/buttons.bootstrap4.css",
                       "~/content/toastr.css",
                       "~/Content/site.css"));
         }

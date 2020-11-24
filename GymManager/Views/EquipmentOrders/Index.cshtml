@@ -25,10 +25,30 @@
 </div>
 
 @section scripts {
+  
+
+    @Scripts.Render("~/Scripts/datatables/dataTables.buttons.min.js")
+    @Scripts.Render("~/Scripts/datatables/buttons.flash.min.js")
+    @Scripts.Render("~/Scripts/datatables/buttons.html5.min.js")
+    @Scripts.Render("~/Scripts/datatables/buttons.print.min.js")
+    @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js")
+    @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js")
+
     <script>
         $(document).ready(function () {
 
             var table = $("#equipmentOrders").DataTable({
+                dom: 'Blfrtip',
+                buttons: [
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Generate PDF',
+                        className: "btn btn-primary mb-2",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    }
+                ],
                 ajax: {
                     url: "/api/equipmentOrders",
                     dataSrc: ""
@@ -63,7 +83,7 @@
                         render: function (data, type, full, meta) {
                             return "<form>"
                                 + "<div class='form-group'>"
-                                + "<select class='form-control' id='orderSelect" + full.id +"'>"
+                                + "<select class='form-control' id='orderSelect" + full.id + "'>"
                                 + "<option value='' selected disabled hidden>" + full.orderStatus.name + "</option>"
                                 + "<option class='pointer' value='1'>In process</option>"
                                 + "<option class='pointer' value='2'>Shipped</option>"
@@ -94,7 +114,7 @@
                 var button = $(this);
                 var orderStatusId = $("#orderSelect" + button.attr("data-equipment-order-id")).val();
                 if (orderStatusId == null) {
-                    toastr.warning("The order status is already selected.");
+                    toastr.warning("Choose a different order status.");
                     return 0;
                 }
 

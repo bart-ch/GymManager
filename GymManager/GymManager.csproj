@@ -912,6 +912,7 @@
     <Content Include="Views\Malfunctions\Index.cshtml" />
     <Content Include="Views\EquipmentOrders\Index.cshtml" />
     <Content Include="Views\EquipmentOrders\New.cshtml" />
+    <Content Include="Views\EquipmentOrders\_EquipmentOrderForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
