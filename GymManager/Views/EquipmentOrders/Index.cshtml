@@ -14,6 +14,7 @@
                 <th>Model</th>
                 <th>Type</th>
                 <th>Desired Delivery Date</th>
+                <th>Status</th>
                 <th width="3%"></th>
                 <th width="3%"></th>
             </tr>
@@ -24,7 +25,7 @@
 </div>
 
 @section scripts {
-
+    @Scripts.Render("~/scripts/GymManager/gm-pupulate-select-with-ajax-get.js")
     <script>
         $(document).ready(function () {
 
@@ -59,6 +60,22 @@
                         }
                     },
                     {
+                        "orderable": false,
+                        render: function (data, type, full, meta) {
+                            return "<form class='orderStatusForm'>"
+                                + "<div class='form-group'>"
+                                + "<select class='form-control'>"
+                                + "<option value='' selected disabled hidden>" + full.orderStatus.name + "</option>"
+                                + "<option class='pointer' value='1'>In process</option>"
+                                + "<option class='pointer' value='2'>Shipped</option>"
+                                + "<option class='pointer' value='3'>Completed</option>"
+                                + "</select > "
+                                + "</div>"
+                                + "<input type = 'hidden' name = 'id' value = '" + full.id + "'>"
+                                + "<button type='button' class='btn btn-primary js-change'>Change</button ></form > ";
+                        }
+                    },
+                    {
                         data: "id",
                         "orderable": false,
                         render: function (data) {
@@ -75,6 +92,7 @@
                 ]
             });
 
+         
 
 
 
