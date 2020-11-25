@@ -20,7 +20,7 @@
                     if (data)
                         return "Yes";
                     else
-                        return "<span class='non-operational'> No </span>";
+                        return "<abbr title='The equipment has at least one unrepaired malfunction' class='non-operational'> No </abbr>";
                 }
             },
             {

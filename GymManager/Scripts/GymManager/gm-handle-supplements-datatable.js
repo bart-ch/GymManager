@@ -22,7 +22,7 @@
                 data: "currentAmount",
                 render: function (data) {
                     if (data <= 100)
-                        return "<span class='low-amount'>" + data + "</span>";
+                        return "<abbr title='Small amount' class='low-amount'>" + data + "</abbr>";
                     else
                         return data;
                 }
