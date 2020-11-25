@@ -105,11 +105,13 @@
   <ItemGroup>
     <Compile Include="Controllers\Api\AreasControllerTests.cs" />
     <Compile Include="Controllers\Api\EquipmentControllerTests.cs" />
+    <Compile Include="Controllers\Api\EquipmentOrdersControllerTests.cs" />
     <Compile Include="Controllers\Api\FlavorsControllerTests.cs" />
     <Compile Include="Controllers\Api\MalfunctionsControllerTests.cs" />
     <Compile Include="Controllers\Api\SupplementsControllerTests.cs" />
     <Compile Include="Controllers\Api\TypesControllerTests.cs" />
     <Compile Include="Controllers\EquipmentControllerTests.cs" />
+    <Compile Include="Controllers\EquipmentOrdersControllerTests.cs" />
     <Compile Include="Controllers\FlavorsControllerTests.cs" />
     <Compile Include="Controllers\MalfunctionsControllerTests.cs" />
     <Compile Include="Controllers\SupplementsControllerTests.cs" />
@@ -125,9 +127,7 @@
       <Name>GymManager</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mocks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

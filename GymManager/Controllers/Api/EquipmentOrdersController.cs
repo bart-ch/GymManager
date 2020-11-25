@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
+using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
-using GymManager.Attributes;
-using System;
-using Microsoft.AspNet.Identity;
 
 namespace GymManager.Controllers.Api
 {
@@ -95,7 +94,8 @@ namespace GymManager.Controllers.Api
         [Route("api/equipmentOrders/{id}/{orderStatusId}")]
         public IHttpActionResult UpdateOrderStatusOfEquipment(int id, byte orderStatusId)
         {
-            if (orderStatusId == 0)
+            var orderStatusInDb = unitOfWork.OrderStatuses.SingleOrDefault(os => os.Id == orderStatusId);
+            if (orderStatusInDb == null)
             {
                 return BadRequest();
             }

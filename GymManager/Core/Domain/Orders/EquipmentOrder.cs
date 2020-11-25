@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GymManager.Core.Domain
@@ -36,5 +37,37 @@ namespace GymManager.Core.Domain
         [Required]
         public byte OrderStatusId { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is EquipmentOrder order &&
+                   Id == order.Id &&
+                   Brand == order.Brand &&
+                   Model == order.Model &&
+                   DesiredDeliveryDate == order.DesiredDeliveryDate &&
+                   EqualityComparer<Type>.Default.Equals(Type, order.Type) &&
+                   TypeId == order.TypeId &&
+                   EqualityComparer<ApplicationUser>.Default.Equals(User, order.User) &&
+                   UserId == order.UserId &&
+                   Quantity == order.Quantity &&
+                   EqualityComparer<OrderStatus>.Default.Equals(OrderStatus, order.OrderStatus) &&
+                   OrderStatusId == order.OrderStatusId;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -908846124;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Brand);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Model);
+            hashCode = hashCode * -1521134295 + DesiredDeliveryDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Type>.Default.GetHashCode(Type);
+            hashCode = hashCode * -1521134295 + TypeId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<ApplicationUser>.Default.GetHashCode(User);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(UserId);
+            hashCode = hashCode * -1521134295 + Quantity.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<OrderStatus>.Default.GetHashCode(OrderStatus);
+            hashCode = hashCode * -1521134295 + OrderStatusId.GetHashCode();
+            return hashCode;
+        }
     }
 }
