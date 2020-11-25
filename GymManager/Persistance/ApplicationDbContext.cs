@@ -12,7 +12,9 @@ namespace GymManager.Persistance
         public DbSet<Supplement> Supplements { get; set; }
         public DbSet<Flavor> Flavors { get; set; }
         public DbSet<SupplementType> SupplementTypes { get; set; }
-        public DbSet<Malfunction> Malfunctions { get; set; }
+        public DbSet<Malfunction> Malfunctions { get; set; }        
+        public DbSet<EquipmentOrder> EquipmentOrders { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
 
 
         public ApplicationDbContext()

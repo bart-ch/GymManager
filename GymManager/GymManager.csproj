@@ -228,6 +228,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AreasController.cs" />
     <Compile Include="Controllers\Api\EquipmentController.cs" />
+    <Compile Include="Controllers\Api\EquipmentOrdersController.cs" />
     <Compile Include="Controllers\Api\FlavorsController.cs" />
     <Compile Include="Controllers\Api\MalfunctionsController.cs" />
     <Compile Include="Controllers\Api\SupplementsController.cs" />
@@ -235,24 +236,30 @@
     <Compile Include="Controllers\Api\TypesController.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\EquipmentOrdersController.cs" />
     <Compile Include="Controllers\FlavorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MalfunctionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
     <Compile Include="Core\Domain\Equipment\Malfunction.cs" />
+    <Compile Include="Core\Domain\Orders\EquipmentOrder.cs" />
+    <Compile Include="Core\Domain\Orders\OrderStatus.cs" />
     <Compile Include="Core\Domain\Supplements\Flavor.cs" />
     <Compile Include="Core\Domain\Supplements\Supplement.cs" />
     <Compile Include="Core\Domain\Supplements\SupplementType.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\IEquipmentRepository.cs" />
     <Compile Include="Core\Repositories\IMalfunctionRepository.cs" />
+    <Compile Include="Core\Repositories\IEquipmentOrderRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Core\Repositories\ISupplementRepository.cs" />
     <Compile Include="Dtos\AreaDto.cs" />
     <Compile Include="Dtos\EquipmentDto.cs" />
+    <Compile Include="Dtos\EquipmentOrderDto.cs" />
     <Compile Include="Dtos\FlavorDto.cs" />
     <Compile Include="Dtos\MalfunctionDto.cs" />
+    <Compile Include="Dtos\OrderStatusDto.cs" />
     <Compile Include="Dtos\SupplementDto.cs" />
     <Compile Include="Dtos\SupplementTypeDto.cs" />
     <Compile Include="Dtos\TypeDto.cs" />
@@ -375,7 +382,28 @@
     <Compile Include="Migrations\202011172331370_IsOperationalToEquipment.Designer.cs">
       <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011231737189_AddEquipmentOrderAndOrderStatusEntities.cs" />
+    <Compile Include="Migrations\202011231737189_AddEquipmentOrderAndOrderStatusEntities.Designer.cs">
+      <DependentUpon>202011231737189_AddEquipmentOrderAndOrderStatusEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011232055385_ChangeAmountToQuantityInEquipmentOrder.cs" />
+    <Compile Include="Migrations\202011232055385_ChangeAmountToQuantityInEquipmentOrder.Designer.cs">
+      <DependentUpon>202011232055385_ChangeAmountToQuantityInEquipmentOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011232059488_ChangeDeadlineDateToDesiredDeliveryDate.cs" />
+    <Compile Include="Migrations\202011232059488_ChangeDeadlineDateToDesiredDeliveryDate.Designer.cs">
+      <DependentUpon>202011232059488_ChangeDeadlineDateToDesiredDeliveryDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011232154383_AddUserIdProperty.cs" />
+    <Compile Include="Migrations\202011232154383_AddUserIdProperty.Designer.cs">
+      <DependentUpon>202011232154383_AddUserIdProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011232156159_PopulateOrderStatuses.cs" />
+    <Compile Include="Migrations\202011232156159_PopulateOrderStatuses.Designer.cs">
+      <DependentUpon>202011232156159_PopulateOrderStatuses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistance\Repositories\EquipmentOrderRepository.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
     <Compile Include="Persistance\Repositories\MalfunctionRepository.cs" />
     <Compile Include="Persistance\Repositories\Repository.cs" />
@@ -882,6 +910,10 @@
     <Content Include="Views\Malfunctions\Edit.cshtml" />
     <Content Include="Views\Malfunctions\Details.cshtml" />
     <Content Include="Views\Malfunctions\Index.cshtml" />
+    <Content Include="Views\EquipmentOrders\Index.cshtml" />
+    <Content Include="Views\EquipmentOrders\New.cshtml" />
+    <Content Include="Views\EquipmentOrders\_EquipmentOrderForm.cshtml" />
+    <Content Include="Views\EquipmentOrders\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -984,6 +1016,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011172331370_IsOperationalToEquipment.resx">
       <DependentUpon>202011172331370_IsOperationalToEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011231737189_AddEquipmentOrderAndOrderStatusEntities.resx">
+      <DependentUpon>202011231737189_AddEquipmentOrderAndOrderStatusEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011232055385_ChangeAmountToQuantityInEquipmentOrder.resx">
+      <DependentUpon>202011232055385_ChangeAmountToQuantityInEquipmentOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011232059488_ChangeDeadlineDateToDesiredDeliveryDate.resx">
+      <DependentUpon>202011232059488_ChangeDeadlineDateToDesiredDeliveryDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011232154383_AddUserIdProperty.resx">
+      <DependentUpon>202011232154383_AddUserIdProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011232156159_PopulateOrderStatuses.resx">
+      <DependentUpon>202011232156159_PopulateOrderStatuses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
