@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
+using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
-using GymManager.Attributes;
-using System;
-using Microsoft.AspNet.Identity;
 
 namespace GymManager.Controllers.Api
 {
