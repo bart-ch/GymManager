@@ -15,6 +15,7 @@ namespace GymManager.Core
         IRepository<SupplementType> SupplementTypes { get; }
         IMalfunctionRepository Malfunctions { get; }
         IEquipmentOrderRepository EquipmentOrders { get; }
+        IRepository<OrderStatus> OrderStatuses { get; }
 
         int Complete();
     }

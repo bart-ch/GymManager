@@ -208,7 +208,7 @@ namespace GymManager.UnitTests.Controllers.Api
             unitOfWork.Setup(uow => uow.Malfunctions.SingleOrDefault(m => m.Id == 1))
                 .Returns<Malfunction>(null);
 
-            var result = controller.DeleteMalfunction(1);
+            var result = controller.DeleteMalfunction(It.IsAny<int>());
 
             Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
         }

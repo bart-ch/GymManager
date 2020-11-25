@@ -149,7 +149,7 @@ namespace GymManager.UnitTests.Controllers.Api
             unitOfWork.Setup(uow => uow.Supplements.SingleOrDefault(s => s.Id == 1))
                 .Returns<Supplement>(null);
 
-            var result = controller.DeleteSuplement(1);
+            var result = controller.DeleteSuplement(It.IsAny<int>());
 
             Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
         }

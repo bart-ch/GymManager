@@ -116,6 +116,110 @@ namespace GymManager.UnitTests.Controllers.Api
             Assert.That(result, Is.InstanceOf(typeof(CreatedNegotiatedContentResult<EquipmentOrderDto>)));
         }
 
+        [Test]
+        public void UpdateEquipmentOrder_ModelIsNotValid_ReturnBadRequest()
+        {
+            controller.ModelState.AddModelError("key", "error message");
+
+            var result = controller.UpdateEquipmentOrder(It.IsAny<int>(), new EquipmentOrderDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        [Test]
+        public void UpdateEquipmentOrder_EquipmentOrderNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.EquipmentOrders.SingleOrDefault(eo => eo.Id == It.IsAny<int>()))
+                .Returns<EquipmentOrder>(null);
+
+
+            var result = controller.UpdateEquipmentOrder(It.IsAny<int>(), new EquipmentOrderDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        [Test]
+        public void UpdateEquipmentOrder_EquipmentOrderFound_ReturnOk()
+        {
+            var id = 1;
+            unitOfWork.Setup(uow => uow.EquipmentOrders.SingleOrDefault(eo => eo.Id == id))
+                .Returns(new EquipmentOrder());
+
+
+            var result = controller.UpdateEquipmentOrder(id, new EquipmentOrderDto());
+
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
+
+        [Test]
+        public void UpdateOrderStatusOfEquipment_GivenOrderStatusDoesntExist_ReturnBadRequest()
+        {
+            byte orderStatusId = 1;
+            unitOfWork.Setup(uow => uow.OrderStatuses.SingleOrDefault(os => os.Id == orderStatusId))
+                .Returns<OrderStatus>(null);
+
+            var result = controller.UpdateOrderStatusOfEquipment(It.IsAny<int>(), orderStatusId);
+
+            Assert.That(result, Is.InstanceOf(typeof(BadRequestResult)));
+        }
+
+        [Test]
+        public void UpdateOrderStatusOfEquipment_GivenOrderStatusExistAndEquipmentOrderNotFound_ReturnNotFound()
+        {
+            //given
+            byte orderStatusId = 1;
+            var id = 1;
+            unitOfWork.Setup(uow => uow.OrderStatuses.SingleOrDefault(os => os.Id == orderStatusId))
+                .Returns(new OrderStatus());
+
+            unitOfWork.Setup(uow => uow.EquipmentOrders.SingleOrDefault(eo => eo.Id == id))
+                .Returns<OrderStatus>(null);
+            //when
+            var result = controller.UpdateOrderStatusOfEquipment(id, orderStatusId);
+            //then
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        [Test]
+        public void UpdateOrderStatusOfEquipment_GivenOrderStatusExistAndEquipmentOrderFound_ReturnOk()
+        {
+            //given
+            byte orderStatusId = 1;
+            var id = 1;
+            unitOfWork.Setup(uow => uow.OrderStatuses.SingleOrDefault(os => os.Id == orderStatusId))
+                .Returns(new OrderStatus());
+
+            unitOfWork.Setup(uow => uow.EquipmentOrders.SingleOrDefault(eo => eo.Id == id))
+                .Returns(new EquipmentOrder());
+            //when
+            var result = controller.UpdateOrderStatusOfEquipment(id, orderStatusId);
+            //then
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
+
+        [Test]
+        public void DeleteEquipmentOrder_EquipmentOrderNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.EquipmentOrders.SingleOrDefault(eo => eo.Id == It.IsAny<int>()))
+                .Returns<EquipmentOrder>(null);
+
+            var result = controller.DeleteEquipmentOrder(It.IsAny<int>());
+
+            Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        [Test]
+        public void DeleteEquipmentOrder_EquipmentOrderFound_ReturnOk()
+        {
+            var id = 1;
+            unitOfWork.Setup(uow => uow.EquipmentOrders.SingleOrDefault(eo => eo.Id == id))
+                .Returns(new EquipmentOrder());
+
+            var result = controller.DeleteEquipmentOrder(id);
+
+            Assert.That(result, Is.InstanceOf(typeof(OkResult)));
+        }
+
         private IEnumerable<EquipmentOrder> GetEquipmentOrdersList()
         {
             return new List<EquipmentOrder>

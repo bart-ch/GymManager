@@ -94,7 +94,8 @@ namespace GymManager.Controllers.Api
         [Route("api/equipmentOrders/{id}/{orderStatusId}")]
         public IHttpActionResult UpdateOrderStatusOfEquipment(int id, byte orderStatusId)
         {
-            if (orderStatusId == 0)
+            var orderStatusInDb = unitOfWork.OrderStatuses.SingleOrDefault(os => os.Id == orderStatusId);
+            if (orderStatusInDb == null)
             {
                 return BadRequest();
             }
