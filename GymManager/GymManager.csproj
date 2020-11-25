@@ -402,6 +402,10 @@
     <Compile Include="Migrations\202011232156159_PopulateOrderStatuses.Designer.cs">
       <DependentUpon>202011232156159_PopulateOrderStatuses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011251831259_AddProfileDataToApplicationUser.cs" />
+    <Compile Include="Migrations\202011251831259_AddProfileDataToApplicationUser.Designer.cs">
+      <DependentUpon>202011251831259_AddProfileDataToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentOrderRepository.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
@@ -1034,6 +1038,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011232156159_PopulateOrderStatuses.resx">
       <DependentUpon>202011232156159_PopulateOrderStatuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251831259_AddProfileDataToApplicationUser.resx">
+      <DependentUpon>202011251831259_AddProfileDataToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
