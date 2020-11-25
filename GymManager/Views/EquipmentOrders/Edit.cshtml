@@ -60,7 +60,7 @@
                         return obj;
                     }, {});
                     $.ajax({
-                        url: "/api/equipmentOrders",
+                        url: "/api/equipmentOrders/" + id,
                         method: "PUT",
                         data: formData
                     })

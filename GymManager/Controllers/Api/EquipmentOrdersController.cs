@@ -80,8 +80,11 @@ namespace GymManager.Controllers.Api
                 return NotFound();
             }
 
-            Mapper.Map(equipmentOrderDto, equipmentOrderInDb);
-            //maping czy moze ręcznie zeby nmie aktualizowac użytkownika etc? albo zaktualizowac w DTO przed mappingiem
+            equipmentOrderInDb.Brand = equipmentOrderDto.Brand;
+            equipmentOrderInDb.Model = equipmentOrderDto.Model;
+            equipmentOrderInDb.TypeId = equipmentOrderDto.TypeId;
+            equipmentOrderInDb.DesiredDeliveryDate = equipmentOrderDto.DesiredDeliveryDate;
+            equipmentOrderInDb.Quantity = equipmentOrderDto.Quantity;
 
             unitOfWork.Complete();
 
