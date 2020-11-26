@@ -1,4 +1,6 @@
-﻿using GymManager.Core;
+﻿using AutoMapper;
+using GymManager.Core;
+using GymManager.Core.Domain;
 using GymManager.Dtos;
 using System;
 using System.Collections.Generic;
@@ -20,20 +22,8 @@ namespace GymManager.Controllers.Api
 
         public IHttpActionResult GetEmployees()
         {
-            var employyes = unitOfWork.Employees.GetAll();
-            var employeeDtos = new List<ApplicationUserDto>();
-
-            foreach (var employee in employyes)
-            {
-                employeeDtos.Add(new ApplicationUserDto
-                {
-                    Id = employee.Id,
-                    Name = employee.Name,
-                    Surname = employee.Surname,
-                    JobTitle = employee.JobTitle,
-                    Email = employee.Email
-                }) ;
-            }
+            var employeeDtos = unitOfWork.Employees.GetAll()
+                .Select(Mapper.Map<ApplicationUser, ApplicationUserDto>);
 
             return Ok(employeeDtos);
         }

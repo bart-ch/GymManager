@@ -17,6 +17,8 @@ namespace GymManager.App_Start
             Mapper.CreateMap<Malfunction, MalfunctionDto>();
             Mapper.CreateMap<EquipmentOrder, EquipmentOrderDto>();
             Mapper.CreateMap<OrderStatus, OrderStatusDto>();
+            Mapper.CreateMap<ApplicationUser, ApplicationUserDto>()
+                .ReverseMap();
 
             Mapper.CreateMap<EquipmentDto, Equipment>()
                 .ForMember(e => e.Id, opt => opt.Ignore());
@@ -32,6 +34,8 @@ namespace GymManager.App_Start
             Mapper.CreateMap<EquipmentOrderDto, EquipmentOrder>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
             Mapper.CreateMap<OrderStatusDto, OrderStatus>();
+            Mapper.CreateMap<ApplicationUserDto, ApplicationUser>()
+                    .ReverseMap();
 
         }
     }
