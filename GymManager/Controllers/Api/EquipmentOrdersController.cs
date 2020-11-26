@@ -23,7 +23,7 @@ namespace GymManager.Controllers.Api
         public IHttpActionResult GetEquipmentOrders()
         {
             var equipmentOrderDtos = unitOfWork.EquipmentOrders
-                .GetEquipmentOrdersWithTypesAndOrderStatuses()
+                .GetEquipmentOrdersWithUsersAndTypesAndOrderStatuses()
                 .Select(Mapper.Map<EquipmentOrder, EquipmentOrderDto>);
 
             return Ok(equipmentOrderDtos);

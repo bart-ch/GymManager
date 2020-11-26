@@ -52,7 +52,7 @@ namespace GymManager.UnitTests.Controllers.Api
         [Test]
         public void GetEquipmentOrders_DatabaseReturnEquipmentOrders_ReturnCorrectEquipmentOrders()
         {
-            unitOfWork.Setup(uow => uow.EquipmentOrders.GetEquipmentOrdersWithTypesAndOrderStatuses())
+            unitOfWork.Setup(uow => uow.EquipmentOrders.GetEquipmentOrdersWithUsersAndTypesAndOrderStatuses())
                 .Returns(GetEquipmentOrdersList());
 
             var response = controller.GetEquipmentOrders() as OkNegotiatedContentResult<IEnumerable<EquipmentOrderDto>>;

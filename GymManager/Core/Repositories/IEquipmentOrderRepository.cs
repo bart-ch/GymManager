@@ -7,7 +7,7 @@ namespace GymManager.Core.Repositories
 {
     public interface IEquipmentOrderRepository : IRepository<EquipmentOrder>
     {
-        IEnumerable<EquipmentOrder> GetEquipmentOrdersWithTypesAndOrderStatuses();
+        IEnumerable<EquipmentOrder> GetEquipmentOrdersWithUsersAndTypesAndOrderStatuses();
         EquipmentOrder GetSingleEquipmentOrderWithTypeAndOrderStatus(Expression<Func<EquipmentOrder, bool>> predicate);
     }
 }
