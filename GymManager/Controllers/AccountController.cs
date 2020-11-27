@@ -1,6 +1,8 @@
 ﻿using GymManager.Core.Domain;
 using GymManager.Models;
+using GymManager.Persistance;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;

@@ -409,6 +409,10 @@
     <Compile Include="Migrations\202011251831259_AddProfileDataToApplicationUser.Designer.cs">
       <DependentUpon>202011251831259_AddProfileDataToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011271554592_SeedUsers.cs" />
+    <Compile Include="Migrations\202011271554592_SeedUsers.Designer.cs">
+      <DependentUpon>202011271554592_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentOrderRepository.cs" />
     <Compile Include="Persistance\Repositories\EquipmentRepository.cs" />
@@ -1049,6 +1053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251831259_AddProfileDataToApplicationUser.resx">
       <DependentUpon>202011251831259_AddProfileDataToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011271554592_SeedUsers.resx">
+      <DependentUpon>202011271554592_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
