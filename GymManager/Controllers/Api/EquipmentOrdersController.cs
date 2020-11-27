@@ -10,7 +10,6 @@ using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
-    [Authorize]
     public class EquipmentOrdersController : ApiController
     {
 

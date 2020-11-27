@@ -14,6 +14,7 @@ namespace GymManager
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Formatting.Indented;
+            config.Filters.Add(new AuthorizeAttribute());
 
             config.MapHttpAttributeRoutes();
 

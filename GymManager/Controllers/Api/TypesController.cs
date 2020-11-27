@@ -6,7 +6,6 @@ using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
-    [Authorize]
     public class TypesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
