@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
+    [Authorize]
     public class SupplementTypesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;

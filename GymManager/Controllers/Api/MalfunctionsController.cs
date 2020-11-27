@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
+    [Authorize]
     public class MalfunctionsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
