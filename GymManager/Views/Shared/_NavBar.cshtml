@@ -37,7 +37,10 @@
                         <a class="dropdown-item" href="/Orders/Equipment/New">New Equipment Order</a>
                     </div>
                 </li>
-                <li class="nav-item">@Html.ActionLink("Employees", "Index", "Employees", null, new { @class = "nav-link" })</li>
+                @if (User.IsInRole("CanManageEmployees"))
+                {
+                    <li class="nav-item">@Html.ActionLink("Employees", "Index", "Employees", null, new { @class = "nav-link" })</li>
+                }
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
             </ul>

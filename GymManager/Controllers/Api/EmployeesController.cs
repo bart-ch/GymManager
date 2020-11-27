@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
+    [Authorize(Roles = RoleName.CanManageEmployees)]
     public class EmployeesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -34,7 +35,6 @@ namespace GymManager.Controllers.Api
                 return NotFound();
             }
 
-
             return Ok(Mapper.Map<ApplicationUser, ApplicationUserDto>(employee));
         }
 
@@ -52,8 +52,6 @@ namespace GymManager.Controllers.Api
             {
                 return NotFound();
             }
-
-            //TODO: możliwe tylko dla admina, chyba, że użytkownik? ewentualnier usunąć możliwość edycji z widoku w zarządzniu kontem dla nieadminów
 
             Mapper.Map(applicationUserDto, employeeInDb);
 
@@ -74,8 +72,6 @@ namespace GymManager.Controllers.Api
 
             unitOfWork.Employees.Remove(employeeInDb);
             unitOfWork.Complete();
-
-            //TODO: możliwe tylko dla admina.Konta admina nie można usunąć
 
             return Ok();
         }

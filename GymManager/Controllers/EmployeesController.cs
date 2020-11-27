@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using GymManager.Core;
+using System.Web.Mvc;
 
 namespace GymManager.Controllers
 {
+    [Authorize(Roles = RoleName.CanManageEmployees)]
     public class EmployeesController : Controller
     {
         public ViewResult Index()

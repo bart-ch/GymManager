@@ -15,10 +15,13 @@
     @if (Model.HasPassword)
     {
         <a role="button" id="editButton" href="/Manage/ChangePassword" class="btn btn-primary mr-3"><i class="fa fa-lock"></i> Change password</a>
-        <a role="button" id="editButton" href="/Employees/Edit/@User.Identity.GetUserId()" class="btn btn-primary"><i class="fa fa-edit"></i> Edit profile data</a>
+        if (User.IsInRole("CanManageEmployees")) 
+        { 
+            <a role="button" id="editButton" href="/Employees/Edit/@User.Identity.GetUserId()" class="btn btn-primary"><i class="fa fa-edit"></i> Edit profile data</a>
+        }
     }
-    else
-    {
-        @Html.ActionLink("Create", "SetPassword")
-    }
+        else
+        {
+            @Html.ActionLink("Create", "SetPassword")
+        }
 </div>

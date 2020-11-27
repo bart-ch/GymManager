@@ -9,7 +9,10 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @Html.Partial("_NavBar")
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("_NavBar");
+    }
 
     <div class="container body-content mt-5">
         @RenderBody()
