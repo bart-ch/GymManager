@@ -61,5 +61,23 @@ namespace GymManager.Controllers.Api
 
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteEmployee(string id)
+        {
+            var employeeInDb = unitOfWork.Employees.SingleOrDefault(e => e.Id == id);
+
+            if (employeeInDb == null)
+            {
+                return NotFound();
+            }
+
+            unitOfWork.Employees.Remove(employeeInDb);
+            unitOfWork.Complete();
+
+            //TODO: możliwe tylko dla admina
+
+            return Ok();
+        }
     }
 }

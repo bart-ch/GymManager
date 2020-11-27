@@ -30,7 +30,7 @@
                         method: "DELETE"
                     })
                         .done(function () {
-                            window.location.replace("/Home");
+                            window.location.replace("/Employees");
                             toastr.success("Employee successfully deleted.");
                         })
                         .fail(function () {
