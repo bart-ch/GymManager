@@ -256,6 +256,7 @@
     <Compile Include="Core\Repositories\IEquipmentOrderRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Core\Repositories\ISupplementRepository.cs" />
+    <Compile Include="Core\RoleName.cs" />
     <Compile Include="Dtos\ApplicationUserDto.cs" />
     <Compile Include="Dtos\AreaDto.cs" />
     <Compile Include="Dtos\EquipmentDto.cs" />

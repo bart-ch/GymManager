@@ -9,17 +9,21 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @Html.Partial("_NavBar")
+    @if (User.Identity.IsAuthenticated)
+    {
+        Html.Partial("_NavBar");
+    }
 
-    <div class="container body-content mt-5">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Gym Manager</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/lib")
-    @RenderSection("scripts", required: false)
-</body>
+        <div class="container body-content mt-5">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Gym Manager</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/lib")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>

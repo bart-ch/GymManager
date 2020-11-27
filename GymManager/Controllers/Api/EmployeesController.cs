@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace GymManager.Controllers.Api
 {
-    [Authorize]
+    [Authorize(Roles = RoleName.CanManageEmployees)]
     public class EmployeesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
