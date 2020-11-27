@@ -29,6 +29,9 @@ namespace GymManager.App_Start
                 .ForMember(m => m.Id, opt => opt.Ignore());
             Mapper.CreateMap<EquipmentOrderDto, EquipmentOrder>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
+            Mapper.CreateMap<ApplicationUserDto, ApplicationUser>()
+                .ForMember(m => m.Id, opt => opt.Ignore())
+                .ReverseMap();
         }
     }
 }

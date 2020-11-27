@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
@@ -35,6 +36,30 @@ namespace GymManager.Controllers.Api
 
 
             return Ok(Mapper.Map<ApplicationUser, ApplicationUserDto>(employee));
+        }
+
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        public IHttpActionResult UpdateEmployee(string id, ApplicationUserDto applicationUserDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var employeeInDb = unitOfWork.Employees.SingleOrDefault(e => e.Id == id);
+            if (employeeInDb == null)
+            {
+                return NotFound();
+            }
+
+            //TODO: możliwe tylko dla admina, chyba, że użytkownik? ewentualnier usunąć możliwość edycji z widoku w zarządzniu kontem dla nieadminów
+
+            Mapper.Map(applicationUserDto, employeeInDb);
+
+            unitOfWork.Complete();
+
+            return Ok();
         }
     }
 }

@@ -719,7 +719,7 @@
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\GymManager\gm-get-single-equipment-data-and-insert-in-ul.js" />
-    <Content Include="Scripts\GymManager\gm-handle-edit-employee.js" />
+    <Content Include="Scripts\GymManager\gm-handle-edit-employee-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-order.js" />
     <Content Include="Scripts\GymManager\gm-handle-employee-datatable.js" />
