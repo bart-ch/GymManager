@@ -75,7 +75,7 @@ namespace GymManager.Controllers.Api
             unitOfWork.Employees.Remove(employeeInDb);
             unitOfWork.Complete();
 
-            //TODO: możliwe tylko dla admina
+            //TODO: możliwe tylko dla admina.Konta admina nie można usunąć
 
             return Ok();
         }
