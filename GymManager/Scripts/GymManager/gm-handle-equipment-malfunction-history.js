@@ -11,7 +11,7 @@
             columns: [
                 {
                     render: function (data, type, full, meta) {
-                        return "<a href='/Malfunctions/Details/" + full.id + "' >" + full.title + "</a>";
+                        return "<abbr title='Show more details'><a href='/Malfunctions/Details/" + full.id + "' >" + full.title + "</a></abbr>";
                     }
                 },
                 {

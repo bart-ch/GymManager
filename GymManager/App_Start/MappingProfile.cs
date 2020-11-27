@@ -9,13 +9,13 @@ namespace GymManager.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Equipment, EquipmentDto>();
-            Mapper.CreateMap<Area, AreaDto>().ReverseMap();
-            Mapper.CreateMap<Core.Domain.Type, TypeDto>().ReverseMap();
             Mapper.CreateMap<Supplement, SupplementDto>();
             Mapper.CreateMap<Flavor, FlavorDto>();
-            Mapper.CreateMap<SupplementType, SupplementTypeDto>().ReverseMap();
             Mapper.CreateMap<Malfunction, MalfunctionDto>();
             Mapper.CreateMap<EquipmentOrder, EquipmentOrderDto>();
+            Mapper.CreateMap<Area, AreaDto>().ReverseMap();
+            Mapper.CreateMap<Core.Domain.Type, TypeDto>().ReverseMap();
+            Mapper.CreateMap<SupplementType, SupplementTypeDto>().ReverseMap();
             Mapper.CreateMap<OrderStatus, OrderStatusDto>().ReverseMap();
             Mapper.CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
 

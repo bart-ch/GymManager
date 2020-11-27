@@ -6,3 +6,21 @@
 <h2>@ViewBag.Title</h2>
 <h4>List of all registered employees.</h4>
 
+<div class="table-responsive">
+    <table id="employees" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name and surname</th>
+                <th>Email</th>
+                <th>Job Title</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/GymManager/gm-handle-employee-datatable.js")
+}

@@ -2,11 +2,7 @@
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GymManager.Controllers.Api
@@ -26,6 +22,19 @@ namespace GymManager.Controllers.Api
                 .Select(Mapper.Map<ApplicationUser, ApplicationUserDto>);
 
             return Ok(employeeDtos);
+        }
+
+        public IHttpActionResult GetEmployee(string id)
+        {
+            var employee = unitOfWork.Employees.SingleOrDefault(e => e.Id == id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(Mapper.Map<ApplicationUser, ApplicationUserDto>(employee));
         }
     }
 }

@@ -719,8 +719,10 @@
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\GymManager\gm-get-single-equipment-data-and-insert-in-ul.js" />
+    <Content Include="Scripts\GymManager\gm-handle-edit-employee.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-order.js" />
+    <Content Include="Scripts\GymManager\gm-handle-employee-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-malfunction-history.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-order-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunction-details.js" />
@@ -736,6 +738,7 @@
     <Content Include="Scripts\GymManager\gm-custom-validate-rules.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-supplement-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-supplements-datatable.js" />
+    <Content Include="Scripts\GymManager\gm-handle-employee-details.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -924,6 +927,8 @@
     <Content Include="Views\EquipmentOrders\_EquipmentOrderForm.cshtml" />
     <Content Include="Views\EquipmentOrders\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
