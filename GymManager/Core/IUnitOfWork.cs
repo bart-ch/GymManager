@@ -16,6 +16,7 @@ namespace GymManager.Core
         IMalfunctionRepository Malfunctions { get; }
         IEquipmentOrderRepository EquipmentOrders { get; }
         IRepository<OrderStatus> OrderStatuses { get; }
+        IRepository<ApplicationUser> Employees { get; }
 
         int Complete();
     }

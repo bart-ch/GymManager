@@ -13,7 +13,7 @@ namespace GymManager.Dtos
         public TypeDto Type { get; set; }
         public byte TypeId { get; set; }
         public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public ApplicationUserDto User { get; set; }
         public int Quantity { get; set; }
         public OrderStatusDto OrderStatus { get; set; }
         public byte OrderStatusId { get; set; }
@@ -28,7 +28,7 @@ namespace GymManager.Dtos
                    EqualityComparer<TypeDto>.Default.Equals(Type, dto.Type) &&
                    TypeId == dto.TypeId &&
                    UserId == dto.UserId &&
-                   EqualityComparer<ApplicationUser>.Default.Equals(User, dto.User) &&
+                   EqualityComparer<ApplicationUserDto>.Default.Equals(User, dto.User) &&
                    Quantity == dto.Quantity &&
                    EqualityComparer<OrderStatusDto>.Default.Equals(OrderStatus, dto.OrderStatus) &&
                    OrderStatusId == dto.OrderStatusId;
@@ -44,7 +44,7 @@ namespace GymManager.Dtos
             hashCode = hashCode * -1521134295 + EqualityComparer<TypeDto>.Default.GetHashCode(Type);
             hashCode = hashCode * -1521134295 + TypeId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(UserId);
-            hashCode = hashCode * -1521134295 + EqualityComparer<ApplicationUser>.Default.GetHashCode(User);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ApplicationUserDto>.Default.GetHashCode(User);
             hashCode = hashCode * -1521134295 + Quantity.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<OrderStatusDto>.Default.GetHashCode(OrderStatus);
             hashCode = hashCode * -1521134295 + OrderStatusId.GetHashCode();

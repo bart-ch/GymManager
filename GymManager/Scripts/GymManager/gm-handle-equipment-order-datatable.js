@@ -19,7 +19,9 @@
         "order": [[5, "desc"]],
         columns: [
             {
-                data: "userId"
+                render: function (data, type, full, meta) {
+                    return full.user.name + " " + full.user.surname;
+                }
             },
             {
                 data: "brand"

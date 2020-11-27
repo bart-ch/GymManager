@@ -65,6 +65,19 @@ namespace GymManager.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
+
+        [StringLength(255)]
+        [Required]
+        public string Surname { get; set; }
+
+        [StringLength(255)]
+        [Required]
+        [Display(Name = "Job Title")]
+        public string JobTitle { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

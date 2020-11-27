@@ -15,11 +15,12 @@ namespace GymManager.Persistance.Repositories
         {
         }
 
-        public IEnumerable<EquipmentOrder> GetEquipmentOrdersWithTypesAndOrderStatuses()
+        public IEnumerable<EquipmentOrder> GetEquipmentOrdersWithUsersAndTypesAndOrderStatuses()
         {
             return ApplicationDbContext.EquipmentOrders
                 .Include(eo => eo.Type)
                 .Include(eo => eo.OrderStatus)
+                .Include(eo => eo.User)
                 .ToList();
         }
 

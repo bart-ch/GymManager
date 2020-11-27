@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card border-primary mb-3">
+            <h4 class="card-header">The Employee</h4>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item bg-light text-dark" id="name"><b>Name: </b></li>
+                    <li class="list-group-item bg-light text-dark" id="surname"><b>Surname: </b></li>
+                    <li class="list-group-item bg-light text-dark" id="email"><b>Email: </b></li>
+                    <li class="list-group-item bg-light text-dark" id="jobTitle"><b>Job Title: </b> </li>
+                    <li class="list-group-item bg-light text-dark"><a id="editButton" href="#" class="btn btn-outline-primary" role="button"><i class="fa fa-edit"></i> Edit</a></li>
+                    <li class="list-group-item bg-light text-dark"><button id="deleteButton" data-employee-id="" class="btn btn-outline-danger" role="button"><i class="fa fa-trash"></i> Delete</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/GymManager/gm-handle-employee-details.js")
+}

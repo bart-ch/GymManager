@@ -227,6 +227,7 @@
     <Compile Include="Attributes\ConsumedAmountLessOrEqualToInitial.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AreasController.cs" />
+    <Compile Include="Controllers\Api\EmployeesController.cs" />
     <Compile Include="Controllers\Api\EquipmentController.cs" />
     <Compile Include="Controllers\Api\EquipmentOrdersController.cs" />
     <Compile Include="Controllers\Api\FlavorsController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Controllers\MalfunctionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SupplementsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Core\Domain\Equipment\Malfunction.cs" />
     <Compile Include="Core\Domain\Orders\EquipmentOrder.cs" />
     <Compile Include="Core\Domain\Orders\OrderStatus.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="Core\Repositories\IEquipmentOrderRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Core\Repositories\ISupplementRepository.cs" />
+    <Compile Include="Dtos\ApplicationUserDto.cs" />
     <Compile Include="Dtos\AreaDto.cs" />
     <Compile Include="Dtos\EquipmentDto.cs" />
     <Compile Include="Dtos\EquipmentOrderDto.cs" />
@@ -401,6 +404,10 @@
     <Compile Include="Migrations\202011232156159_PopulateOrderStatuses.cs" />
     <Compile Include="Migrations\202011232156159_PopulateOrderStatuses.Designer.cs">
       <DependentUpon>202011232156159_PopulateOrderStatuses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011251831259_AddProfileDataToApplicationUser.cs" />
+    <Compile Include="Migrations\202011251831259_AddProfileDataToApplicationUser.Designer.cs">
+      <DependentUpon>202011251831259_AddProfileDataToApplicationUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistance\Repositories\EquipmentOrderRepository.cs" />
@@ -712,8 +719,10 @@
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\GymManager\gm-get-single-equipment-data-and-insert-in-ul.js" />
+    <Content Include="Scripts\GymManager\gm-handle-edit-employee-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-order.js" />
+    <Content Include="Scripts\GymManager\gm-handle-employee-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-malfunction-history.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-order-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunction-details.js" />
@@ -729,6 +738,7 @@
     <Content Include="Scripts\GymManager\gm-custom-validate-rules.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-supplement-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-supplements-datatable.js" />
+    <Content Include="Scripts\GymManager\gm-handle-employee-details.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -861,7 +871,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
@@ -917,6 +926,9 @@
     <Content Include="Views\EquipmentOrders\New.cshtml" />
     <Content Include="Views\EquipmentOrders\_EquipmentOrderForm.cshtml" />
     <Content Include="Views\EquipmentOrders\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1034,6 +1046,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011232156159_PopulateOrderStatuses.resx">
       <DependentUpon>202011232156159_PopulateOrderStatuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251831259_AddProfileDataToApplicationUser.resx">
+      <DependentUpon>202011251831259_AddProfileDataToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,7 +9,7 @@
             {
                 data: "id",                   
                 render: function (data) {
-                    return "<a href='/Malfunctions/Details/" + data + "' >" + data + "</a>";
+                    return "<abbr title='Show more details'><a href='/Malfunctions/Details/" + data + "' >" + data + "</a></abbr>";
                 }
             },
             {

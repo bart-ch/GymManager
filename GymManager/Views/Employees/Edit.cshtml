@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Edit Employee";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr>
+
+<form id="employeeForm">
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-signature"></i></span>
+        </div>
+        <input class="form-control" placeholder="Name" id="name" name="name" required>
+    </div>
+    <p id="errorname"></p>
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-signature"></i></span>
+        </div>
+        <input class="form-control" placeholder="Surname" id="surname" name="surname" required>
+    </div>
+    <p id="errorsurname"></p>
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+        </div>
+        <input class="form-control" placeholder="Email" id="email" name="email" required>
+    </div>
+    <p id="erroremail"></p>
+
+    <div class="input-group mt-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-users"></i></span>
+        </div>
+        <input class="form-control" placeholder="Job Title" id="jobTitle" name="jobTitle" required>
+    </div>
+    <p id="errorjobTitle"></p>
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
+    <a href="/Employees" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+</form>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/GymManager/gm-handle-edit-employee-form.js")
+}
