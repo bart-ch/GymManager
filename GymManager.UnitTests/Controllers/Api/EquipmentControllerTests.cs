@@ -125,7 +125,6 @@ namespace GymManager.UnitTests.Controllers.Api
             unitOfWork.Setup(uow => uow.Equipment.SingleOrDefault(e => e.Id == It.IsAny<int>()))
                 .Returns<Equipment>(null);
 
-
             var result = controller.UpdateEquipment(It.IsAny<int>(), new EquipmentDto());
 
             Assert.That(result, Is.InstanceOf(typeof(NotFoundResult)));
