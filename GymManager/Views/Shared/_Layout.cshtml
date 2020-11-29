@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
 </head>
 <body>
     @if (User.Identity.IsAuthenticated)
@@ -17,7 +18,7 @@
     <div class="container body-content mt-5">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="login-footer">
             <p>&copy; @DateTime.Now.Year - Gym Manager</p>
         </footer>
     </div>
