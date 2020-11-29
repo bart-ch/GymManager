@@ -56,3 +56,44 @@ textarea {
 .non-operational, .low-amount {
     color: #fc3939;
 }
+
+.carousel-item {
+    height: 100vh;
+    background-size: cover;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 38%;
+    text-transform: uppercase;
+
+}
+
+.carousel-caption h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    letter-spacing: .3rem;
+    text-shadow: 0.1rem 0.1rem 0.8rem black;
+    padding-bottom: 1rem;
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+    text-shadow: 0.1rem 0.1rem 0.5rem black;
+    padding-bottom: 1.6rem;
+}
+
+.carousel-button {
+    border-width: medium;
+    font-size: 1.1rem;
+}
+
+@media (max-width:768px) {
+    .carousel-caption h1 {
+        font-size: 2rem;
+    }
+
+    .carousel-caption h3 {
+        font-size: 1.3rem;
+    }
+}

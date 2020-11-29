@@ -609,6 +609,9 @@
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\img\carousel-slide-2.jpg" />
+    <Content Include="Content\img\carousel-slide-3.jpg" />
+    <Content Include="Content\img\carousel-slide-4.jpg" />
     <Content Include="Content\img\login-cover.jpg" />
     <Content Include="Content\LICENSE.txt" />
     <Content Include="Content\LoginAndRegisterStyle.css" />
@@ -936,6 +939,7 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Home\LoggedInHomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

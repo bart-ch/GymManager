@@ -5,8 +5,13 @@ namespace GymManager.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ViewResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("LoggedInHomePage");
+            }
+
             return View();
         }
 
