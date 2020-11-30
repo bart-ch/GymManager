@@ -9,7 +9,7 @@ namespace GymManager.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return View("LoggedInHomePage");
+                return View("LoggedInIndex");
             }
 
             return View();
