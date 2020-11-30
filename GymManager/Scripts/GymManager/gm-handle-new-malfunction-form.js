@@ -65,11 +65,11 @@
         else {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+            var equipmentId = table.row(this).data().id;
+            $("#equipmentId").val(equipmentId);
         }
     });
 
-    //$('#button').click(function () {
-    //    table.row('.selected').remove().draw(false);
-    //});
+
 
 })
