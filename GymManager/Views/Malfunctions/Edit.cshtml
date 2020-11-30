@@ -4,76 +4,17 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<hr />
+<div class="row">
+    <div class="col-md-8 col-lg-4">
+        @Html.Partial("_MalfunctionForm")
+    </div>
+</div>
 
-@Html.Partial("_MalfunctionForm")
 
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
-            var url = $(location).attr('href');
-            var id = url.substring(url.lastIndexOf('/') + 1);
-            $.ajax({
-                type: "GET",
-                url: "/api/malfunctions/" + id,
-            })
-                .done(function (malfunction) {
-                    $("#id").val(malfunction.id);
-                    $("#title").val(malfunction.title);
-                    $("#description").val(malfunction.description);
-                    $("#equipmentId").val(malfunction.equipmentId);
-
-                    if (malfunction.isRepaired)
-                        $("#isRepaired").attr("checked", "checked");
-
-                    var date = new Date(malfunction.malfunctionDate);
-                    var dateString = date.getFullYear() + '-'
-                        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-                        + ('0' + date.getDate()).slice(-2);
-                    $("#malfunctionDate").val(dateString);
-                })
-                .fail(function () {
-                    window.location.pathname = '/Malfunctions'
-                });
-
-            $("#malfunctionForm").validate({
-                errorPlacement: function ($error, $element) {
-                    var name = $element.attr("name");
-                    $("#error" + name).append($error);
-                },
-                rules: {
-                    title: {
-                        maxlength: 50
-                    },
-                    description: {
-                        maxlength: 255
-                    }
-                },
-                submitHandler: function () {
-
-                    var formData = $('#malfunctionForm').serializeArray().reduce(function (obj, item) {
-                        obj[item.name] = item.value;
-                        return obj;
-                    }, {});
-                    $.ajax({
-                        url: "/api/malfunctions/" + id,
-                        method: "PUT",
-                        data: formData
-                    })
-                        .done(function () {
-                            toastr.success("Malfunction successfully updated.");
-
-                        })
-                        .fail(function () {
-                            toastr.error("Unexpected error.");
-                        });
-
-                    return false;
-                }
-            });
-        })
-    </script>
-
+    @Scripts.Render("~/Scripts/GymManager/gm-handle-edit-malfunction-form.js");
 }
 

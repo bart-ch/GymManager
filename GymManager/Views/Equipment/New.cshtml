@@ -5,8 +5,11 @@
 
 <h2>@ViewBag.Title</h2>
 <hr>
-
-@Html.Partial("_EquipmentForm")
+<div class="row">
+    <div class="col-md-8 col-lg-4">
+        @Html.Partial("_EquipmentForm")
+    </div>
+</div>
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")

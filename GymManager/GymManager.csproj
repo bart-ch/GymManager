@@ -732,12 +732,13 @@
     <Content Include="Scripts\GymManager\gm-handle-edit-employee-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-form .js" />
     <Content Include="Scripts\GymManager\gm-handle-edit-equipment-order.js" />
+    <Content Include="Scripts\GymManager\gm-handle-edit-malfunction-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-employee-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-malfunction-history.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-order-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunction-details.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunctions-datatable.js" />
-    <Content Include="Scripts\GymManager\gm-handle-malfunctions-manage-datatable.js" />
+    <Content Include="Scripts\GymManager\gm-handle-malfunctions-history-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-flavors-datatable-and-forms.js" />
     <Content Include="Scripts\GymManager\gm-handle-new-equipment-form.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-datatable.js" />
@@ -924,7 +925,6 @@
     <Content Include="Views\Flavors\Index.cshtml" />
     <Content Include="Views\Flavors\_FlavorModal.cshtml" />
     <Content Include="Views\Malfunctions\New.cshtml" />
-    <Content Include="Views\Malfunctions\Manage.cshtml" />
     <Content Include="Views\Malfunctions\History.cshtml" />
     <Content Include="Views\Malfunctions\_EquipmentPropertiesUL.cshtml" />
     <Content Include="Views\Malfunctions\_MalfunctionForm.cshtml" />
@@ -939,6 +939,7 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Home\LoggedInIndex.cshtml" />
+    <Content Include="Views\Malfunctions\SingleEquipmentHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

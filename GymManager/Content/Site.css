@@ -20,14 +20,15 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
+    max-width: none;
 }
 
-    .input-validation-error,
-    input.error,
-    select.error {
-        border: 1px solid red;
-    }
+.input-validation-error,
+input.error,
+select.error {
+    border: 1px solid red;
+}
 
 label.error {
     color: red;
@@ -95,6 +96,14 @@ textarea {
     align-items: center;
 }
 
+.selected {
+    background-color: #acbad4;
+}
+
+.selected :hover {
+    background-color: #99a6bf;
+}
+
 @media (max-width:768px) {
     .carousel-caption h1 {
         font-size: 2rem;
@@ -110,4 +119,3 @@ textarea {
         padding-top: 70px;
     }
 }
-

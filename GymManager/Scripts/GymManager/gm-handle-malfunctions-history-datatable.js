@@ -29,13 +29,6 @@
                 render: function (data) {
                     return "<a href ='/Malfunctions/History/" + data + "' class='pointer'><i class='fa fa-history' title='Equipment malfunction history'></i></a>";
                 }
-            },
-            {
-                data: "id",
-                "orderable": false,
-                render: function (data) {
-                    return "<a href ='/Malfunctions/New/" + data + "' class='pointer'><i class='fa fa-exclamation-triangle' title='Report a malfunction'></i></a>";
-                }
             }
         ]
     });

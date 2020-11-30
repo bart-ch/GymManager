@@ -8,10 +8,6 @@ namespace GymManager.Controllers
         {
             return View();
         }
-        public ViewResult Manage()
-        {
-            return View();
-        }
 
         public ViewResult New()
         {
@@ -23,10 +19,16 @@ namespace GymManager.Controllers
             return View();
         }
 
-
+        [Route("Malfunctions/History")]
         public ViewResult History()
         {
             return View();
+        }
+
+
+        public ViewResult History(int id)
+        {
+            return View("SingleEquipmentHistory");
         }
 
         public ViewResult Details()

@@ -6,7 +6,11 @@
 <h2>@ViewBag.Title</h2>
 <hr>
 
-@Html.Partial("_EquipmentOrderForm")
+<div class="row">
+    <div class="col-md-8 col-lg-4">
+        @Html.Partial("_EquipmentOrderForm")
+    </div>
+</div>
 
 @section scripts 
 {
