@@ -88,6 +88,13 @@ textarea {
     font-size: 1.1rem;
 }
 
+.vertical-center {
+    min-height: 90%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width:768px) {
     .carousel-caption h1 {
         font-size: 2rem;
@@ -97,3 +104,10 @@ textarea {
         font-size: 1.3rem;
     }
 }
+
+@media (min-width:992px) and (max-width:1199px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
