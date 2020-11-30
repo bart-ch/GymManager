@@ -3,68 +3,77 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title</h2>
-<h4>Create a new employee account.</h4>
-<hr>
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-container rounded px-5 py-4">
+        <h2 class="text-center"><i class="fas fa-dumbbell"></i> <span class="logo">Gym Manager</span></h2>
+        <hr />
+        <h2 class="mb-3 text-center">Create a new employee account.</h2>
+        <section>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-signature"></i> </span>
+                    </div>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
+                </div>
+                <div>@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })</div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-signature"></i> </span>
-        </div>
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
-    </div>
-    <div>@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })</div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-signature"></i> </span>
+                    </div>
+                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Surname" })
+                </div>
+                <div>@Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })</div>
 
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-signature"></i> </span>
-        </div>
-        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Surname" })
-    </div>
-    <div>@Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })</div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-users"></i> </span>
+                    </div>
+                    @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control", placeholder = "Job Title" })
+                </div>
+                <div>@Html.ValidationMessageFor(m => m.JobTitle, "", new { @class = "text-danger" })</div>
 
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-users"></i> </span>
-        </div>
-        @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control", placeholder = "Job Title" })
-    </div>
-    <div>@Html.ValidationMessageFor(m => m.JobTitle, "", new { @class = "text-danger" })</div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                </div>
+                <div class="mb-2">@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })</div>
 
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-        </div>
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
-    </div>
-    <div class="mb-2">@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })</div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                </div>
+                <div>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })</div>
 
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-        </div>
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                </div>
+                <div>@Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })</div>
+                <div class="form-group mt-3">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="Register" />
+                </div>
+                <p>
+                    @Html.ActionLink("Already have an account? Log in", "Login")
+                </p>
+            }
+        </section>
     </div>
-    <div>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })</div>
-
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-        </div>
-        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
-    </div>
-    <div>@Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })</div>
-    <div class="form-group mt-3">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Register" />
-        </div>
-    </div>
-}
-
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/LoginAndRegisterStyle.css")" rel="stylesheet" type="text/css" />
 }

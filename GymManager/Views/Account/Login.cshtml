@@ -4,18 +4,18 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title</h2>
-<h4>Use a local employee account to log in.</h4>
-<hr />
+
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-container rounded px-5 py-4">
+        <h2 class="text-center"><i class="fas fa-dumbbell"></i> <span class="logo">Gym Manager</span></h2>
+        <hr />
+        <h2 class="mb-3 text-center">@ViewBag.Title</h2>
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
@@ -32,36 +32,27 @@
                 </div>
                 <div>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })</div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                <div class="form-group mt-2">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
                         </div>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-primary" />
-                    </div>
+                        <input type="submit" value="Log in" class="btn btn-primary btn-block btn-lg" />
                 </div>
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @Html.ActionLink("Register as a new employee", "Register")
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/LoginAndRegisterStyle.css")" rel="stylesheet" type="text/css" />
 }

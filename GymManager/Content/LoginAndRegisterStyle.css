@@ -1,0 +1,16 @@
+﻿body {
+    background: url('img/login-cover.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.form-container {
+    background-color: white;
+}
+
+input {
+    max-width: none;
+}
+
+.login-footer {
+    opacity: 0;
+}

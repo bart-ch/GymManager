@@ -5,14 +5,12 @@ namespace GymManager.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("LoggedInIndex");
+            }
 
             return View();
         }
