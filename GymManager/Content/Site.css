@@ -24,11 +24,11 @@ textarea {
     max-width: none;
 }
 
-.input-validation-error,
-input.error,
-select.error {
-    border: 1px solid red;
-}
+    .input-validation-error,
+    input.error,
+    select.error {
+        border: 1px solid red;
+    }
 
 label.error {
     color: red;
@@ -67,22 +67,21 @@ textarea {
     position: absolute;
     top: 38%;
     text-transform: uppercase;
-
 }
 
-.carousel-caption h1 {
-    font-size: 3.8rem;
-    font-weight: 700;
-    letter-spacing: .3rem;
-    text-shadow: 0.1rem 0.1rem 0.8rem black;
-    padding-bottom: 1rem;
-}
+    .carousel-caption h1 {
+        font-size: 3.8rem;
+        font-weight: 700;
+        letter-spacing: .3rem;
+        text-shadow: 0.1rem 0.1rem 0.8rem black;
+        padding-bottom: 1rem;
+    }
 
-.carousel-caption h3 {
-    font-size: 2rem;
-    text-shadow: 0.1rem 0.1rem 0.5rem black;
-    padding-bottom: 1.6rem;
-}
+    .carousel-caption h3 {
+        font-size: 2rem;
+        text-shadow: 0.1rem 0.1rem 0.5rem black;
+        padding-bottom: 1.6rem;
+    }
 
 .carousel-button {
     border-width: medium;
@@ -100,9 +99,9 @@ textarea {
     background-color: #acbad4;
 }
 
-.selected :hover {
-    background-color: #99a6bf;
-}
+    .selected :hover {
+        background-color: #99a6bf;
+    }
 
 @media (max-width:768px) {
     .carousel-caption h1 {
@@ -117,5 +116,52 @@ textarea {
 @media (min-width:992px) and (max-width:1199px) {
     body {
         padding-top: 70px;
+    }
+}
+
+/*Hover dropdown*/
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+.dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
+
+.nav-tabs .dropdown-menu,
+.nav-pills .dropdown-menu,
+.navbar .dropdown-menu {
+    margin-top: 0;
+}
+
+.navbar .sub-menu:before {
+    border-bottom: 7px solid transparent;
+    border-left: none;
+    border-right: 7px solid rgba(0, 0, 0, 0.2);
+    border-top: 7px solid transparent;
+    left: -7px;
+    top: 10px;
+}
+
+.navbar .sub-menu:after {
+    border-top: 6px solid transparent;
+    border-left: none;
+    border-right: 6px solid #fff;
+    border-bottom: 6px solid transparent;
+    left: 10px;
+    top: 11px;
+    left: -6px;
+}
+
+@media (min-width: 992px) {
+    .dropdown-menu li:hover .sub-menu {
+        visibility: visible;
+    }
+    .dropdown:hover .dropdown-menu {
+        display: block;
     }
 }
