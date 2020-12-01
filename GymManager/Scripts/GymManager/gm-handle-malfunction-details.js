@@ -8,6 +8,7 @@
         .done(function (malfunction) {
             $("#id").append(malfunction.id);
             $("#deleteButton").attr("data-malfunction-id", malfunction.id);
+            $("#equipmentSerialNumber").append(malfunction.equipment.serialNumber);
             $("#title").append(malfunction.title);
             $("#description").append(malfunction.description);
 

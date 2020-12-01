@@ -29,7 +29,7 @@ namespace GymManager.Controllers.Api
 
         public IHttpActionResult GetMalfunction(int id)
         {
-            var malfunction = unitOfWork.Malfunctions.SingleOrDefault(m => m.Id == id);
+            var malfunction = unitOfWork.Malfunctions.GetMalfunctionWithEquipment(m => m.Id == id);
             if (malfunction == null)
             {
                 return NotFound();
