@@ -16,7 +16,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "/api/employees/" + $("#homePageMessage").attr("data-user-id"),
+                url: "/api/employees/loggedIn",
             })
                 .done(function (employee) {
                     $("#homePageMessage").append(employee.name + " ");
