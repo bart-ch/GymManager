@@ -3,6 +3,8 @@ using GymManager.Attributes;
 using GymManager.Core;
 using GymManager.Core.Domain;
 using GymManager.Dtos;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Web.Http;
 
@@ -63,6 +65,11 @@ namespace GymManager.Controllers.Api
         [HttpDelete]
         public IHttpActionResult DeleteEmployee(string id)
         {
+            if (User.Identity.GetUserId() == id)
+            {
+                return BadRequest();
+            }
+
             var employeeInDb = unitOfWork.Employees.SingleOrDefault(e => e.Id == id);
 
             if (employeeInDb == null)

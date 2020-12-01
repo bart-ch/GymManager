@@ -34,7 +34,7 @@
                             toastr.success("Employee successfully deleted.");
                         })
                         .fail(function () {
-                            toastr.error("Unexpected error.");
+                            toastr.error("You cannot delete your own account.");
                         });
                 }
             }
