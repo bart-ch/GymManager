@@ -737,6 +737,7 @@
     <Content Include="Scripts\GymManager\gm-handle-employee-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-malfunction-history.js" />
     <Content Include="Scripts\GymManager\gm-handle-equipment-order-datatable.js" />
+    <Content Include="Scripts\GymManager\gm-handle-logged-in-homepage.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunction-details.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunctions-datatable.js" />
     <Content Include="Scripts\GymManager\gm-handle-malfunctions-history-datatable.js" />
