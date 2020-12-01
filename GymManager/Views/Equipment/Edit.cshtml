@@ -15,5 +15,6 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/scripts/GymManager/gm-pupulate-select-with-ajax-get.js")
-    @Scripts.Render("~/scripts/GymManager/gm-handle-edit-equipment-form .js") 
+    @*@Scripts.Render("~/scripts/GymManager/gm-handle-edit-equipment-form .js")*@
+    @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/scripts/GymManager/gm-handle-edit-equipment-form.js")
 }
