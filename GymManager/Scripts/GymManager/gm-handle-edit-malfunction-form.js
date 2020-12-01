@@ -7,6 +7,7 @@
     })
         .done(function (malfunction) {
             $("#id").val(malfunction.id);
+            $("#equipmentSerialNumber").append(malfunction.equipment.serialNumber);
             $("#title").val(malfunction.title);
             $("#description").val(malfunction.description);
             $("#equipmentId").val(malfunction.equipmentId);
