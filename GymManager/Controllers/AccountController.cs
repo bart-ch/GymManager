@@ -1,15 +1,12 @@
 ﻿using GymManager.Core.Domain;
 using GymManager.Models;
-using GymManager.Persistance;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace GymManager.Controllers
 {
@@ -91,7 +88,7 @@ namespace GymManager.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Invalid Email or Password. Try again.");
                     return View(model);
             }
         }
