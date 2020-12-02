@@ -128,6 +128,7 @@
     <Compile Include="Controllers\EquipmentControllerTests.cs" />
     <Compile Include="Controllers\EquipmentOrdersControllerTests.cs" />
     <Compile Include="Controllers\FlavorsControllerTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Controllers\MalfunctionsControllerTests.cs" />
     <Compile Include="Controllers\SupplementsControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

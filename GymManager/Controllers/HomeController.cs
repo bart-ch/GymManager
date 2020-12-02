@@ -2,9 +2,10 @@
 
 namespace GymManager.Controllers
 {
-    [AllowAnonymous]
     public class HomeController : Controller
     {
+
+        [AllowAnonymous]
         public ViewResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -15,7 +16,7 @@ namespace GymManager.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ViewResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
