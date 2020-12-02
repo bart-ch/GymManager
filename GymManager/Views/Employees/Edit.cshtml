@@ -6,44 +6,53 @@
 <h2>@ViewBag.Title</h2>
 
 <hr>
+<div class="row">
+    <div class="col-md-8 col-lg-4">
+        <form id="employeeForm">
+            <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-signature"></i></span>
+                </div>
+                <input class="form-control" placeholder="Name" id="name" name="name" required>
+            </div>
+            <p id="errorname"></p>
 
-<form id="employeeForm">
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-signature"></i></span>
-        </div>
-        <input class="form-control" placeholder="Name" id="name" name="name" required>
+            <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-signature"></i></span>
+                </div>
+                <input class="form-control" placeholder="Surname" id="surname" name="surname" required>
+            </div>
+            <p id="errorsurname"></p>
+
+            <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" id="email" name="email" required>
+            </div>
+            <p id="erroremail"></p>
+
+            <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-users"></i></span>
+                </div>
+                <input class="form-control" placeholder="Job Title" id="jobTitle" name="jobTitle" required>
+            </div>
+            <p id="errorjobTitle"></p>
+
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus-circle"></i> Submit</button>
+                </div>
+                <div class="col-6">
+                    <a href="/Employees" class="btn btn-danger btn-block" role="button"><i class="fa fa-undo"></i> Back</a>
+                </div>
+            </div>
+        </form>
     </div>
-    <p id="errorname"></p>
-
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-signature"></i></span>
-        </div>
-        <input class="form-control" placeholder="Surname" id="surname" name="surname" required>
-    </div>
-    <p id="errorsurname"></p>
-
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
-        </div>
-        <input class="form-control" placeholder="Email" id="email" name="email" required>
-    </div>
-    <p id="erroremail"></p>
-
-    <div class="input-group mt-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-users"></i></span>
-        </div>
-        <input class="form-control" placeholder="Job Title" id="jobTitle" name="jobTitle" required>
-    </div>
-    <p id="errorjobTitle"></p>
-
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
-    <a href="/Employees" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
-</form>
+</div>
 
 
 @section scripts {

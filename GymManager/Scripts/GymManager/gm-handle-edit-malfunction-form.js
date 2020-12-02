@@ -1,7 +1,4 @@
 ﻿$(document).ready(function () {
-
-    getResourcesFromAPIAndInsertInSelect("#typeId", "Equipment Type", "types");
-
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
     if (!Number.isInteger(parseInt(id)))
@@ -9,50 +6,55 @@
 
     $.ajax({
         type: "GET",
-        url: "/api/equipmentOrders/" + id,
+        url: "/api/malfunctions/" + id,
     })
-        .done(function (equipmentOrder) {
-            $("#brand").val(equipmentOrder.brand);
-            $("#model").val(equipmentOrder.model);
-            $("#typeId").val(equipmentOrder.type.id);
-            $("#quantity").val(equipmentOrder.quantity);
-            var date = new Date(equipmentOrder.desiredDeliveryDate);
+        .done(function (malfunction) {
+            $("#id").val(malfunction.id);
+            $("#equipmentSerialNumber").append(malfunction.equipment.serialNumber);
+            $("#title").val(malfunction.title);
+            $("#description").val(malfunction.description);
+            $("#equipmentId").val(malfunction.equipmentId);
+
+            if (malfunction.isRepaired)
+                $("#isRepaired").attr("checked", "checked");
+
+            var date = new Date(malfunction.malfunctionDate);
             var dateString = date.getFullYear() + '-'
                 + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
                 + ('0' + date.getDate()).slice(-2);
-            $("#desiredDeliveryDate").val(dateString);
-
+            $("#malfunctionDate").val(dateString);
         })
         .fail(function () {
             window.location.pathname = '/404.html';
         });
 
-
-    $("#equipmentOrderForm").validate({
+    $("#malfunctionForm").validate({
         errorPlacement: function ($error, $element) {
             var name = $element.attr("name");
             $("#error" + name).append($error);
         },
         rules: {
-            brand: {
-                maxlength: 30,
+            title: {
+                maxlength: 50
             },
-            model: {
-                maxlength: 30,
+            description: {
+                maxlength: 255
             }
         },
         submitHandler: function () {
-            var formData = $('#equipmentOrderForm').serializeArray().reduce(function (obj, item) {
+
+            var formData = $('#malfunctionForm').serializeArray().reduce(function (obj, item) {
                 obj[item.name] = item.value;
                 return obj;
             }, {});
             $.ajax({
-                url: "/api/equipmentOrders/" + id,
+                url: "/api/malfunctions/" + id,
                 method: "PUT",
                 data: formData
             })
                 .done(function () {
-                    toastr.success("Equipment order successfully updated.");
+                    toastr.success("Malfunction successfully updated.");
+
                 })
                 .fail(function () {
                     toastr.error("Unexpected error.");

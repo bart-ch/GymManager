@@ -14,7 +14,7 @@
             $("#editButton").attr("href", "/Employees/Edit/" + employee.id);
         })
         .fail(function () {
-            window.location.pathname = '/Employees'
+            window.location.pathname = '/404.html';
         });
 
     $("#deleteButton").on("click", function () {
@@ -34,7 +34,7 @@
                             toastr.success("Employee successfully deleted.");
                         })
                         .fail(function () {
-                            toastr.error("Unexpected error.");
+                            toastr.error("You cannot delete your own account.");
                         });
                 }
             }

@@ -3,6 +3,8 @@ using GymManager.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Linq.Expressions;
+using System;
 
 namespace GymManager.Persistance.Repositories
 {
@@ -18,6 +20,13 @@ namespace GymManager.Persistance.Repositories
             return ApplicationDbContext.Malfunctions
                 .Include(m => m.Equipment)
                 .ToList();
+        }
+
+        public Malfunction GetMalfunctionWithEquipment(Expression<Func<Malfunction, bool>> predicate)
+        {
+            return ApplicationDbContext.Malfunctions
+                .Include(m => m.Equipment)
+                .SingleOrDefault(predicate);
         }
 
         public ApplicationDbContext ApplicationDbContext

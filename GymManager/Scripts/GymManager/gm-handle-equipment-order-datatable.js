@@ -8,7 +8,7 @@
                 text: 'Generate PDF',
                 className: "btn btn-primary mb-2",
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4, 5,6]
                 }
             }
         ],
@@ -16,8 +16,11 @@
             url: "/api/equipmentOrders",
             dataSrc: ""
         },
-        "order": [[5, "desc"]],
+        "order": [[6, "desc"]],
         columns: [
+            {
+                data: "id"
+            },
             {
                 render: function (data, type, full, meta) {
                     return full.user.name + " " + full.user.surname;

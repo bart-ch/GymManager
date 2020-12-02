@@ -24,14 +24,14 @@ namespace GymManager.UnitTests.Controllers
             Assert.That(result, Is.TypeOf(typeof(ViewResult)));
         }        
         
-        [Test]
-        public void Manage_WhenCalled_ReturnView()
-        {
-            var result = controller.Manage();
+        //[Test]
+        //public void Manage_WhenCalled_ReturnView()
+        //{
+        //    var result = controller.Manage();
 
-            Assert.That(result.ViewName, Is.EqualTo(string.Empty));
-            Assert.That(result, Is.TypeOf(typeof(ViewResult)));
-        }
+        //    Assert.That(result.ViewName, Is.EqualTo(string.Empty));
+        //    Assert.That(result, Is.TypeOf(typeof(ViewResult)));
+        //}
 
         [Test]
         public void New_WhenCalled_ReturnView()

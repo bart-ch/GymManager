@@ -44,6 +44,12 @@
     <p id="errorquantity"></p>
 
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
-    <a href="/Orders/Equipment" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+    <div class="row">
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus-circle"></i> Submit</button>
+        </div>
+        <div class="col-6">
+            <a href="/Orders/Equipment" class="btn btn-danger btn-block" role="button"><i class="fa fa-undo"></i> Back</a>
+        </div>
+    </div>
 </form>

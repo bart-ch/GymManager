@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
+    if (!Number.isInteger(parseInt(id)))
+        window.location.pathname = '/404.html';
+
     $.ajax({
         type: "GET",
         url: "/api/malfunctions/" + id,
@@ -8,6 +11,7 @@
         .done(function (malfunction) {
             $("#id").append(malfunction.id);
             $("#deleteButton").attr("data-malfunction-id", malfunction.id);
+            $("#equipmentSerialNumber").append(malfunction.equipment.serialNumber);
             $("#title").append(malfunction.title);
             $("#description").append(malfunction.description);
 
@@ -25,7 +29,7 @@
             $("#editButton").attr("href", "/Malfunctions/Edit/" + malfunction.id);
         })
         .fail(function () {
-            window.location.pathname = '/Malfunctions'
+            window.location.pathname = '/404.html';
         });
 
     $("#deleteButton").on("click", function () {

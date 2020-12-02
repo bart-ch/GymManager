@@ -3,31 +3,17 @@
     ViewBag.Title = "Home Page";
 }
 <div class="row vertical-center">
-    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-container rounded py-4">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 rounded py-4 welcome-message">
         <h2 id="homePageMessage" class="text-center" data-user-id="@User.Identity.GetUserId()">Hello </h2>
-        <p class="text-justify">Glad to see you again. You are currently on the home page. 
-        Feel free to pick interesting option from the navigation bar. Manage your supplements or equipment, report a malfunction or make a new order. </p>
+        <p class="text-justify">
+            Glad to see you again. You are currently on the home page.
+            Feel free to pick a relevant option from the navigation bar. Manage your supplements or equipment, report a malfunction or make a new order.
+        </p>
     </div>
 </div>
 
 @section Scripts {
-    <script>
-        $(function () {
-
-            $.ajax({
-                type: "GET",
-                url: "/api/employees/" + $("#homePageMessage").attr("data-user-id"),
-            })
-                .done(function (employee) {
-                    $("#homePageMessage").append(employee.name + " ");
-                    $("#homePageMessage").append(employee.surname + "!");
-                })
-                .fail(function () {
-                    toastr.error("Unexpected error.")
-                });
-        })
-    </script>
-
+    @Scripts.Render("~/scripts/GymManager/gm-handle-logged-in-homepage.js")
 }
 
 @section Styles {

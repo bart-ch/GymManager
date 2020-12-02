@@ -2,15 +2,8 @@
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using GymManager.Core;
-using GymManager.Core.Repositories;
-using GymManager.Models;
 using GymManager.Persistance;
-using GymManager.Persistance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -35,7 +28,6 @@ namespace GymManager.App_Start
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
-
         }
     }
 }

@@ -8,20 +8,30 @@
 <hr>
 <div class="row">
     <div class="col-md-6 border-right">
-        <h4>Malfunction Form</h4>
-        @Html.Partial("_MalfunctionForm")
+        <h4>Step 1: Select the equipment</h4>
+        <hr />
+        <div class="table-responsive">
+            <table id="equipment" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Equipment Serial Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="col-md-6">
-        @Html.Partial("_EquipmentPropertiesUL")
+        <h4>Step 2: Fill in the form</h4>
+        <hr />
+        @Html.Partial("_MalfunctionForm")
     </div>
 </div>
-
-
 
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/scripts/GymManager/gm-get-todays-date.js")
-    @Scripts.Render("~/scripts/GymManager/gm-get-single-equipment-data-and-insert-in-ul.js")
     @Scripts.Render("~/scripts/GymManager/gm-handle-new-malfunction-form.js")
 }

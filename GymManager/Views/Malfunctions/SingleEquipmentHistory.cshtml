@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Equipment Malfunction History";
+}
+
+<h2 id="heading">@ViewBag.Title</h2>
+<a href="/Malfunctions/History" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+
+<hr>
+<div class="row">
+    <div class="col-md-8 border-right">
+        <div class="table-responsive">
+            <table id="malfunctionHistory" class="table table-bordered table-hover pointer">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Is repaired?</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        @Html.Partial("_EquipmentPropertiesUL")
+    </div>
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/scripts/GymManager/gm-get-single-equipment-data-and-insert-in-ul.js")
+    @Scripts.Render("~/scripts/GymManager/gm-handle-equipment-malfunction-history.js")
+}
+

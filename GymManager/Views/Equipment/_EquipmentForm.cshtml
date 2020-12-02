@@ -45,12 +45,18 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
             </div>
-            <input id="deliveryDate" type="date" class="form-control" name="deliveryDate"  min="2000-01-01" max="2100-01-01" required>
+            <input id="deliveryDate" type="date" class="form-control" name="deliveryDate" min="2000-01-01" max="2100-01-01" required>
         </div>
     </div>
     <p id="errordeliveryDate"></p>
 
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Submit</button>
-    <a href="/Equipment" class="btn btn-danger ml-2" role="button"><i class="fa fa-undo"></i> Back</a>
+    <div class="row">
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus-circle"></i> Submit</button>
+        </div>
+        <div class="col-6">
+            <a href="/Equipment" class="btn btn-danger btn-block" role="button"><i class="fa fa-undo"></i> Back</a>
+        </div>
+    </div>
 </form>
