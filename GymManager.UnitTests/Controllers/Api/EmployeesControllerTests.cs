@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Web.Http.Controllers;
 using System.Web.Http.Results;
 
@@ -35,9 +37,15 @@ namespace GymManager.UnitTests.Controllers.Api
             {
                 Request = request
             };
+
+            var claim = new Claim("Test", "Id");
+            var mockIdentity =
+                Mock.Of<ClaimsIdentity>(ci => ci.FindFirst(It.IsAny<string>()) == claim);
+
             controller = new EmployeesController(unitOfWork.Object)
             {
-                ControllerContext = controllerContext
+                ControllerContext = controllerContext,
+                User = Mock.Of<IPrincipal>(ip => ip.Identity == mockIdentity)
             };
         }
 
@@ -77,6 +85,33 @@ namespace GymManager.UnitTests.Controllers.Api
                 .Returns(employee);
 
             var response = controller.GetEmployee(id) as OkNegotiatedContentResult<ApplicationUserDto>;
+            var result = response.Content;
+
+            Assert.IsNotNull(response);
+            Assert.AreEqual(result, Mapper.Map<ApplicationUser, ApplicationUserDto>(employee));
+        }
+
+        [Test]
+        public void GetCurrentEmployee_EmployeeNotFound_ReturnNotFound()
+        {
+            unitOfWork.Setup(uow => uow.Employees.SingleOrDefault(e => e.Id == It.IsAny<string>()))
+                .Returns<ApplicationUser>(null);
+
+            var response = controller.GetCurrentEmployee();
+
+            Assert.That(response, Is.InstanceOf(typeof(NotFoundResult)));
+        }
+
+        [Test]
+        public void GetCurrentEmployee_EmployeeFound_ReturnCurrentEmployee()
+        {
+            var employee = new ApplicationUser();
+            string loggedInUserId = "Id";
+
+            unitOfWork.Setup(uow => uow.Employees.SingleOrDefault(e => e.Id == loggedInUserId))
+                .Returns(employee);
+
+            var response = controller.GetCurrentEmployee() as OkNegotiatedContentResult<ApplicationUserDto>;
             var result = response.Content;
 
             Assert.IsNotNull(response);
