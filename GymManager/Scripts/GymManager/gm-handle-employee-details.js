@@ -14,7 +14,7 @@
             $("#editButton").attr("href", "/Employees/Edit/" + employee.id);
         })
         .fail(function () {
-            window.location.pathname = '/Employees'
+            window.location.pathname = '/404.html';
         });
 
     $("#deleteButton").on("click", function () {

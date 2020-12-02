@@ -4,27 +4,29 @@
 
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
-    if (id > 0) {
-        $.ajax({
-            type: "GET",
-            url: "/api/equipmentOrders/" + id,
-        })
-            .done(function (equipmentOrder) {
-                $("#brand").val(equipmentOrder.brand);
-                $("#model").val(equipmentOrder.model);
-                $("#typeId").val(equipmentOrder.type.id);
-                $("#quantity").val(equipmentOrder.quantity);
-                var date = new Date(equipmentOrder.desiredDeliveryDate);
-                var dateString = date.getFullYear() + '-'
-                    + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-                    + ('0' + date.getDate()).slice(-2);
-                $("#desiredDeliveryDate").val(dateString);
+    if (!Number.isInteger(parseInt(id)))
+        window.location.pathname = '/404.html';
 
-            })
-            .fail(function () {
-                window.location.pathname = '/Equipment'
-            });
-    }
+    $.ajax({
+        type: "GET",
+        url: "/api/equipmentOrders/" + id,
+    })
+        .done(function (equipmentOrder) {
+            $("#brand").val(equipmentOrder.brand);
+            $("#model").val(equipmentOrder.model);
+            $("#typeId").val(equipmentOrder.type.id);
+            $("#quantity").val(equipmentOrder.quantity);
+            var date = new Date(equipmentOrder.desiredDeliveryDate);
+            var dateString = date.getFullYear() + '-'
+                + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+                + ('0' + date.getDate()).slice(-2);
+            $("#desiredDeliveryDate").val(dateString);
+
+        })
+        .fail(function () {
+            window.location.pathname = '/404.html';
+        });
+
 
     $("#equipmentOrderForm").validate({
         errorPlacement: function ($error, $element) {

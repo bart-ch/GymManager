@@ -4,28 +4,29 @@
 
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
-    if (id > 0) {
-        $.ajax({
-            type: "GET",
-            url: "/api/supplements/" + id,
-        })
-            .done(function (supplement) {
-                $("#brand").val(supplement.brand);
-                $("#supplementTypeId").val(supplement.supplementType.id);
-                $("#flavorId").val(supplement.flavor.id);
-                $("#initialAmount").val(supplement.initialAmount);
-                $("#consumedAmount").val(supplement.consumedAmount);
-                var date = new Date(supplement.deliveryDate);
-                var dateString = date.getFullYear() + '-'
-                    + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-                    + ('0' + date.getDate()).slice(-2);
-                $("#deliveryDate").val(dateString);
+    if (!Number.isInteger(parseInt(id)))
+        window.location.pathname = '/404.html';
 
-            })
-            .fail(function () {
-                window.location.pathname = '/Supplements'
-            });
-    }
+    $.ajax({
+        type: "GET",
+        url: "/api/supplements/" + id,
+    })
+        .done(function (supplement) {
+            $("#brand").val(supplement.brand);
+            $("#supplementTypeId").val(supplement.supplementType.id);
+            $("#flavorId").val(supplement.flavor.id);
+            $("#initialAmount").val(supplement.initialAmount);
+            $("#consumedAmount").val(supplement.consumedAmount);
+            var date = new Date(supplement.deliveryDate);
+            var dateString = date.getFullYear() + '-'
+                + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+                + ('0' + date.getDate()).slice(-2);
+            $("#deliveryDate").val(dateString);
+
+        })
+        .fail(function () {
+            window.location.pathname = '/404.html';
+        });
 
     $("#supplementForm").validate({
         errorPlacement: function ($error, $element) {

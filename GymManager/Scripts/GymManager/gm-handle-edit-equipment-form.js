@@ -5,7 +5,10 @@
 
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
-    if (Number.isInteger(parseInt(id))) {
+
+    if (!Number.isInteger(parseInt(id))) 
+        window.location.pathname = '/404.html';
+
         $.ajax({
             type: "GET",
             url: "/api/equipment/" + id,
@@ -26,9 +29,6 @@
             .fail(function () {
                 window.location.pathname = '/404.html'
             });
-    } else {
-        window.location.pathname = '/404.html';
-    }
 
     $("#equipmentForm").validate({
         errorPlacement: function ($error, $element) {

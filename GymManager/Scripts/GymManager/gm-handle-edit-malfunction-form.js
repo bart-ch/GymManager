@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
+    if (!Number.isInteger(parseInt(id)))
+        window.location.pathname = '/404.html';
+
     $.ajax({
         type: "GET",
         url: "/api/malfunctions/" + id,
@@ -22,7 +25,7 @@
             $("#malfunctionDate").val(dateString);
         })
         .fail(function () {
-            window.location.pathname = '/Malfunctions'
+            window.location.pathname = '/404.html';
         });
 
     $("#malfunctionForm").validate({
