@@ -103,6 +103,17 @@ textarea {
         background-color: #99a6bf;
     }
 
+.welcome-message {
+    padding: 50px 60px;
+    -webkit-box-shadow: 1px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 4px 26px 11px rgba(0,0,0,0.75);
+    box-shadow: 1px 4px 26px 11px rgba(0,0,0,0.75);
+    border-radius: 3px;
+    color: white;
+    background-color: rgba(89,49,150, 0.8);
+}
+
+
 @media (max-width:768px) {
     .carousel-caption h1 {
         font-size: 2rem;
@@ -161,6 +172,7 @@ textarea {
     .dropdown-menu li:hover .sub-menu {
         visibility: visible;
     }
+
     .dropdown:hover .dropdown-menu {
         display: block;
     }

@@ -27,7 +27,7 @@
                 data: "id",
                 "orderable": false,
                 render: function (data) {
-                    return "<a href ='/Malfunctions/History/" + data + "' class='pointer'><i class='fa fa-history' title='Equipment malfunction history'></i></a>";
+                    return "<a href ='/Malfunctions/History/" + data + "' class='pointer'><i class='fa fa-history' title='Malfunction history of the equipment'></i></a>";
                 }
             }
         ]
