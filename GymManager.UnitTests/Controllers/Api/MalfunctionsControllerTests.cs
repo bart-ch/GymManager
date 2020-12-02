@@ -60,7 +60,7 @@ namespace GymManager.UnitTests.Controllers.Api
         public void GetMalfunction_MalfunctionNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.Malfunctions
-                .SingleOrDefault(s => s.Id == It.IsAny<int>()))
+                .GetMalfunctionWithEquipment(s => s.Id == It.IsAny<int>()))
                 .Returns<Malfunction>(null);
 
             var response = controller.GetMalfunction(1);
@@ -75,7 +75,7 @@ namespace GymManager.UnitTests.Controllers.Api
             var id = 1;
 
             unitOfWork.Setup(uow => uow.Malfunctions
-                .SingleOrDefault(m => m.Id == id))
+                .GetMalfunctionWithEquipment(m => m.Id == id))
                 .Returns(malfunction);
 
             var response = controller.GetMalfunction(id) as OkNegotiatedContentResult<MalfunctionDto>;
