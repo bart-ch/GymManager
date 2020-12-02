@@ -10,9 +10,7 @@
             "order": [[2, "asc"]],
             columns: [
                 {
-                    render: function (data, type, full, meta) {
-                        return "<abbr title='Show more details'><a href='/Malfunctions/Details/" + full.id + "' >" + full.title + "</a></abbr>";
-                    }
+                    data: "title"
                 },
                 {
                     data: "isRepaired",
@@ -37,4 +35,20 @@
             ]
         });
     }
+
+    table.on('click', 'tbody > tr > td', function () {
+        var malfunctionId = table.row(this).data().id;
+        window.location = "/Malfunctions/Details/" + malfunctionId;
+    });
+
+    $('#malfunctionHistory tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+        }
+    });
 })

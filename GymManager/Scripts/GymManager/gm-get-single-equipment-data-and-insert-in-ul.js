@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
+
     $.ajax({
         type: "GET",
         url: "/api/equipment/" + id,
@@ -19,6 +20,6 @@
             $("#equipmentId").val(equipment.id);
         })
         .fail(function () {
-            window.location.pathname = '/Equipment'
+            window.location.pathname = '/404.html';
         });
 })
