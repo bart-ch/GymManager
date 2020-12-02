@@ -4,7 +4,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GymManager.UnitTests.Controllers
@@ -44,7 +43,6 @@ namespace GymManager.UnitTests.Controllers
             Assert.That(result.ViewName, Is.EqualTo(string.Empty)); ;
             Assert.That(result, Is.TypeOf(typeof(ViewResult)));
         }
-
 
         [Test]
         public void Contact_WhenCalled_ReturnView()

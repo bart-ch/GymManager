@@ -1,4 +1,5 @@
 ﻿using GymManager.Controllers;
+using Moq;
 using NUnit.Framework;
 using System.Web.Mvc;
 
@@ -23,15 +24,6 @@ namespace GymManager.UnitTests.Controllers
             Assert.That(result.ViewName, Is.EqualTo(string.Empty));
             Assert.That(result, Is.TypeOf(typeof(ViewResult)));
         }        
-        
-        //[Test]
-        //public void Manage_WhenCalled_ReturnView()
-        //{
-        //    var result = controller.Manage();
-
-        //    Assert.That(result.ViewName, Is.EqualTo(string.Empty));
-        //    Assert.That(result, Is.TypeOf(typeof(ViewResult)));
-        //}
 
         [Test]
         public void New_WhenCalled_ReturnView()
@@ -57,6 +49,17 @@ namespace GymManager.UnitTests.Controllers
             var result = controller.History();
 
             Assert.That(result.ViewName, Is.EqualTo(string.Empty));
+            Assert.That(result, Is.TypeOf(typeof(ViewResult)));
+        }
+
+        [Test]
+        public void HistoryOverloaded_WhenCalled_ReturnView()
+        {
+            var viewName = "SingleEquipmentHistory";
+
+            var result = controller.History(It.IsAny<int>());
+
+            Assert.That(result.ViewName, Is.EqualTo(viewName));
             Assert.That(result, Is.TypeOf(typeof(ViewResult)));
         }
 

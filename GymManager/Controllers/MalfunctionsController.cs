@@ -25,7 +25,6 @@ namespace GymManager.Controllers
             return View();
         }
 
-
         public ViewResult History(int id)
         {
             return View("SingleEquipmentHistory");
