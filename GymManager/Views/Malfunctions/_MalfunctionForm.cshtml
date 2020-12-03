@@ -29,7 +29,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
             </div>
-            <input id="malfunctionDate" type="date" class="form-control" name="malfunctionDate" min="2000-01-01" max="2100-01-01" required>
+            <input id="malfunctionDate" type="date" class="form-control" name="malfunctionDate" min="2000-01-01" max="@DateTime.Now.ToString("yyyy-M-dd")" required>
         </div>
     </div>
     <p id="errormalfunctionDate"></p>
