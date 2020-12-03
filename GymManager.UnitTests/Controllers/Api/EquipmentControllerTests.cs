@@ -61,7 +61,7 @@ namespace GymManager.UnitTests.Controllers.Api
         public void GetSingleEquipment_EquipmentNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == It.IsAny<int>()))
+                .GetEquipmentWithAreaAndType(e => e.Id == It.IsAny<int>()))
                 .Returns<Equipment>(null);
 
             var response = controller.GetSingleEquipment(It.IsAny<int>());
@@ -76,7 +76,7 @@ namespace GymManager.UnitTests.Controllers.Api
             var id = 1;
 
             unitOfWork.Setup(uow => uow.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == id))
+                .GetEquipmentWithAreaAndType(e => e.Id == id))
                 .Returns(equipment);
 
             var response = controller.GetSingleEquipment(id) as OkNegotiatedContentResult<EquipmentDto>;

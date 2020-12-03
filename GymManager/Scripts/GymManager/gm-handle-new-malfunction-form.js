@@ -12,12 +12,18 @@
             var name = $element.attr("name");
             $("#error" + name).append($error);
         },
+        ignore: [],
         rules: {
             title: {
                 maxlength: 50
             },
             description: {
                 maxlength: 255
+            }
+        },
+        messages: {
+            equipmentId: {
+                required: "Select the equipment."
             }
         },
         submitHandler: function () {

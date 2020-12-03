@@ -24,7 +24,7 @@ namespace GymManager.Persistance.Repositories
                 .ToList();
         }
 
-        public Equipment GetSingleOrDefaultEquipmentWithAreaAndType(Expression<Func<Equipment, bool>> predicate)
+        public Equipment GetEquipmentWithAreaAndType(Expression<Func<Equipment, bool>> predicate)
         {
             return ApplicationDbContext.Equipment
                 .Include(e => e.Area)

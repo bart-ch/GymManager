@@ -34,7 +34,7 @@ label.error {
     color: red;
 }
 
-select option:first-child {
+.select option:first-child {
     display: none;
 }
 

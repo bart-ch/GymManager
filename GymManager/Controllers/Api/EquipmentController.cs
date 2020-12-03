@@ -30,7 +30,7 @@ namespace GymManager.Controllers.Api
         public IHttpActionResult GetSingleEquipment(int id)
         {
             var equipment = unitOfWork.Equipment
-                .GetSingleOrDefaultEquipmentWithAreaAndType(e => e.Id == id);
+                .GetEquipmentWithAreaAndType(e => e.Id == id);
 
             if (equipment == null)
             {

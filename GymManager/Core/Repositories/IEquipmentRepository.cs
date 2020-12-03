@@ -8,6 +8,6 @@ namespace GymManager.Core.Repositories
     public interface IEquipmentRepository : IRepository<Equipment>
     {
         IEnumerable<Equipment> GetEquipmentWithAreasAndTypes();
-        Equipment GetSingleOrDefaultEquipmentWithAreaAndType(Expression<Func<Equipment, bool>> predicate);
+        Equipment GetEquipmentWithAreaAndType(Expression<Func<Equipment, bool>> predicate);
     }
 }

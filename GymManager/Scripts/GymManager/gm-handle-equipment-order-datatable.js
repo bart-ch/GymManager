@@ -61,7 +61,7 @@
                         + "<option class='pointer' value='3'>Completed</option>"
                         + "</select > "
                         + "</div>"
-                        + "<button type='button' data-equipment-order-id='" + full.id + "' class='btn btn-primary js-change'>Change</button ></form > ";
+                        + "<button type='button' data-equipment-order-id='" + full.id + "' class='btn btn-primary btn-block js-change'>Update</button ></form > ";
                 }
             },
             {

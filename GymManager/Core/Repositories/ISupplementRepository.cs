@@ -8,6 +8,6 @@ namespace GymManager.Core.Repositories
     public interface ISupplementRepository : IRepository<Supplement>
     {
         IEnumerable<Supplement> GetSupplementsWithFlavorsAndTypes();
-        Supplement GetSingleOrDefaultSupplementWithFlavorAndType(Expression<Func<Supplement, bool>> predicate);
+        Supplement GetSupplementWithFlavorAndType(Expression<Func<Supplement, bool>> predicate);
     }
 }

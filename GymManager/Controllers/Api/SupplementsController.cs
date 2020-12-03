@@ -30,7 +30,7 @@ namespace GymManager.Controllers.Api
         public IHttpActionResult GetSupplement(int id)
         {
             var supplement = unitOfWork.Supplements
-                .GetSingleOrDefaultSupplementWithFlavorAndType(e => e.Id == id);
+                .GetSupplementWithFlavorAndType(e => e.Id == id);
 
             if (supplement == null)
             {
