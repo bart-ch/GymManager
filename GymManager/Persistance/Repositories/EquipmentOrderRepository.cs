@@ -24,7 +24,7 @@ namespace GymManager.Persistance.Repositories
                 .ToList();
         }
 
-        public EquipmentOrder GetSingleEquipmentOrderWithTypeAndOrderStatus(Expression<Func<EquipmentOrder, bool>> predicate)
+        public EquipmentOrder GetEquipmentOrderWithTypeAndOrderStatus(Expression<Func<EquipmentOrder, bool>> predicate)
         {
             return ApplicationDbContext.EquipmentOrders
                 .Include(eo => eo.Type)

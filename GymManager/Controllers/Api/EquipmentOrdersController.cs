@@ -32,7 +32,7 @@ namespace GymManager.Controllers.Api
         public IHttpActionResult GetEquipmentOrder(int id)
         {
             var equipmentOrder = unitOfWork.EquipmentOrders
-                .GetSingleEquipmentOrderWithTypeAndOrderStatus(eo => eo.Id == id);
+                .GetEquipmentOrderWithTypeAndOrderStatus(eo => eo.Id == id);
 
             if (equipmentOrder == null)
             {

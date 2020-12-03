@@ -23,7 +23,7 @@ namespace GymManager.Persistance.Repositories
                 .ToList();
         }
 
-        public Supplement GetSingleOrDefaultSupplementWithFlavorAndType(Expression<Func<Supplement, bool>> predicate)
+        public Supplement GetSupplementWithFlavorAndType(Expression<Func<Supplement, bool>> predicate)
         {
             return ApplicationDbContext.Supplements
                 .Include(s => s.Flavor)

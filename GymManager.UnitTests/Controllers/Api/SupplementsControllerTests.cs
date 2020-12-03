@@ -60,7 +60,7 @@ namespace GymManager.UnitTests.Controllers.Api
         public void GetSupplement_SupplementNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.Supplements
-                .GetSingleOrDefaultSupplementWithFlavorAndType(s => s.Id == It.IsAny<int>()))
+                .GetSupplementWithFlavorAndType(s => s.Id == It.IsAny<int>()))
                 .Returns<Supplement>(null);
 
             var response = controller.GetSupplement(1);
@@ -75,7 +75,7 @@ namespace GymManager.UnitTests.Controllers.Api
             var id = 1;
 
             unitOfWork.Setup(uow => uow.Supplements
-                .GetSingleOrDefaultSupplementWithFlavorAndType(s => s.Id == id))
+                .GetSupplementWithFlavorAndType(s => s.Id == id))
                 .Returns(supplement);
 
             var response = controller.GetSupplement(id) as OkNegotiatedContentResult<SupplementDto>;

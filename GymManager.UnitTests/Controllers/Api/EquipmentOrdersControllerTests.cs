@@ -68,7 +68,7 @@ namespace GymManager.UnitTests.Controllers.Api
         public void GetEquipmentOrder_EquipmentOrderNotFound_ReturnNotFound()
         {
             unitOfWork.Setup(uow => uow.EquipmentOrders
-                .GetSingleEquipmentOrderWithTypeAndOrderStatus(eo => eo.Id == It.IsAny<int>()))
+                .GetEquipmentOrderWithTypeAndOrderStatus(eo => eo.Id == It.IsAny<int>()))
                 .Returns<EquipmentOrder>(null);
 
             var response = controller.GetEquipmentOrder(It.IsAny<int>());
@@ -83,7 +83,7 @@ namespace GymManager.UnitTests.Controllers.Api
             var id = 1;
 
             unitOfWork.Setup(uow => uow.EquipmentOrders
-                .GetSingleEquipmentOrderWithTypeAndOrderStatus(eo => eo.Id == id))
+                .GetEquipmentOrderWithTypeAndOrderStatus(eo => eo.Id == id))
                 .Returns(equipmentOrder);
 
             var response = controller.GetEquipmentOrder(id) as OkNegotiatedContentResult<EquipmentOrderDto>;
