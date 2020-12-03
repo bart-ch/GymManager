@@ -225,6 +225,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\ConsumedAmountLessOrEqualToInitial.cs" />
+    <Compile Include="Attributes\DateMustBeOlderThanTodaysDate.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AreasController.cs" />
     <Compile Include="Controllers\Api\EmployeesController.cs" />
