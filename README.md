@@ -1,8 +1,8 @@
 # Gym Manager - Asp.NET MVC 5 Web Application
-The application is designed for employees of fitness club to help them manage their workplace.
+The application is designed for employees of fitness club to help them manage their workplace. I introduced all the features in the video on my personal website: https://www.bartoszchodyla.pl/portoflio/gym-manager/. If you want to test the application, it's available at the following address: https://www.gymmanager.bartoszchodyla.pl/.
 <h2>Installation</h2>
-
-1. Update your local database by typing "update-database" into Package Manager Console.
+If you want to run the app on your computer to play with the code, those are the steps you need to follow:<br>
+1. Update your local database by typing "update-database" into Package Manager Console (Visual Studio).<br>
 2. If you get "A project with an Output Type of Class Library cannot be started directly." error - clean and rebuild the solution.
 
 <h2>Accounts</h2>
